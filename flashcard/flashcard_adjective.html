@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="submit">Submit</button>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "ganz", meaning: "whole, all the" },
+			{ word: "groß", meaning: "big, large, great" },
+			{ word: "gut", meaning: "good" },
+			{ word: "neu", meaning: "new" },
+			{ word: "erste (r, s)", meaning: "first" },
+			{ word: "lang", meaning: "long" },
+			{ word: "deutsch", meaning: "German" },
+			{ word: "klein", meaning: "small, little" },
+			{ word: "alt", meaning: "old" },
+			{ word: "hoch", meaning: "high, tall" },
+			{ word: "einfach", meaning: "simple, easy" },
+			{ word: "letzte (r, s)", meaning: "last" },
+			{ word: "gleich", meaning: "same, right away, just" },
+			{ word: "möglich", meaning: "possible" },
+			{ word: "eigen", meaning: "own" },
+			{ word: "schön", meaning: "beautiful, pleasant, good" },
+			{ word: "spät", meaning: "late" },
+			{ word: "wichtig", meaning: "important" },
+			{ word: "weitere (r, s)", meaning: "additional" },
+			{ word: "genau", meaning: "exactly" },
+			{ word: "jung", meaning: "young" },
+			{ word: "kurz", meaning: "short" },
+			{ word: "stark", meaning: "strong" },
+			{ word: "richtig", meaning: "correct" },
+			{ word: "verschieden", meaning: "different, diverse" },
+			{ word: "bestimmt", meaning: "special, certain" },
+			{ word: "besser", meaning: "better" },
+			{ word: "schnell", meaning: "fast" },
+			{ word: "sicher", meaning: "safe, secure, certain" },
+			{ word: "nächste (r, s)", meaning: "next" },
+			{ word: "klar", meaning: "clear" },
+			{ word: "schwer", meaning: "difficult, heavy" },
+			{ word: "einzeln", meaning: "individual" },
+			{ word: "bekannt", meaning: "well-known" },
+			{ word: "leicht", meaning: "light, easy" },
+			{ word: "rund", meaning: "round" },
+			{ word: "frei", meaning: "free" },
+			{ word: "früh", meaning: "early" },
+			{ word: "schlecht", meaning: "bad" },
+			{ word: "einzig", meaning: "only, single" },
+			{ word: "gemeinsam", meaning: "common, mutual" },
+			{ word: "nahe, nah", meaning: "near, close" },
+			{ word: "voll", meaning: "full" },
+			{ word: "direkt", meaning: "direct, straight" },
+			{ word: "international", meaning: "international" },
+			{ word: "sozial", meaning: "social" },
+			{ word: "beste (r,s)", meaning: "best" },
+			{ word: "rot", meaning: "red" },
+			{ word: "offen", meaning: "open" },
+			{ word: "meiste", meaning: "most" },
+			{ word: "besondere (r,s)", meaning: "special" },
+			{ word: "öffentlich", meaning: "public" },
+			{ word: "halb", meaning: "half" },
+			{ word: "wahrscheinlich", meaning: "probably" },
+			{ word: "europäisch", meaning: "European" },
+			{ word: "häufig", meaning: "frequent" },
+			{ word: "schwarz", meaning: "black" },
+			{ word: "völlig", meaning: "complete" },
+			{ word: "schwierig", meaning: "difficult" },
+			{ word: "praktisch", meaning: "practical" },
+			{ word: "persönlich", meaning: "personal" },
+			{ word: "–jährig", meaning: "years old" },
+			{ word: "modern", meaning: "modern" },
+			{ word: "zusätzlich", meaning: "additional" },
+			{ word: "interessant", meaning: "interesting" },
+			{ word: "relativ", meaning: "relative" },
+			{ word: "grün", meaning: "green" },
+			{ word: "weiß", meaning: "white" },
+			{ word: "gesamt", meaning: "whole, entire" },
+			{ word: "speziell", meaning: "special, specific" },
+			{ word: "technisch", meaning: "technical" },
+			{ word: "langsam", meaning: "slow" },
+			{ word: "ständig", meaning: "constant" },
+			{ word: "notwendig", meaning: "necessary" },
+			{ word: "englisch", meaning: "English" },
+			{ word: "falsch", meaning: "false, wrong" },
+			{ word: "fremd", meaning: "foreign, strange" },
+			{ word: "selten", meaning: "rare" },
+			{ word: "normal", meaning: "normal" },
+			{ word: "wahr", meaning: "TRUE" },
+			{ word: "privat", meaning: "private" },
+			{ word: "tot", meaning: "dead" },
+			{ word: "positiv", meaning: "positive" },
+			{ word: "zentral", meaning: "central" },
+			{ word: "fertig", meaning: "finished, ready" },
+			{ word: "breit", meaning: "wide, broad" },
+			{ word: "hart", meaning: "hard" },
+			{ word: "innere", meaning: "internal" },
+			{ word: "künftig", meaning: "future" },
+			{ word: "aktuell", meaning: "current" },
+			{ word: "übrig", meaning: "remaining, left" },
+			{ word: "schlimm", meaning: "bad, serious" },
+			{ word: "schlimmer", meaning: "worse" },
+			{ word: "lieb", meaning: "dear, kind" },
+			{ word: "dunkel", meaning: "dark" },
+			{ word: "offenbar", meaning: "obvious" },
+			{ word: "rechte", meaning: "right" },
+			{ word: "geboren", meaning: "born" },
+			{ word: "menschlich", meaning: "human" },
+			{ word: "regelmäßig", meaning: "regular" },
+			{ word: "aktiv", meaning: "active" },
+			{ word: "kalt", meaning: "cold" },
+			{ word: "heutig", meaning: "present-day, today's" },
+			{ word: "ruhig", meaning: "quiet, calm" },
+			{ word: "heiß", meaning: "hot" },
+			{ word: "teuer", meaning: "expensive" },
+			{ word: "toll", meaning: "great, terrific" },
+			{ word: "täglich", meaning: "daily" },
+			{ word: "üblich", meaning: "usual" },
+			{ word: "absolut", meaning: "absolute" },
+			{ word: "ungefähr", meaning: "approximately" },
+			{ word: "blau", meaning: "blue" },
+			{ word: "rasch", meaning: "quick" },
+			{ word: "ernst", meaning: "serious" },
+			{ word: "okay", meaning: "okay" },
+			{ word: "zufrieden", meaning: "satisfied" },
+			{ word: "krank", meaning: "sick, ill" },
+			{ word: "warm", meaning: "warm" },
+			{ word: "dick", meaning: "thick, fat" },
+			{ word: "schwach", meaning: "weak" },
+			{ word: "linke", meaning: "left" },
+			{ word: "bereit", meaning: "ready" },
+			{ word: "leise", meaning: "quiet, soft" },
+			{ word: "glücklich", meaning: "happy, fortunate" },
+			{ word: "beruflich", meaning: "professional" },
+			{ word: "ausschließlich", meaning: "exclusive" },
+			{ word: "laut", meaning: "loud" },
+			{ word: "jährlich", meaning: "annual" },
+			{ word: "böse", meaning: "bad, mad" },
+			{ word: "frisch", meaning: "fresh" },
+			{ word: "intensiv", meaning: "intensive" },
+			{ word: "außen", meaning: "outside" },
+			{ word: "vollständig", meaning: "complete" },
+			{ word: "berühmt", meaning: "famous" },
+			{ word: "hell", meaning: "light, bright" },
+			{ word: "still", meaning: "still, quiet" },
+			{ word: "froh", meaning: "happy" },
+			{ word: "reich", meaning: "rich, abundant" },
+			{ word: "günstig", meaning: "favorable, good" },
+			{ word: "hauptsächlich", meaning: "main" },
+			{ word: "nett", meaning: "nice" },
+			{ word: "zeitlich", meaning: "in time" },
+			{ word: "gesund", meaning: "healthy" },
+			{ word: "grau", meaning: "grey" },
+			{ word: "freundlich", meaning: "friendly" },
+			{ word: "arbeitslos", meaning: "unemployed" },
+			{ word: "billig", meaning: "cheap" },
+			{ word: "bunt", meaning: "colorful" },
+			{ word: "dringend", meaning: "urgent" },
+			{ word: "unmöglich", meaning: "impossible" },
+			{ word: "bedeutend", meaning: "important, significant" },
+			{ word: "angemessen", meaning: "appropriate" },
+			{ word: "sonstig", meaning: "other" },
+			{ word: "entfernt", meaning: "distant" },
+			{ word: "gelb", meaning: "yellow" },
+			{ word: "schmal", meaning: "narrow, slender" },
+			{ word: "traurig", meaning: "sad" },
+			{ word: "wunderbar", meaning: "wonderful" },
+			{ word: "arm", meaning: "poor" },
+			{ word: "verheiratet", meaning: "married" },
+			{ word: "langfristig", meaning: "long-term" },
+			{ word: "sauber", meaning: "clean" },
+			{ word: "gewohnt", meaning: "usual" },
+			{ word: "müde", meaning: "tired" },
+			{ word: "kühl", meaning: "cool" },
+			{ word: "lokal", meaning: "local" },
+			{ word: "nackt", meaning: "naked, bare" },
+			{ word: "zukünftig", meaning: "future" },
+			{ word: "braun", meaning: "brown" },
+			{ word: "real", meaning: "real" },
+			{ word: "fern", meaning: "far, distant" },
+			{ word: "lustig", meaning: "funny, enjoyable" },
+			{ word: "musikalisch", meaning: "musical" },
+			{ word: "verrückt", meaning: "crazy" },
+			{ word: "vertraut", meaning: "familiar, close" },
+			{ word: "winzig", meaning: "tiny" },
+			{ word: "beliebt", meaning: "popular" },
+			{ word: "herzlich", meaning: "cordial, warm" },
+			{ word: "schlicht", meaning: "simple, plain" },
+			{ word: "attraktiv", meaning: "attractive" },
+			{ word: "intern", meaning: "internal" },
+			{ word: "relevant", meaning: "relevant" },
+			{ word: "einig", meaning: "agreed" },
+			{ word: "friedlich", meaning: "peaceful" },
+			{ word: "wunderschön", meaning: "wonderful, lovely" },
+			{ word: "einsam", meaning: "lonely, isolated" },
+			{ word: "gründlich", meaning: "thorough" },
+			{ word: "spontan", meaning: "spontaneous" },
+			{ word: "top", meaning: "top" },
+			{ word: "süß", meaning: "sweet" },
+			{ word: "vorläufig", meaning: "temporary" },
+			{ word: "schuldig", meaning: "guilty" },
+			{ word: "fröhlich", meaning: "cheerful" },
+			{ word: "schwanger", meaning: "pregnant" },
+			{ word: "dauernd", meaning: "constant, lasting" },
+			{ word: "kostenlos", meaning: "free of charge" },
+			{ word: "monatlich", meaning: "monthly" },
+			{ word: "präzise", meaning: "precise" },
+			{ word: "vorig", meaning: "previous" },
+			{ word: "wach", meaning: "awake" },
+			{ word: "gespannt", meaning: "eager, anxious, tense" },
+			{ word: "intelligent", meaning: "intelligent" },
+			{ word: "nass", meaning: "wet" },
+			{ word: "unsichtbar", meaning: "invisible" },
+			{ word: "voraussichtlich", meaning: "expected" },
+			{ word: "endlos", meaning: "endless, infinite" },
+			{ word: "fotografisch", meaning: "photographic" },
+			{ word: "mild", meaning: "mild, gentle" },
+			{ word: "regelrecht", meaning: "proper, real" },
+			{ word: "tödlich", meaning: "fatal" },
+			{ word: "bedeutsam", meaning: "important, significant" },
+			{ word: "gänzlich", meaning: "entirely" },
+			{ word: "schulisch", meaning: "school" },
+			{ word: "willkommen", meaning: "welcome" },
+			{ word: "einstig", meaning: "former" },
+			{ word: "hässlich", meaning: "ugly" },
+
+
+
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+        });
+
+        $("#submit").click(function() {
+            if (!selectedOption) return;
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+            
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>

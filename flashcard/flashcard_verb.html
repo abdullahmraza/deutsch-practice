@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="submit">Submit</button>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "sein", meaning: "to be" },
+			{ word: "haben", meaning: "to have" },
+			{ word: "werden", meaning: "to become, get" },
+			{ word: "können", meaning: "to be able to, can" },
+			{ word: "müssen", meaning: "to have to, must" },
+			{ word: "sagen", meaning: "to say" },
+			{ word: "machen", meaning: "to do, make" },
+			{ word: "geben", meaning: "to give" },
+			{ word: "kommen", meaning: "to come" },
+			{ word: "sollen", meaning: "should, ought to" },
+			{ word: "wollen", meaning: "to want to" },
+			{ word: "gehen", meaning: "to go" },
+			{ word: "wissen", meaning: "to know" },
+			{ word: "sehen", meaning: "to see" },
+			{ word: "lassen", meaning: "to let, allow, have done" },
+			{ word: "stehen", meaning: "to stand" },
+			{ word: "finden", meaning: "to find" },
+			{ word: "bleiben", meaning: "to stay, remain" },
+			{ word: "liegen", meaning: "to lie" },
+			{ word: "heißen", meaning: "to be called" },
+			{ word: "denken", meaning: "to think" },
+			{ word: "nehmen", meaning: "to take" },
+			{ word: "tun", meaning: "to do" },
+			{ word: "dürfen", meaning: "to be allowed, may" },
+			{ word: "glauben", meaning: "to believe" },
+			{ word: "halten", meaning: "to stop, hold" },
+			{ word: "nennen", meaning: "name, call" },
+			{ word: "mögen", meaning: "to like" },
+			{ word: "zeigen", meaning: "to show" },
+			{ word: "führen", meaning: "to lead" },
+			{ word: "sprechen", meaning: "to speak" },
+			{ word: "bringen", meaning: "to bring, take" },
+			{ word: "leben", meaning: "to live" },
+			{ word: "fahren", meaning: "to drive, ride, go" },
+			{ word: "meinen", meaning: "to think, have an opinion" },
+			{ word: "fragen", meaning: "to ask" },
+			{ word: "kennen", meaning: "to know" },
+			{ word: "stellen", meaning: "to place, set" },
+			{ word: "spielen", meaning: "to play" },
+			{ word: "arbeiten", meaning: "to work" },
+			{ word: "brauchen", meaning: "to need" },
+			{ word: "folgen", meaning: "to follow" },
+			{ word: "lernen", meaning: "to learn" },
+			{ word: "bestehen", meaning: "to exist, insist, pass (an exam)" },
+			{ word: "verstehen", meaning: "to understand" },
+			{ word: "setzen", meaning: "to set, place, put" },
+			{ word: "bekommen", meaning: "to get, receive" },
+			{ word: "beginnen", meaning: "to begin" },
+			{ word: "erzählen", meaning: "to tell" },
+			{ word: "versuchen", meaning: "to try, attempt" },
+			{ word: "schreiben", meaning: "to write" },
+			{ word: "laufen", meaning: "to run" },
+			{ word: "erklären", meaning: "to explain" },
+			{ word: "entsprechen", meaning: "to correspond" },
+			{ word: "sitzen", meaning: "to sit" },
+			{ word: "ziehen", meaning: "to pull, move" },
+			{ word: "scheinen", meaning: "to shine, seem, appear" },
+			{ word: "fallen", meaning: "to fall" },
+			{ word: "gehören", meaning: "to belong" },
+			{ word: "entstehen", meaning: "to originate, develop" },
+			{ word: "erhalten", meaning: "to receive" },
+			{ word: "treffen", meaning: "to meet" },
+			{ word: "suchen", meaning: "to search, look for" },
+			{ word: "legen", meaning: "to lay, put" },
+			{ word: "vorstellen", meaning: "to introduce, imagine" },
+			{ word: "handeln", meaning: "to deal, trade" },
+			{ word: "tragen", meaning: "to carry, wear" },
+			{ word: "schaffen", meaning: "to manage, create" },
+			{ word: "lesen", meaning: "to read" },
+			{ word: "verlieren", meaning: "to lose" },
+			{ word: "erkennen", meaning: "to recognize, admit" },
+			{ word: "reden", meaning: "to talk" },
+			{ word: "aussehen", meaning: "to appear, look" },
+			{ word: "erscheinen", meaning: "to appear" },
+			{ word: "bilden", meaning: "to form, educate" },
+			{ word: "anfangen", meaning: "to begin" },
+			{ word: "erwarten", meaning: "to expect" },
+			{ word: "wohnen", meaning: "to live" },
+			{ word: "betreffen", meaning: "to affect, concern" },
+			{ word: "warten", meaning: "to wait" },
+			{ word: "helfen", meaning: "to help" },
+			{ word: "gewinnen", meaning: "to win, gain" },
+			{ word: "schließen", meaning: "to close" },
+			{ word: "fühlen", meaning: "to feel" },
+			{ word: "bieten", meaning: "to offer" },
+			{ word: "interessieren", meaning: "to interest" },
+			{ word: "erinnern", meaning: "to remind" },
+			{ word: "ergeben", meaning: "to result in" },
+			{ word: "anbieten", meaning: "to offer" },
+			{ word: "studieren", meaning: "to study" },
+			{ word: "verbinden", meaning: "to connect, link" },
+			{ word: "ansehen", meaning: "to look at, watch" },
+			{ word: "fehlen", meaning: "to lack, be missing, be absent" },
+			{ word: "steigen", meaning: "to climb, increase" },
+			{ word: "nutzen", meaning: "to use" },
+			{ word: "schauen", meaning: "to look" },
+			{ word: "verlassen", meaning: "to leave" },
+			{ word: "einsetzen", meaning: "to put in, insert" },
+			{ word: "ändern", meaning: "to change" },
+			{ word: "wachsen", meaning: "to grow" },
+			{ word: "ausgehen", meaning: "to go out, assume" },
+			{ word: "beschreiben", meaning: "to describe" },
+			{ word: "annehmen", meaning: "to accept, assume" },
+			{ word: "befinden", meaning: "to be" },
+			{ word: "passieren", meaning: "to take place, happen" },
+			{ word: "rufen", meaning: "to call, name" },
+			{ word: "aufnehmen", meaning: "to record, include" },
+			{ word: "zunehmen", meaning: "to increase" },
+			{ word: "fordern", meaning: "to demand, claim" },
+			{ word: "gefallen", meaning: "to please" },
+			{ word: "öffnen", meaning: "to open" },
+			{ word: "schlagen", meaning: "to hit, beat" },
+			{ word: "übernehmen", meaning: "to take over" },
+			{ word: "verändern", meaning: "to change" },
+			{ word: "lachen", meaning: "to laugh" },
+			{ word: "verwenden", meaning: "to use" },
+			{ word: "wählen", meaning: "to choose, elect, vote" },
+			{ word: "erfolgen", meaning: "to take place, occur" },
+			{ word: "entscheiden", meaning: "to decide" },
+			{ word: "kaufen", meaning: "to buy" },
+			{ word: "erfahren", meaning: "to experience, find out" },
+			{ word: "vergessen", meaning: "to forget" },
+			{ word: "stattfinden", meaning: "to take place, occur" },
+			{ word: "bewegen", meaning: "to move" },
+			{ word: "feststellen", meaning: "to establish, detect" },
+			{ word: "verschwinden", meaning: "to disappear" },
+			{ word: "dienen", meaning: "to serve" },
+			{ word: "trinken", meaning: "to drink" },
+			{ word: "auftreten", meaning: "to appear, occur" },
+			{ word: "verhalten", meaning: "to behave, react" },
+			{ word: "berichten", meaning: "to report" },
+			{ word: "rechnen", meaning: "to calculate, do arithmetic" },
+			{ word: "erleben", meaning: "to experience" },
+			{ word: "holen", meaning: "to get, fetch" },
+			{ word: "essen", meaning: "to eat" },
+			{ word: "sterben", meaning: "to die" },
+			{ word: "leisten", meaning: "to achieve" },
+			{ word: "verlangen", meaning: "to request, demand" },
+			{ word: "werfen", meaning: "to throw" },
+			{ word: "vorliegen", meaning: "to be, exist" },
+			{ word: "zählen", meaning: "to count" },
+			{ word: "wünschen", meaning: "to want, wish" },
+			{ word: "bauen", meaning: "to build" },
+			{ word: "hängen", meaning: "to hang" },
+			{ word: "hoffen", meaning: "to hope" },
+			{ word: "freuen", meaning: "to be happy" },
+			{ word: "teilen", meaning: "to divide, share" },
+			{ word: "bezahlen", meaning: "to pay" },
+			{ word: "dauern", meaning: "to last, take time" },
+			{ word: "stecken", meaning: "to put, be located" },
+			{ word: "besuchen", meaning: "to visit" },
+			{ word: "bitten", meaning: "to request, ask" },
+			{ word: "ankommen", meaning: "to arrive" },
+			{ word: "erhöhen", meaning: "to raise, increase" },
+			{ word: "melden", meaning: "to report, register" },
+			{ word: "betonen", meaning: "to stress" },
+			{ word: "erfüllen", meaning: "to grant, fulfill" },
+			{ word: "passen", meaning: "to fit" },
+			{ word: "eignen", meaning: "to be suitable" },
+			{ word: "umfassen", meaning: "to include, consist of" },
+			{ word: "schlafen", meaning: "to sleep" },
+			{ word: "lächeln", meaning: "to smile" },
+			{ word: "beschäftigen", meaning: "to employ, be busy, deal with" },
+			{ word: "lösen", meaning: "to solve, loosen" },
+			{ word: "antworten", meaning: "to answer" },
+			{ word: "trennen", meaning: "to separate" },
+			{ word: "einstellen", meaning: "to adjust, employ, stop" },
+			{ word: "lieben", meaning: "to love" },
+			{ word: "durchführen", meaning: "to be sufficient" },
+			{ word: "aufbauen", meaning: "to build up" },
+			{ word: "verkaufen", meaning: "to sell" },
+			{ word: "drücken", meaning: "to press, push" },
+			{ word: "erlauben", meaning: "to allow, permit" },
+			{ word: "ausreichen", meaning: "to be sufficient" },
+			{ word: "schweigen", meaning: "to remain silent" },
+			{ word: "treiben", meaning: "to drive, pursue" },
+			{ word: "benutzen", meaning: "to use" },
+			{ word: "versprechen", meaning: "to promise" },
+			{ word: "klingen", meaning: "to sound" },
+			{ word: "reagieren", meaning: "to react" },
+			{ word: "kosten", meaning: "to cost" },
+			{ word: "verdienen", meaning: "to earn, deserve" },
+			{ word: "überraschen", meaning: "to surprise" },
+			{ word: "betreiben", meaning: "proceed with, operate" },
+			{ word: "fliegen", meaning: "to fly" },
+			{ word: "heben", meaning: "to lift, raise" },
+			{ word: "stoßen", meaning: "to bump, push" },
+			{ word: "vertreten", meaning: "to represent" },
+			{ word: "ermöglichen", meaning: "to enable" },
+			{ word: "herstellen", meaning: "to produce" },
+			{ word: "leiden", meaning: "to suffer" },
+			{ word: "schicken", meaning: "to send" },
+			{ word: "liefern", meaning: "to deliver, supply" },
+			{ word: "zahlen", meaning: "to pay" },
+			{ word: "benötigen", meaning: "to require" },
+			{ word: "stammen", meaning: "to come from, descend" },
+			{ word: "verhindern", meaning: "to prevent" },
+			{ word: "abschließen", meaning: "to lock, conclude" },
+			{ word: "reisen", meaning: "to travel" },
+			{ word: "singen", meaning: "to sing" },
+			{ word: "überlegen", meaning: "to consider, think about" },
+			{ word: "aufgeben", meaning: "to give up" },
+			{ word: "kochen", meaning: "to cook" },
+			{ word: "angeben", meaning: "to claim, declare, show off" },
+			{ word: "schützen", meaning: "to protect" },
+			{ word: "vorbereiten", meaning: "to prepare" },
+			{ word: "wiederholen", meaning: "to repeat" },
+			{ word: "feiern", meaning: "to celebrate" },
+			{ word: "vermitteln", meaning: "to arrange, find sth for sb" },
+			{ word: "berücksichtigen", meaning: "to consider" },
+			{ word: "ausschließen", meaning: "to exclude, rule out" },
+			{ word: "diskutieren", meaning: "to discuss" },
+			{ word: "funktionieren", meaning: "to function, work" },
+			{ word: "schieben", meaning: "to push" },
+			{ word: "behaupten", meaning: "to claim" },
+			{ word: "verfolgen", meaning: "to pursue" },
+			{ word: "zurückkommen", meaning: "to return" },
+			{ word: "einfallen", meaning: "to occur, remind, collapse" },
+			{ word: "existieren", meaning: "to exist" },
+			{ word: "beachten", meaning: "to pay attention, observe" },
+			{ word: "empfinden", meaning: "to feel" },
+			{ word: "schneiden", meaning: "to cut" },
+			{ word: "sichern", meaning: "to secure, safeguard" },
+			{ word: "wenden", meaning: "to turn" },
+			{ word: "informieren", meaning: "to inform" },
+			{ word: "kümmern", meaning: "to take care of, be concerned" },
+			{ word: "organisieren", meaning: "to organize" },
+			{ word: "prägen", meaning: "to shape, mint" },
+			{ word: "sinken", meaning: "to sink" },
+			{ word: "vermeiden", meaning: "to avoid" },
+			{ word: "aufstehen", meaning: "to stand up, get up" },
+			{ word: "vorsehen", meaning: "to plan, provide for" },
+			{ word: "einladen", meaning: "to invite, load" },
+			{ word: "empfehlen", meaning: "to recommend" },
+			{ word: "eröffnen", meaning: "to open, start" },
+			{ word: "anlegen", meaning: "to put on, invest" },
+			{ word: "beschließen", meaning: "to decide" },
+			{ word: "leiten", meaning: "to lead" },
+			{ word: "prüfen", meaning: "to examine, check" },
+			{ word: "unterhalten", meaning: "to amuse oneself, chat" },
+			{ word: "weitergehen", meaning: "to go on" },
+			{ word: "zurückkehren", meaning: "to return" },
+			{ word: "beitragen", meaning: "to contribute" },
+			{ word: "schreien", meaning: "to cry out, scream" },
+			{ word: "einnehmen", meaning: "to take up, in" },
+			{ word: "übertragen", meaning: "to transfer" },
+			{ word: "füllen", meaning: "to fill" },
+			{ word: "verteilen", meaning: "to distribute" },
+			{ word: "vornehmen", meaning: "to plan" },
+			{ word: "abnehmen", meaning: "to decrease, reduce" },
+			{ word: "heiraten", meaning: "to marry" },
+			{ word: "messen", meaning: "to measure" },
+			{ word: "hereinkommen", meaning: "to come in" },
+			{ word: "sammeln", meaning: "to collect, gather" },
+			{ word: "auslösen", meaning: "to set off, provoke" },
+			{ word: "kämpfen", meaning: "to fight" },
+			{ word: "warnen", meaning: "to warn" },
+			{ word: "verbringen", meaning: "to spend time" },
+			{ word: "ausmachen", meaning: "to put out, agree" },
+			{ word: "binden", meaning: "to tie, bind" },
+			{ word: "anrufen", meaning: "to call" },
+			{ word: "anziehen", meaning: "to attract, put on, dress" },
+			{ word: "teilnehmen", meaning: "to take part" },
+			{ word: "aufhören", meaning: "to stop" },
+			{ word: "äußern", meaning: "to express, voice" },
+			{ word: "einführen", meaning: "to introduce, import" },
+			{ word: "begleiten", meaning: "to accompany" },
+			{ word: "reißen", meaning: "to tear" },
+			{ word: "verweisen", meaning: "to refer" },
+			{ word: "bestellen", meaning: "to order, reserve" },
+			{ word: "starten", meaning: "to start" },
+			{ word: "ablaufen", meaning: "to run out, expire" },
+			{ word: "üben", meaning: "to practice" },
+			{ word: "zurückgehen", meaning: "to go back, decrease" },
+			{ word: "anschließen", meaning: "to join, chain to, connect" },
+			{ word: "ausdrücken", meaning: "to express" },
+			{ word: "schießen", meaning: "to shoot" },
+			{ word: "bedürfen", meaning: "to require" },
+			{ word: "behalten", meaning: "to keep" },
+			{ word: "herauskommen", meaning: "to come out" },
+			{ word: "hören", meaning: "to hear" },
+			{ word: "lauten", meaning: "to be (answer)" },
+			{ word: "umgehen", meaning: "to treat, handle" },
+			{ word: "vermuten", meaning: "to assume, suspect" },
+			{ word: "zukommen", meaning: "to come towards, be in store" },
+			{ word: "absehen", meaning: "to foresee, be in sight" },
+			{ word: "auffallen", meaning: "to stand out, notice" },
+			{ word: "überleben", meaning: "to survive" },
+			{ word: "landen", meaning: "to land" },
+			{ word: "packen", meaning: "to pack, grab" },
+			{ word: "schenken", meaning: "to give as a present" },
+			{ word: "senken", meaning: "to sink, lower, decrease" },
+			{ word: "zurückziehen", meaning: "to withdraw" },
+			{ word: "anerkennen", meaning: "to recognize, accept" },
+			{ word: "genießen", meaning: "to enjoy, relish" },
+			{ word: "unterrichten", meaning: "to teach" },
+			{ word: "fließen", meaning: "to flow" },
+			{ word: "unterbrechen", meaning: "to interrupt" },
+			{ word: "vertrauen", meaning: "to trust" },
+			{ word: "vorschlagen", meaning: "to suggest" },
+			{ word: "aussprechen", meaning: "to pronounce, express" },
+			{ word: "mitnehmen", meaning: "to take along" },
+			{ word: "rücken", meaning: "to move" },
+			{ word: "verbieten", meaning: "to forbid, prohibit" },
+			{ word: "integrieren", meaning: "to integrate" },
+			{ word: "waschen", meaning: "to wash" },
+			{ word: "ausbilden", meaning: "to train, instruct, educate" },
+			{ word: "beantworten", meaning: "to answer" },
+			{ word: "einkaufen", meaning: "to shop" },
+			{ word: "erläutern", meaning: "to explain" },
+			{ word: "gucken", meaning: "to look at, watch" },
+			{ word: "mitbringen", meaning: "to bring" },
+			{ word: "unternehmen", meaning: "to do, go on, take steps" },
+			{ word: "verstecken", meaning: "to hide" },
+			{ word: "mitteilen", meaning: "to inform" },
+			{ word: "schwimmen", meaning: "to swim" },
+			{ word: "vereinbaren", meaning: "to agree" },
+			{ word: "betreuen", meaning: "to look after, take care" },
+			{ word: "enden", meaning: "to end" },
+			{ word: "probieren", meaning: "to try" },
+			{ word: "sparen", meaning: "to save" },
+			{ word: "übersetzen", meaning: "to translate" },
+			{ word: "anzeigen", meaning: "to report, sue, indicate" },
+			{ word: "eintragen", meaning: "to enter, record, register" },
+			{ word: "träumen", meaning: "to dream" },
+			{ word: "achten", meaning: "to respect, pay attention" },
+			{ word: "befürchten", meaning: "to fear" },
+			{ word: "zuhören", meaning: "to listen" },
+			{ word: "aufwachsen", meaning: "to grow up" },
+			{ word: "entschuldigen", meaning: "to excuse, apologize" },
+			{ word: "gefährden", meaning: "to endanger" },
+			{ word: "tanzen", meaning: "to dance" },
+			{ word: "wandern", meaning: "to go on a walk or hike, migrate" },
+			{ word: "ausgeben", meaning: "to spend" },
+			{ word: "beraten", meaning: "to advise, discuss" },
+			{ word: "erstellen", meaning: "to build, draw up, produce" },
+			{ word: "lehren", meaning: "to teach" },
+			{ word: "anhören", meaning: "to listen to" },
+			{ word: "anstellen", meaning: "to employ, line up, get into mischief" },
+			{ word: "bedenken", meaning: "to consider" },
+			{ word: "einbringen", meaning: "to bring in, contribute" },
+			{ word: "verlieben", meaning: "to fall in love" },
+			{ word: "aufpassen", meaning: "to pay attention, take care" },
+			{ word: "aufsteigen", meaning: "to get on, rise" },
+			{ word: "überlassen", meaning: "to leave" },
+			{ word: "verschieben", meaning: "to move, postpone" },
+			{ word: "vorgeben", meaning: "to use as an excuse, to set in advance" },
+			{ word: "aufhalten", meaning: "to stop, hold up, delay" },
+			{ word: "ausstatten", meaning: "to furnish, provide" },
+			{ word: "empfangen", meaning: "to receive" },
+			{ word: "trauen", meaning: "to trust, dare to" },
+			{ word: "weisen", meaning: "to point" },
+			{ word: "zugehen", meaning: "to approach, close" },
+			{ word: "aufgehen", meaning: "to rise, open" },
+			{ word: "aussuchen", meaning: "to choose" },
+			{ word: "ausziehen", meaning: "to move out, undress, to take off clothes" },
+			{ word: "schalten", meaning: "to switch, shift" },
+			{ word: "verarbeiten", meaning: "to use, process, assimilate" },
+			{ word: "versehen", meaning: "to perform, provide" },
+			{ word: "abwarten", meaning: "to wait, wait out" },
+			{ word: "ausfallen", meaning: "to drop out, be cancelled" },
+			{ word: "ordnen", meaning: "to arrange, sort" },
+			{ word: "schmecken", meaning: "to taste" },
+			{ word: "bereiten", meaning: "to make, cause" },
+			{ word: "erfinden", meaning: "to invent" },
+			{ word: "gewöhnen", meaning: "to get used to" },
+			{ word: "herkommen", meaning: "to come here" },
+			{ word: "rauchen", meaning: "to smoke" },
+			{ word: "herausfinden", meaning: "to find out" },
+			{ word: "laden", meaning: "to load" },
+			{ word: "verleihen", meaning: "to rent, award" },
+			{ word: "aufmachen", meaning: "to open" },
+			{ word: "bearbeiten", meaning: "to work on, revise" },
+			{ word: "eintreffen", meaning: "to arrive, come true, happen" },
+			{ word: "entnehmen", meaning: "to take, extract, infer" },
+			{ word: "erlernen", meaning: "to learn" },
+			{ word: "rennen", meaning: "to run" },
+			{ word: "senden", meaning: "to send, broadcast" },
+			{ word: "übergehen", meaning: "to pass into, to ignore" },
+			{ word: "verbleiben", meaning: "to remain" },
+			{ word: "verschließen", meaning: "to close, lock" },
+			{ word: "zusammenarbeiten", meaning: "to cooperate" },
+			{ word: "aufkommen", meaning: "to come up, arise, pay for" },
+			{ word: "einhalten", meaning: "to observe" },
+			{ word: "fangen", meaning: "to catch" },
+			{ word: "scheiden", meaning: "to separate, divorce" },
+			{ word: "verstorben", meaning: "to pass away" },
+			{ word: "ansteigen", meaning: "to rise, go up" },
+			{ word: "danken", meaning: "to thank" },
+			{ word: "markieren", meaning: "to mark" },
+			{ word: "mitmachen", meaning: "to join in, take part" },
+			{ word: "transportieren", meaning: "to transport" },
+			{ word: "vorschreiben", meaning: "to tell sb to do sth" },
+			{ word: "abholen", meaning: "to get, fetch, pick up" },
+			{ word: "absetzen", meaning: "to take off, dismiss" },
+			{ word: "anbringen", meaning: "to put up" },
+			{ word: "einigen", meaning: "to unite, agree" },
+			{ word: "einschlafen", meaning: "to fall asleep" },
+			{ word: "trainieren", meaning: "to train, coach" },
+			{ word: "anmelden", meaning: "to register, sign up" },
+			{ word: "aufzeigen", meaning: "to show, point out" },
+			{ word: "aussteigen", meaning: "to get off" },
+			{ word: "austauschen", meaning: "to exchange, replace" },
+			{ word: "bevorstehen", meaning: "to lie ahead, be imminent" },
+			{ word: "fliehen", meaning: "to flee, escape" },
+			{ word: "putzen", meaning: "to clean" },
+			{ word: "bedanken", meaning: "to thank" },
+			{ word: "stoppen", meaning: "to stop" },
+			{ word: "wiedersehen", meaning: "to see again" },
+			{ word: "abbilden", meaning: "to copy, portray" },
+			{ word: "abspielen", meaning: "to play" },
+			{ word: "ruhen", meaning: "to rest" },
+			{ word: "tauchen", meaning: "to dive, dip" },
+			{ word: "aufwachen", meaning: "to wake up" },
+			{ word: "auskommen", meaning: "to get by, get on, manage" },
+			{ word: "ausschalten", meaning: "to turn off" },
+			{ word: "backen", meaning: "to bake" },
+			{ word: "bedauern", meaning: "to regret, feel sorry" },
+			{ word: "erziehen", meaning: "to bring up, educate" },
+			{ word: "reiten", meaning: "to ride" },
+			{ word: "spazieren", meaning: "to go for a walk" },
+			{ word: "untergehen", meaning: "to go down" },
+			{ word: "zusammenkommen", meaning: "to meet, come together" },
+			{ word: "zusammenleben", meaning: "to live together" },
+			{ word: "zusehen", meaning: "to watch" },
+			{ word: "abziehen", meaning: "to take off, withdraw, subtract" },
+			{ word: "aufsuchen", meaning: "to go to see, call on" },
+			{ word: "ausstellen", meaning: "to display, issue, make out" },
+			{ word: "berufen", meaning: "to appoint" },
+			{ word: "einschlagen", meaning: "to hammer in, smash, choose" },
+			{ word: "telefonieren", meaning: "to make a telephone call" },
+			{ word: "veranlassen", meaning: "to arrange, see to it" },
+			{ word: "vorangehen", meaning: "to go ahead, make progress" },
+			{ word: "weitergeben", meaning: "to pass on" },
+			{ word: "abschneiden", meaning: "to cut off" },
+			{ word: "anstehen", meaning: "to line up" },
+			{ word: "aufrufen", meaning: "to call out, up, upon" },
+			{ word: "einlassen", meaning: "to let in, get involved" },
+			{ word: "gießen", meaning: "to water, pour" },
+			{ word: "grüßen", meaning: "to greet" },
+			{ word: "überwachen", meaning: "to monitor, keep under surveillance" },
+			{ word: "überziehen", meaning: "to cover, put on, overdraw" },
+			{ word: "zusagen", meaning: "to promise, accept" },
+			{ word: "einsehen", meaning: "to see, realize, look into" },
+			{ word: "erhoffen", meaning: "to expect, hope for" },
+			{ word: "zurückgeben", meaning: "to give back, return" },
+			{ word: "fotografieren", meaning: "to photograph" },
+			{ word: "servieren", meaning: "to serve" },
+			{ word: "vorlesen", meaning: "to read sth for sb" },
+			{ word: "abschalten", meaning: "to switch off, to disconnect from st" },
+			{ word: "aufziehen", meaning: "to open, raise, wind" },
+			{ word: "loslassen", meaning: "to let go" },
+			{ word: "spannen", meaning: "to stretch, tighten" },
+			{ word: "herausgeben", meaning: "to publish, give change, hand out" },
+			{ word: "verbrauchen", meaning: "to use, consume" },
+			{ word: "vortragen", meaning: "to present, perform" },
+
+
+
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+        });
+
+        $("#submit").click(function() {
+            if (!selectedOption) return;
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+            
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>

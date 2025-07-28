@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: " gut ", meaning: " good" },
+			{ word: " teuer ", meaning: " expensive" },
+			{ word: " sympathisch ", meaning: " likeable" },
+			{ word: " billig ", meaning: " cheap" },
+			{ word: " schnell ", meaning: " fast" },
+			{ word: " langsam ", meaning: " slow" },
+			{ word: " leicht ", meaning: " easy, light" },
+			{ word: " schwer ", meaning: " difficult, heavy" },
+			{ word: " freundlich ", meaning: " friendly" },
+			{ word: " nett ", meaning: " nice" },
+			{ word: " unfreundlich ", meaning: " unfriendly" },
+			{ word: " lustig ", meaning: " funny" },
+			{ word: " schlecht ", meaning: " bad" },
+			{ word: " ernst ", meaning: " serious" },
+			{ word: " ruhig ", meaning: " quiet" },
+			{ word: " laut ", meaning: " loud" },
+			{ word: " fleißig ", meaning: " hardworking" },
+			{ word: " faul ", meaning: " lazy" },
+			{ word: " glücklich ", meaning: " happy" },
+			{ word: " traurig ", meaning: " sad" },
+			{ word: " müde ", meaning: " tired" },
+			{ word: " gesund ", meaning: " healthy" },
+			{ word: " krank ", meaning: " sick" },
+			{ word: " groß ", meaning: " big, tall" },
+			{ word: " sauber ", meaning: " clean" },
+			{ word: " schmutzig ", meaning: " dirty" },
+			{ word: " hell ", meaning: " bright" },
+			{ word: " dunkel ", meaning: " dark" },
+			{ word: " interessant ", meaning: " interesting" },
+			{ word: " langweilig ", meaning: " boring" },
+			{ word: " wichtig ", meaning: " important" },
+			{ word: " unwichtig ", meaning: " unimportant" },
+			{ word: " schön ", meaning: " beautiful" },
+			{ word: " hässlich ", meaning: " ugly" },
+			{ word: " klein ", meaning: " small, short" },
+			{ word: " stark ", meaning: " strong" },
+			{ word: " schwach ", meaning: " weak" },
+			{ word: " voll ", meaning: " full" },
+			{ word: " leer ", meaning: " empty" },
+			{ word: " richtig ", meaning: " correct" },
+			{ word: " falsch ", meaning: " wrong" },
+			{ word: " rot ", meaning: " red" },
+			{ word: " blau ", meaning: " blue" },
+			{ word: " grün ", meaning: " green" },
+			{ word: " gelb ", meaning: " yellow" },
+			{ word: " alt ", meaning: " old" },
+			{ word: " schwarz ", meaning: " black" },
+			{ word: " weiß ", meaning: " white" },
+			{ word: " braun ", meaning: " brown" },
+			{ word: " grau ", meaning: " gray" },
+			{ word: " orange ", meaning: " orange" },
+			{ word: " lila ", meaning: " purple" },
+			{ word: " warm ", meaning: " warm" },
+			{ word: " kalt ", meaning: " cold" },
+			{ word: " heiß ", meaning: " hot" },
+			{ word: " kühl ", meaning: " cool" },
+			{ word: " neu ", meaning: " new" },
+			{ word: " sonnig ", meaning: " sunny" },
+			{ word: " bewölkt ", meaning: " cloudy" },
+			{ word: " regnerisch ", meaning: " rainy" },
+			{ word: " windig ", meaning: " windy" },
+			{ word: " neblig ", meaning: " foggy" },
+			{ word: " trocken ", meaning: " dry" },
+			{ word: " nass ", meaning: " wet" },
+			{ word: " aufgeregt ", meaning: " excited" },
+			{ word: " ängstlich ", meaning: " anxious" },
+			{ word: " nervös ", meaning: " nervous" },
+			{ word: " jung ", meaning: " young" },
+			{ word: " zufrieden ", meaning: " satisfied" },
+			{ word: " unzufrieden ", meaning: " dissatisfied" },
+			{ word: " überrascht ", meaning: " surprised" },
+			{ word: " enttäuscht ", meaning: " disappointed" },
+			{ word: " eifersüchtig ", meaning: " jealous" },
+			{ word: " stolz ", meaning: " proud" },
+			{ word: " einfach ", meaning: " simple" },
+			{ word: " kompliziert ", meaning: " complicated" },
+			{ word: " praktisch ", meaning: " practical" },
+			{ word: " unpraktisch ", meaning: " impractical" },
+			{ word: " lang ", meaning: " long" },
+			{ word: " modern ", meaning: " modern" },
+			{ word: " altmodisch ", meaning: " old" },
+			{ word: " beliebt ", meaning: " popular" },
+			{ word: " unbeliebt ", meaning: " unpopular" },
+			{ word: " sicher ", meaning: " safe" },
+			{ word: " unsicher ", meaning: " unsafe" },
+			{ word: " klar ", meaning: " clear" },
+			{ word: " unklar ", meaning: " unclear" },
+			{ word: " möglich ", meaning: " possible" },
+			{ word: " unmöglich ", meaning: " impossible" },
+			{ word: " kurz ", meaning: " short" },
+			{ word: " normal ", meaning: " normal" },
+			{ word: " unnormal ", meaning: " abnormal" },
+			{ word: " aktiv ", meaning: " active" },
+			{ word: " passiv ", meaning: " passive" },
+			{ word: " offen ", meaning: " open" },
+			{ word: " geschlossen ", meaning: " closed" },
+			{ word: " froh ", meaning: " glad" },
+			{ word: " böse ", meaning: " angry" },
+			{ word: " geduldig ", meaning: " patient" },
+			{ word: " ungeduldig ", meaning: " impatient" },
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "auch ", meaning: "also" },
+			{ word: "hier ", meaning: "here" },
+			{ word: "immer ", meaning: "always" },
+			{ word: "jetzt ", meaning: "now" },
+			{ word: "schnell ", meaning: "quickly" },
+			{ word: "sehr ", meaning: "very" },
+			{ word: "ganz ", meaning: "quite" },
+			{ word: "jährlich ", meaning: "yearly" },
+			{ word: "oft ", meaning: "often" },
+			{ word: "unten ", meaning: "below" },
+			{ word: "wirklich ", meaning: "really" },
+			{ word: "zwar ", meaning: "indeed" },
+			{ word: "eigentlich ", meaning: "actually" },
+			{ word: "selten ", meaning: "rarely" },
+			{ word: "vorne ", meaning: "in front" },
+			{ word: "hinten ", meaning: "behind" },
+			{ word: "natürlich ", meaning: "naturally" },
+			{ word: "nie ", meaning: "never" },
+			{ word: "draußen ", meaning: "outside" },
+			{ word: "gerade ", meaning: "just now" },
+			{ word: "leider ", meaning: "unfortunately" },
+			{ word: "drinnen ", meaning: "inside" },
+			{ word: "glücklicherweise ", meaning: "fortunately" },
+			{ word: "schon ", meaning: "already" },
+			{ word: "hoffentlich ", meaning: "hopefully" },
+			{ word: "irgendwohin ", meaning: "somewhere (to)" },
+			{ word: "noch ", meaning: "still" },
+			{ word: "besonders ", meaning: "especially" },
+			{ word: "nirgendwohin ", meaning: "nowhere (to)" },
+			{ word: "noch nicht ", meaning: "not yet" },
+			{ word: "dann ", meaning: "then" },
+			{ word: "heim ", meaning: "home" },
+			{ word: "ziemlich ", meaning: "quite" },
+			{ word: "fast ", meaning: "almost" },
+			{ word: "weg ", meaning: "away" },
+			{ word: "zuerst ", meaning: "first" },
+			{ word: "genau ", meaning: "exactly" },
+			{ word: "zuletzt ", meaning: "last" },
+			{ word: "zurück ", meaning: "back" },
+			{ word: "da ", meaning: "there" },
+			{ word: "heute ", meaning: "today" },
+			{ word: "langsam ", meaning: "slowly" },
+			{ word: "meistens ", meaning: "mostly" },
+			{ word: "nur ", meaning: "only" },
+			{ word: "zu ", meaning: "too" },
+			{ word: "endlich ", meaning: "finally" },
+			{ word: "so ", meaning: "so" },
+			{ word: "vorwärts ", meaning: "forward" },
+			{ word: "dort ", meaning: "over there" },
+			{ word: "etwas ", meaning: "somewhat" },
+			{ word: "gestern ", meaning: "yesterday" },
+			{ word: "gut ", meaning: "well" },
+			{ word: "oft ", meaning: "often" },
+			{ word: "schon ", meaning: "already" },
+			{ word: "manchmal ", meaning: "sometimes" },
+			{ word: "morgen ", meaning: "tomorrow" },
+			{ word: "noch ", meaning: "still" },
+			{ word: "schlecht ", meaning: "badly" },
+			{ word: "überall ", meaning: "everywhere" },
+			{ word: "viel ", meaning: "much" },
+			{ word: "bald ", meaning: "soon" },
+			{ word: "gern ", meaning: "gladly" },
+			{ word: "nicht ", meaning: "not" },
+			{ word: "nirgendwo ", meaning: "nowhere" },
+			{ word: "selten ", meaning: "rarely" },
+			{ word: "wenig ", meaning: "little" },
+			{ word: "doch ", meaning: "however" },
+			{ word: "irgendwo ", meaning: "somewhere" },
+			{ word: "lieber ", meaning: "rather" },
+			{ word: "mehr ", meaning: "more" },
+			{ word: "nie ", meaning: "never" },
+			{ word: "später ", meaning: "later" },
+			{ word: "am liebsten ", meaning: "most preferably" },
+			{ word: "denn ", meaning: "then" },
+			{ word: "früher ", meaning: "earlier" },
+			{ word: "links ", meaning: "left" },
+			{ word: "täglich ", meaning: "daily" },
+			{ word: "weniger ", meaning: "less" },
+			{ word: "am meisten ", meaning: "most" },
+			{ word: "deshalb ", meaning: "therefore" },
+			{ word: "immer ", meaning: "always" },
+			{ word: "rechts ", meaning: "right" },
+			{ word: "vielleicht ", meaning: "maybe" },
+			{ word: "wöchentlich ", meaning: "weekly" },
+			{ word: "fast ", meaning: "almost" },
+			{ word: "manchmal ", meaning: "sometimes" },
+			{ word: "monatlich ", meaning: "monthly" },
+			{ word: "oben ", meaning: "above" },
+			{ word: "sicher ", meaning: "surely" },
+			{ word: "trotzdem ", meaning: "nevertheless" },
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>

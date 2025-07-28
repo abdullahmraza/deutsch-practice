@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="submit">Submit</button>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "auch ", meaning: "also" },
+			{ word: "hier ", meaning: "here" },
+			{ word: "immer ", meaning: "always" },
+			{ word: "jetzt ", meaning: "now" },
+			{ word: "schnell ", meaning: "quickly" },
+			{ word: "sehr ", meaning: "very" },
+			{ word: "ganz ", meaning: "quite" },
+			{ word: "jährlich ", meaning: "yearly" },
+			{ word: "oft ", meaning: "often" },
+			{ word: "unten ", meaning: "below" },
+			{ word: "wirklich ", meaning: "really" },
+			{ word: "zwar ", meaning: "indeed" },
+			{ word: "eigentlich ", meaning: "actually" },
+			{ word: "selten ", meaning: "rarely" },
+			{ word: "vorne ", meaning: "in front" },
+			{ word: "hinten ", meaning: "behind" },
+			{ word: "natürlich ", meaning: "naturally" },
+			{ word: "nie ", meaning: "never" },
+			{ word: "draußen ", meaning: "outside" },
+			{ word: "gerade ", meaning: "just now" },
+			{ word: "leider ", meaning: "unfortunately" },
+			{ word: "drinnen ", meaning: "inside" },
+			{ word: "glücklicherweise ", meaning: "fortunately" },
+			{ word: "schon ", meaning: "already" },
+			{ word: "hoffentlich ", meaning: "hopefully" },
+			{ word: "irgendwohin ", meaning: "somewhere (to)" },
+			{ word: "noch ", meaning: "still" },
+			{ word: "besonders ", meaning: "especially" },
+			{ word: "nirgendwohin ", meaning: "nowhere (to)" },
+			{ word: "noch nicht ", meaning: "not yet" },
+			{ word: "dann ", meaning: "then" },
+			{ word: "heim ", meaning: "home" },
+			{ word: "ziemlich ", meaning: "quite" },
+			{ word: "fast ", meaning: "almost" },
+			{ word: "weg ", meaning: "away" },
+			{ word: "zuerst ", meaning: "first" },
+			{ word: "genau ", meaning: "exactly" },
+			{ word: "zuletzt ", meaning: "last" },
+			{ word: "zurück ", meaning: "back" },
+			{ word: "da ", meaning: "there" },
+			{ word: "heute ", meaning: "today" },
+			{ word: "langsam ", meaning: "slowly" },
+			{ word: "meistens ", meaning: "mostly" },
+			{ word: "nur ", meaning: "only" },
+			{ word: "zu ", meaning: "too" },
+			{ word: "endlich ", meaning: "finally" },
+			{ word: "so ", meaning: "so" },
+			{ word: "vorwärts ", meaning: "forward" },
+			{ word: "dort ", meaning: "over there" },
+			{ word: "etwas ", meaning: "somewhat" },
+			{ word: "gestern ", meaning: "yesterday" },
+			{ word: "gut ", meaning: "well" },
+			{ word: "oft ", meaning: "often" },
+			{ word: "schon ", meaning: "already" },
+			{ word: "manchmal ", meaning: "sometimes" },
+			{ word: "morgen ", meaning: "tomorrow" },
+			{ word: "noch ", meaning: "still" },
+			{ word: "schlecht ", meaning: "badly" },
+			{ word: "überall ", meaning: "everywhere" },
+			{ word: "viel ", meaning: "much" },
+			{ word: "bald ", meaning: "soon" },
+			{ word: "gern ", meaning: "gladly" },
+			{ word: "nicht ", meaning: "not" },
+			{ word: "nirgendwo ", meaning: "nowhere" },
+			{ word: "selten ", meaning: "rarely" },
+			{ word: "wenig ", meaning: "little" },
+			{ word: "doch ", meaning: "however" },
+			{ word: "irgendwo ", meaning: "somewhere" },
+			{ word: "lieber ", meaning: "rather" },
+			{ word: "mehr ", meaning: "more" },
+			{ word: "nie ", meaning: "never" },
+			{ word: "später ", meaning: "later" },
+			{ word: "am liebsten ", meaning: "most preferably" },
+			{ word: "denn ", meaning: "then" },
+			{ word: "früher ", meaning: "earlier" },
+			{ word: "links ", meaning: "left" },
+			{ word: "täglich ", meaning: "daily" },
+			{ word: "weniger ", meaning: "less" },
+			{ word: "am meisten ", meaning: "most" },
+			{ word: "deshalb ", meaning: "therefore" },
+			{ word: "immer ", meaning: "always" },
+			{ word: "rechts ", meaning: "right" },
+			{ word: "vielleicht ", meaning: "maybe" },
+			{ word: "wöchentlich ", meaning: "weekly" },
+			{ word: "fast ", meaning: "almost" },
+			{ word: "manchmal ", meaning: "sometimes" },
+			{ word: "monatlich ", meaning: "monthly" },
+			{ word: "oben ", meaning: "above" },
+			{ word: "sicher ", meaning: "surely" },
+			{ word: "trotzdem ", meaning: "nevertheless" },
+			{ word: " gut ", meaning: " good" },
+			{ word: " teuer ", meaning: " expensive" },
+			{ word: " sympathisch ", meaning: " likeable" },
+			{ word: " billig ", meaning: " cheap" },
+			{ word: " schnell ", meaning: " fast" },
+			{ word: " langsam ", meaning: " slow" },
+			{ word: " leicht ", meaning: " easy, light" },
+			{ word: " schwer ", meaning: " difficult, heavy" },
+			{ word: " freundlich ", meaning: " friendly" },
+			{ word: " nett ", meaning: " nice" },
+			{ word: " unfreundlich ", meaning: " unfriendly" },
+			{ word: " lustig ", meaning: " funny" },
+			{ word: " schlecht ", meaning: " bad" },
+			{ word: " ernst ", meaning: " serious" },
+			{ word: " ruhig ", meaning: " quiet" },
+			{ word: " laut ", meaning: " loud" },
+			{ word: " fleißig ", meaning: " hardworking" },
+			{ word: " faul ", meaning: " lazy" },
+			{ word: " glücklich ", meaning: " happy" },
+			{ word: " traurig ", meaning: " sad" },
+			{ word: " müde ", meaning: " tired" },
+			{ word: " gesund ", meaning: " healthy" },
+			{ word: " krank ", meaning: " sick" },
+			{ word: " groß ", meaning: " big, tall" },
+			{ word: " sauber ", meaning: " clean" },
+			{ word: " schmutzig ", meaning: " dirty" },
+			{ word: " hell ", meaning: " bright" },
+			{ word: " dunkel ", meaning: " dark" },
+			{ word: " interessant ", meaning: " interesting" },
+			{ word: " langweilig ", meaning: " boring" },
+			{ word: " wichtig ", meaning: " important" },
+			{ word: " unwichtig ", meaning: " unimportant" },
+			{ word: " schön ", meaning: " beautiful" },
+			{ word: " hässlich ", meaning: " ugly" },
+			{ word: " klein ", meaning: " small, short" },
+			{ word: " stark ", meaning: " strong" },
+			{ word: " schwach ", meaning: " weak" },
+			{ word: " voll ", meaning: " full" },
+			{ word: " leer ", meaning: " empty" },
+			{ word: " richtig ", meaning: " correct" },
+			{ word: " falsch ", meaning: " wrong" },
+			{ word: " rot ", meaning: " red" },
+			{ word: " blau ", meaning: " blue" },
+			{ word: " grün ", meaning: " green" },
+			{ word: " gelb ", meaning: " yellow" },
+			{ word: " alt ", meaning: " old" },
+			{ word: " schwarz ", meaning: " black" },
+			{ word: " weiß ", meaning: " white" },
+			{ word: " braun ", meaning: " brown" },
+			{ word: " grau ", meaning: " gray" },
+			{ word: " orange ", meaning: " orange" },
+			{ word: " lila ", meaning: " purple" },
+			{ word: " warm ", meaning: " warm" },
+			{ word: " kalt ", meaning: " cold" },
+			{ word: " heiß ", meaning: " hot" },
+			{ word: " kühl ", meaning: " cool" },
+			{ word: " neu ", meaning: " new" },
+			{ word: " sonnig ", meaning: " sunny" },
+			{ word: " bewölkt ", meaning: " cloudy" },
+			{ word: " regnerisch ", meaning: " rainy" },
+			{ word: " windig ", meaning: " windy" },
+			{ word: " neblig ", meaning: " foggy" },
+			{ word: " trocken ", meaning: " dry" },
+			{ word: " nass ", meaning: " wet" },
+			{ word: " aufgeregt ", meaning: " excited" },
+			{ word: " ängstlich ", meaning: " anxious" },
+			{ word: " nervös ", meaning: " nervous" },
+			{ word: " jung ", meaning: " young" },
+			{ word: " zufrieden ", meaning: " satisfied" },
+			{ word: " unzufrieden ", meaning: " dissatisfied" },
+			{ word: " überrascht ", meaning: " surprised" },
+			{ word: " enttäuscht ", meaning: " disappointed" },
+			{ word: " eifersüchtig ", meaning: " jealous" },
+			{ word: " stolz ", meaning: " proud" },
+			{ word: " einfach ", meaning: " simple" },
+			{ word: " kompliziert ", meaning: " complicated" },
+			{ word: " praktisch ", meaning: " practical" },
+			{ word: " unpraktisch ", meaning: " impractical" },
+			{ word: " lang ", meaning: " long" },
+			{ word: " modern ", meaning: " modern" },
+			{ word: " altmodisch ", meaning: " old" },
+			{ word: " beliebt ", meaning: " popular" },
+			{ word: " unbeliebt ", meaning: " unpopular" },
+			{ word: " sicher ", meaning: " safe" },
+			{ word: " unsicher ", meaning: " unsafe" },
+			{ word: " klar ", meaning: " clear" },
+			{ word: " unklar ", meaning: " unclear" },
+			{ word: " möglich ", meaning: " possible" },
+			{ word: " unmöglich ", meaning: " impossible" },
+			{ word: " kurz ", meaning: " short" },
+			{ word: " normal ", meaning: " normal" },
+			{ word: " unnormal ", meaning: " abnormal" },
+			{ word: " aktiv ", meaning: " active" },
+			{ word: " passiv ", meaning: " passive" },
+			{ word: " offen ", meaning: " open" },
+			{ word: " geschlossen ", meaning: " closed" },
+			{ word: " froh ", meaning: " glad" },
+			{ word: " böse ", meaning: " angry" },
+			{ word: " geduldig ", meaning: " patient" },
+			{ word: " ungeduldig ", meaning: " impatient" },
+			{ word: " ankommen ", meaning: "to arrive" },
+			{ word: " arbeiten ", meaning: "to work" },
+			{ word: " können ", meaning: "can/to be able to" },
+			{ word: " sein ", meaning: "to be" },
+			{ word: " sich freuen ", meaning: "to be happy" },
+			{ word: " abholen ", meaning: "to pick up" },
+			{ word: " denken ", meaning: "to think" },
+			{ word: " fahren ", meaning: "to drive/travel" },
+			{ word: " sich waschen ", meaning: "to wash oneself" },
+			{ word: " spielen ", meaning: "to play" },
+			{ word: " aufräumen ", meaning: "to tidy up" },
+			{ word: " kennen ", meaning: "to know/be familiar with" },
+			{ word: " lesen ", meaning: "to read" },
+			{ word: " sich setzen ", meaning: "to sit down" },
+			{ word: " suchen ", meaning: "to search/look for" },
+			{ word: " einladen ", meaning: "to invite" },
+			{ word: " liegen ", meaning: "to lie" },
+			{ word: " schreiben ", meaning: "to write" },
+			{ word: " sich hinlegen ", meaning: "to lie down" },
+			{ word: " wohnen ", meaning: "to live/reside" },
+			{ word: " sich ausruhen ", meaning: "to rest" },
+			{ word: " sprechen ", meaning: "to speak" },
+			{ word: " stehen ", meaning: "to stand" },
+			{ word: " zeigen ", meaning: "to show" },
+			{ word: " zurückkommen ", meaning: "to come back" },
+			{ word: " hören ", meaning: "to hear/listen" },
+			{ word: " nehmen ", meaning: "to take" },
+			{ word: " sich verabschieden ", meaning: "to say goodbye" },
+			{ word: " sitzen ", meaning: "to sit" },
+			{ word: " weggehen ", meaning: "to go away" },
+			{ word: " fernsehen ", meaning: "to watch TV" },
+			{ word: " geben ", meaning: "to give" },
+			{ word: " lieben ", meaning: "to love" },
+			{ word: " sich vorstellen ", meaning: "to introduce oneself" },
+			{ word: " verstehen ", meaning: "to understand" },
+			{ word: " helfen ", meaning: "to help" },
+			{ word: " kosten ", meaning: "to cost" },
+			{ word: " tanzen ", meaning: "to dance" },
+			{ word: " wissen ", meaning: "to know" },
+			{ word: " finden ", meaning: "to find" },
+			{ word: " lachen ", meaning: "to laugh" },
+			{ word: " beginnen ", meaning: "to begin" },
+			{ word: " weinen ", meaning: "to cry" },
+			{ word: " aufstehen ", meaning: "to get up" },
+			{ word: " brauchen ", meaning: "to need" },
+			{ word: " haben ", meaning: "to have" },
+			{ word: " müssen ", meaning: "must/to have to" },
+			{ word: " sich interessieren ", meaning: "to be interested" },
+			{ word: " regnen ", meaning: "to rain" },
+			{ word: " vergessen ", meaning: "to forget" },
+			{ word: " ausgehen ", meaning: "to go out" },
+			{ word: " dürfen ", meaning: "to be allowed to" },
+			{ word: " fragen ", meaning: "to ask" },
+			{ word: " sich ärgern ", meaning: "to get annoyed" },
+			{ word: " werden ", meaning: "to become" },
+			{ word: " einkaufen ", meaning: "to shop" },
+			{ word: " gehen ", meaning: "to go" },
+			{ word: " glauben ", meaning: "to believe" },
+			{ word: " sich erinnern ", meaning: "to remember" },
+			{ word: " wollen ", meaning: "to want" },
+			{ word: " kaufen ", meaning: "to buy" },
+			{ word: " kommen ", meaning: "to come" },
+			{ word: " mitkommen ", meaning: "to come along" },
+			{ word: " mögen ", meaning: "to like" },
+			{ word: " sich treffen ", meaning: "to meet" },
+			{ word: " lernen ", meaning: "to learn" },
+			{ word: " sehen ", meaning: "to see" },
+			{ word: " sich beeilen ", meaning: "to hurry" },
+			{ word: " sollen ", meaning: "should/ought to" },
+			{ word: " vorbereiten ", meaning: "to prepare" },
+			{ word: " essen ", meaning: "to eat" },
+			{ word: " machen ", meaning: "to do/make" },
+			{ word: " möchten ", meaning: "would like to" },
+			{ word: " sich entscheiden ", meaning: "to decide" },
+			{ word: " zumachen ", meaning: "to close" },
+			{ word: " aufmachen ", meaning: "to open" },
+			{ word: " bleiben ", meaning: "to stay" },
+			{ word: " öffnen ", meaning: "to open" },
+			{ word: " sich freuen auf ", meaning: "to look forward to" },
+			{ word: " trinken ", meaning: "to drink" },
+			{ word: " anrufen ", meaning: "to call" },
+			{ word: " bringen ", meaning: "to bring" },
+			{ word: " sagen ", meaning: "to say" },
+			{ word: " schlafen ", meaning: "to sleep" },
+			{ word: " sich umziehen ", meaning: "to change clothes" },
+			{ word: " stattfinden ", meaning: "to take place" },
+			{ word: " verlieren ", meaning: "to lose" },
+			{ word: " versuchen ", meaning: "to try/attempt" },
+			{ word: " verlassen ", meaning: "to leave/abandon" },
+			{ word: " entdecken ", meaning: "to discover" },
+			{ word: " entscheiden ", meaning: "to decide" },
+			{ word: " empfehlen ", meaning: "to recommend" },
+			{ word: " gefallen ", meaning: "to like/appeal to" },
+			{ word: " missverstehen ", meaning: "to misunderstand" },
+			{ word: " wiederholen ", meaning: "to repeat" },
+			{ word: " zuhören ", meaning: "to listen" },
+			{ word: " verstehen ", meaning: "to understand" },
+			{ word: " zurückgeben ", meaning: "to return/give back" },
+			{ word: " besuchen ", meaning: "to visit/attend" },
+			{ word: " erzählen ", meaning: "to tell/narrate" },
+			{ word: " erklären ", meaning: "to explain" },
+			{ word: " erinnern ", meaning: "to remind" },
+			{ word: " gehören ", meaning: "to belong" },
+			{ word: " bekommen ", meaning: "to receive" },
+			{ word: " vergessen ", meaning: "to forget" },
+
+
+
+
+
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+        });
+
+        $("#submit").click(function() {
+            if (!selectedOption) return;
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+            
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>

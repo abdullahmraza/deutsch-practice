@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "der Mann", meaning: "man" },
+            { word: "die Frau", meaning: "woman" },
+            { word: "das Kind", meaning: "child" },
+            { word: "der Junge", meaning: "boy" },
+            { word: "das Mädchen", meaning: "girl" },
+            { word: "die Familie", meaning: "family" },
+            { word: "die Mutter", meaning: "mother" },
+            { word: "der Vater", meaning: "father" },
+            { word: "die Eltern", meaning: "parents" },
+            { word: "der Sohn", meaning: "son" },
+            { word: "die Tochter", meaning: "daughter" },
+            { word: "der Bruder", meaning: "brother" },
+            { word: "die Schwester", meaning: "sister" },
+            { word: "der Freund", meaning: "friend, boyfriend" },
+            { word: "die Freundin", meaning: "friend, girlfriend" },
+            { word: "der Nachbar", meaning: "neighbor" },
+            { word: "die Nachbarin", meaning: "neighbor, female" },
+            { word: "der Kollege", meaning: "colleague" },
+            { word: "die Kollegin", meaning: "colleague, female" },
+            { word: "der Chef", meaning: "boss" },
+            { word: "die Chefin", meaning: "boss, female" },
+            { word: "das Essen", meaning: "food" },
+            { word: "das Frühstück", meaning: "breakfast" },
+            { word: "das Mittagessen", meaning: "lunch" },
+            { word: "das Abendessen", meaning: "dinner" },
+            { word: "das Brot", meaning: "bread" },
+            { word: "der Käse", meaning: "cheese" },
+            { word: "die Milch", meaning: "milk" },
+            { word: "der Kaffee", meaning: "coffee" },
+            { word: "der Tee", meaning: "tea" },
+            { word: "das Wasser", meaning: "water" },
+            { word: "der Saft", meaning: "juice" },
+            { word: "das Obst", meaning: "fruit" },
+            { word: "der Apfel", meaning: "apple" },
+            { word: "die Banane", meaning: "banana" },
+            { word: "das Gemüse", meaning: "vegetables" },
+            { word: "die Kartoffel", meaning: "potato" },
+            { word: "die Tomate", meaning: "tomato" },
+            { word: "der Salat", meaning: "salad" },
+            { word: "das Fleisch", meaning: "meat" },
+            { word: "das Huhn", meaning: "chicken" },
+            { word: "der Fisch", meaning: "fish" },
+            { word: "das Ei", meaning: "egg" },
+            { word: "der Zucker", meaning: "sugar" },
+            { word: "das Salz", meaning: "salt" },
+            { word: "der Pfeffer", meaning: "pepper" },
+            { word: "das Auto", meaning: "car" },
+            { word: "der Bus", meaning: "bus" },
+            { word: "der Zug", meaning: "train" },
+            { word: "das Fahrrad", meaning: "bicycle" },
+            { word: "das Flugzeug", meaning: "airplane" },
+            { word: "der Bahnhof", meaning: "train station" },
+            { word: "der Flughafen", meaning: "airport" },
+            { word: "die Straße", meaning: "street" },
+            { word: "die Stadt", meaning: "city" },
+            { word: "das Land", meaning: "country" },
+            { word: "die Reise", meaning: "trip" },
+            { word: "der Urlaub", meaning: "vacation" },
+            { word: "das Ticket", meaning: "ticket" },
+            { word: "der Pass", meaning: "passport" },
+            { word: "der Koffer", meaning: "suitcase" },
+            { word: "die Karte", meaning: "map, card" },
+            { word: "die Adresse", meaning: "address" },
+            { word: "die Richtung", meaning: "direction" },
+            { word: "das Geschäft", meaning: "shop" },
+            { word: "der Supermarkt", meaning: "supermarket" },
+            { word: "der Markt", meaning: "market" },
+            { word: "das Geld", meaning: "money" },
+            { word: "der Preis", meaning: "price" },
+            { word: "der Euro", meaning: "euro" },
+            { word: "die Rechnung", meaning: "bill" },
+            { word: "die Kasse", meaning: "cash register" },
+            { word: "der Einkauf", meaning: "shopping" },
+            { word: "das Kleid", meaning: "dress" },
+            { word: "das Hemd", meaning: "shirt" },
+            { word: "die Hose", meaning: "pants" },
+            { word: "der Schuh", meaning: "shoe" },
+            { word: "die Größe", meaning: "size" },
+            { word: "die Farbe", meaning: "color" },
+            { word: "die Arbeit", meaning: "work" },
+            { word: "der Beruf", meaning: "profession" },
+            { word: "die Schule", meaning: "school" },
+            { word: "der Lehrer", meaning: "teacher" },
+            { word: "die Lehrerin", meaning: "teacher, female" },
+            { word: "der Schüler", meaning: "student" },
+            { word: "die Schülerin", meaning: "student, female" },
+            { word: "das Buch", meaning: "book" },
+            { word: "der Stift", meaning: "pen" },
+            { word: "das Papier", meaning: "paper" },
+            { word: "der Computer", meaning: "computer" },
+            { word: "der Tisch", meaning: "table" },
+            { word: "der Stuhl", meaning: "chair" },
+            { word: "die Uhr", meaning: "clock, watch" },
+            { word: "die Zeit", meaning: "time" },
+            { word: "die Pause", meaning: "break" },
+            { word: "der Körper", meaning: "body" },
+            { word: "der Kopf", meaning: "head" },
+            { word: "das Auge", meaning: "eye" },
+            { word: "das Ohr", meaning: "ear" },
+            { word: "die Nase", meaning: "nose" },
+            { word: "der Mund", meaning: "mouth" },
+            { word: "der Arm", meaning: "arm" },
+            { word: "das Bein", meaning: "leg" },
+            { word: "die Hand", meaning: "hand" },
+            { word: "der Fuß", meaning: "foot" },
+            { word: "der Arzt", meaning: "doctor" },
+            { word: "die Ärztin", meaning: "doctor, female" },
+            { word: "das Krankenhaus", meaning: "hospital" },
+            { word: "die Apotheke", meaning: "pharmacy" },
+            { word: "die Medizin", meaning: "medicine" },
+            { word: "der Schmerz", meaning: "pain" },
+            { word: "die Gesundheit", meaning: "health" },
+            { word: "das Haus", meaning: "house" },
+            { word: "die Wohnung", meaning: "apartment" },
+            { word: "das Zimmer", meaning: "room" },
+            { word: "die Küche", meaning: "kitchen" },
+            { word: "das Badezimmer", meaning: "bathroom" },
+            { word: "das Schlafzimmer", meaning: "bedroom" },
+            { word: "das Sofa", meaning: "sofa" },
+            { word: "das Bett", meaning: "bed" },
+            { word: "der Schrank", meaning: "wardrobe" },
+            { word: "der Spiegel", meaning: "mirror" },
+            { word: "die Lampe", meaning: "lamp" },
+            { word: "die Tür", meaning: "door" },
+            { word: "das Fenster", meaning: "window" },
+            { word: "der Tag", meaning: "day" },
+            { word: "die Nacht", meaning: "night" },
+            { word: "die Woche", meaning: "week" },
+            { word: "das Wochenende", meaning: "weekend" },
+            { word: "der Monat", meaning: "month" },
+            { word: "das Jahr", meaning: "year" },
+            { word: "die Stunde", meaning: "hour" },
+            { word: "die Minute", meaning: "minute" },
+            { word: "die Sekunde", meaning: "second" },
+            { word: "der Morgen", meaning: "morning" },
+            { word: "der Abend", meaning: "evening" },
+            { word: "der Kalender", meaning: "calendar" },
+            { word: "das Wetter", meaning: "weather" },
+            { word: "die Sonne", meaning: "sun" },
+            { word: "der Regen", meaning: "rain" },
+            { word: "der Schnee", meaning: "snow" },
+            { word: "der Wind", meaning: "wind" },
+            { word: "der Himmel", meaning: "sky" },
+            { word: "die Wolke", meaning: "cloud" },
+            { word: "der Baum", meaning: "tree" },
+            { word: "die Blume", meaning: "flower" },
+            { word: "das Gras", meaning: "grass" },
+            { word: "der Fluss", meaning: "river" },
+            { word: "der See", meaning: "lake" },
+            { word: "das Meer", meaning: "sea" },
+            { word: "das Hobby", meaning: "hobby" },
+            { word: "der Sport", meaning: "sport" },
+            { word: "das Spiel", meaning: "game" },
+            { word: "die Musik", meaning: "music" },
+            { word: "das Instrument", meaning: "instrument" },
+            { word: "der Film", meaning: "movie" },
+            { word: "das Buch", meaning: "book" },
+            { word: "die Party", meaning: "party" },
+            { word: "das Fest", meaning: "festival" },
+            { word: "der Tanz", meaning: "dance" },
+            { word: "die Frage", meaning: "question" },
+            { word: "die Antwort", meaning: "answer" },
+            { word: "das Problem", meaning: "problem" },
+            { word: "die Lösung", meaning: "solution" },
+            { word: "die Idee", meaning: "idea" },
+            { word: "die Nummer", meaning: "number" },
+            { word: "das Telefon", meaning: "telephone" },
+            { word: "das Handy", meaning: "mobile phone" },
+            { word: "das Internet", meaning: "internet" },
+            { word: "die E-Mail", meaning: "email" },
+            { word: "der Brief", meaning: "letter" },
+            { word: "das Geschenk", meaning: "gift" },
+            { word: "die Überraschung", meaning: "surprise" },
+            { word: "der Fehler", meaning: "mistake" },
+            { word: "die Sprache", meaning: "language" },
+            { word: "das Wort", meaning: "word" },
+            { word: "der Satz", meaning: "sentence" },
+            { word: "die Geschichte", meaning: "story, history" },
+            { word: "die Kultur", meaning: "culture" },
+            { word: "die Liebe", meaning: "love" },
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>

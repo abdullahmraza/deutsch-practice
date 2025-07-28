@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .flashcard-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+        .options button:hover {
+            background-color: #2980b9;
+        }
+        .selected {
+            background-color: #f39c12 !important;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .wrong {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flashcard-container">
+        <h2 id="word">Loading...</h2>
+        <div class="options"></div>
+        <button id="submit">Submit</button>
+        <button id="stopQuiz">Stop Quiz</button>
+        <p>Correct Answers: <span id="correctCount">0</span></p>
+        <p>Incorrect Answers: <span id="incorrectCount">0</span></p>
+        <p>Cards Shown: <span id="cardsShown">0</span> / <span id="totalCards"></span></p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "auch", meaning: "also, too" },
+			{ word: "so", meaning: "so, thus, this way, such" },
+			{ word: "dann", meaning: "then" },
+			{ word: "da", meaning: "there" },
+			{ word: "noch", meaning: "still, yet" },
+			{ word: "also", meaning: "so" },
+			{ word: "nur", meaning: "only" },
+			{ word: "schon", meaning: "already" },
+			{ word: "mehr", meaning: "more" },
+			{ word: "jetzt", meaning: "now" },
+			{ word: "immer", meaning: "always" },
+			{ word: "sehr", meaning: "very" },
+			{ word: "hier", meaning: "here" },
+			{ word: "doch", meaning: "but, still" },
+			{ word: "wieder", meaning: "again" },
+			{ word: "nun, nu", meaning: "now" },
+			{ word: "heute", meaning: "today" },
+			{ word: "weit", meaning: "widely, far" },
+			{ word: "eben", meaning: "just now" },
+			{ word: "erst", meaning: "first, only, not until" },
+			{ word: "natürlich", meaning: "naturally, of course" },
+			{ word: "vielleicht", meaning: "perhaps" },
+			{ word: "dort", meaning: "there" },
+			{ word: "einmal", meaning: "once" },
+			{ word: "bereits", meaning: "already" },
+			{ word: "etwa", meaning: "about, approximately" },
+			{ word: "gerade", meaning: "just" },
+			{ word: "wirklich", meaning: "really, actually" },
+			{ word: "nie", meaning: "never" },
+			{ word: "oft", meaning: "often" },
+			{ word: "fast", meaning: "almost" },
+			{ word: "wohl", meaning: "well" },
+			{ word: "gern, gerne (with a verb)", meaning: "enjoy" },
+			{ word: "besonders", meaning: "especially" },
+			{ word: "warum", meaning: "why" },
+			{ word: "allein, alleine", meaning: "alone" },
+			{ word: "kaum", meaning: "hardly" },
+			{ word: "deshalb", meaning: "for that reason" },
+			{ word: "sonst", meaning: "otherwise" },
+			{ word: "weiter", meaning: "further" },
+			{ word: "anders", meaning: "different" },
+			{ word: "schließlich", meaning: "in the end, finally" },
+			{ word: "früher", meaning: "in former times" },
+			{ word: "irgendwie", meaning: "somehow" },
+			{ word: "bisher", meaning: "until now" },
+			{ word: "manchmal", meaning: "sometimes" },
+			{ word: "außerdem", meaning: "besides, in addition" },
+			{ word: "sofort", meaning: "immediately" },
+			{ word: "plötzlich", meaning: "suddenly" },
+			{ word: "bald", meaning: "soon" },
+			{ word: "genug", meaning: "enough" },
+			{ word: "endlich", meaning: "finally, at last" },
+			{ word: "gestern", meaning: "yesterday" },
+			{ word: "bitte", meaning: "please" },
+			{ word: "zusammen", meaning: "together" },
+			{ word: "vorher", meaning: "earlier, beforehand" },
+			{ word: "beispielsweise", meaning: "for example" },
+			{ word: "meist", meaning: "mostly" },
+			{ word: "trotzdem", meaning: "nevertheless" },
+			{ word: "leider", meaning: "unfortunately" },
+			{ word: "mindestens", meaning: "at least" },
+			{ word: "irgendwo", meaning: "somewhere" },
+			{ word: "zuerst", meaning: "first" },
+			{ word: "hinaus", meaning: "out, beyond" },
+			{ word: "lieber", meaning: "rather" },
+			{ word: "nochmal", meaning: "again" },
+			{ word: "danke", meaning: "thanks" },
+			{ word: "derzeit", meaning: "at the moment" },
+			{ word: "teilweise", meaning: "partly" },
+			{ word: "miteinander", meaning: "with each other" },
+			{ word: "durchaus", meaning: "absolutely" },
+			{ word: "meistens", meaning: "mostly" },
+			{ word: "deswegen", meaning: "therefore, that's why" },
+			{ word: "überall", meaning: "everywhere" },
+			{ word: "andererseits", meaning: "on the other hand" },
+			{ word: "längst", meaning: "long since, a long time ago" },
+			{ word: "stets", meaning: "always" },
+			{ word: "lediglich", meaning: "merely" },
+			{ word: "weiterhin", meaning: "still, furthermore" },
+			{ word: "immerhin", meaning: "after all" },
+			{ word: "genauso", meaning: "just as" },
+			{ word: "weg", meaning: "gone, vanished" },
+			{ word: "zurzeit", meaning: "at the moment" },
+			{ word: "wenigstens", meaning: "at least" },
+			{ word: "zirka", meaning: "approximately" },
+			{ word: "wiederum", meaning: "again" },
+			{ word: "sicherlich", meaning: "certainly" },
+			{ word: "soweit", meaning: "as far as" },
+			{ word: "draußen", meaning: "outside" },
+			{ word: "vielmehr", meaning: "rather" },
+			{ word: "irgendwann", meaning: "sometime" },
+			{ word: "übrigens", meaning: "by the way" },
+			{ word: "sowieso", meaning: "anyway" },
+			{ word: "einerseits", meaning: "on the other hand" },
+			{ word: "dahin", meaning: "there" },
+			{ word: "erstmals", meaning: "for the first time" },
+			{ word: "hingegen", meaning: "on the other hand" },
+			{ word: "unterwegs", meaning: "on the way" },
+			{ word: "diesmal", meaning: "this time" },
+			{ word: "los", meaning: "rid of, going on" },
+			{ word: "nachher", meaning: "afterwards" },
+			{ word: "vorbei", meaning: "past, over" },
+			{ word: "hinten", meaning: "at the back" },
+			{ word: "links", meaning: "on, to the left" },
+			{ word: "rechts", meaning: "on, to the right" },
+			{ word: "möglicherweise", meaning: "possibly" },
+			{ word: "niemals", meaning: "never" },
+			{ word: "online", meaning: "online" },
+			{ word: "freilich", meaning: "of course" },
+			{ word: "letztlich", meaning: "in the end" },
+			{ word: "äußerst", meaning: "extremely" },
+			{ word: "zweimal", meaning: "twice" },
+			{ word: "zurück", meaning: "back" },
+			{ word: "leid", meaning: "be tired of" },
+			{ word: "mitten", meaning: "in the middle" },
+			{ word: "drüben", meaning: "over there" },
+			{ word: "hinauf", meaning: "up, upwards" },
+			{ word: "Nachteil", meaning: "disadvantage" },
+			{ word: "normalerweise", meaning: "normally" },
+			{ word: "herum", meaning: "around" },
+			{ word: "hierher", meaning: "here" },
+			{ word: "plus", meaning: "above" },
+			{ word: "geradezu", meaning: "absolutely, really" },
+			{ word: "hoffentlich", meaning: "hopefully" },
+			{ word: "demnach", meaning: "therefore" },
+			{ word: "innen", meaning: "inside" },
+			{ word: "vorwiegend", meaning: "mainly" },
+			{ word: "derart", meaning: "so" },
+			{ word: "nochmals", meaning: "again" },
+			{ word: "mehrmals", meaning: "repeatedly" },
+			{ word: "teils", meaning: "partly" },
+			{ word: "kürzlich", meaning: "recently" },
+			{ word: "dreimal", meaning: "three times" },
+			{ word: "ferner", meaning: "furthermore" },
+			{ word: "anfangs", meaning: "initially" },
+			{ word: "jederzeit", meaning: "any time" },
+			{ word: "heuer", meaning: "this year" },
+			{ word: "jemals", meaning: "ever" },
+			{ word: "letztendlich", meaning: "ultimately" },
+			{ word: "womöglich", meaning: "possibly" },
+			{ word: "oftmals", meaning: "frequently" },
+			{ word: "voraus", meaning: "ahead, forward" },
+			{ word: "allenfalls", meaning: "at most" },
+			{ word: "weitaus", meaning: "far, much" },
+			{ word: "folglich", meaning: "consequently" },
+			{ word: "nirgendwo", meaning: "nowhere" },
+
+        ];
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let cardsShown = 0;
+        let incorrectAnswers = [];
+        let selectedOption = null;
+        let remainingWords = [...words];
+
+        $("#totalCards").text(words.length);
+
+        function loadFlashcard() {
+            if (remainingWords.length === 0) remainingWords = [...words];
+            let wordObj = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
+            $("#word").text(wordObj.word);
+            
+            let options = getRandomOptions(words.map(w => w.meaning), wordObj.meaning);
+            let optionsHtml = options.map(opt => 
+                `<button class='option' data-value='${opt}'>${opt}</button>`).join('');
+            $(".options").html(optionsHtml);
+            selectedOption = null;
+            cardsShown++;
+            $("#cardsShown").text(cardsShown);
+        }
+
+        function getRandomOptions(array, correctAnswer) {
+            let shuffled = array.sort(() => Math.random() - 0.5);
+            let selected = shuffled.filter(opt => opt !== correctAnswer).slice(0, 3);
+            selected.push(correctAnswer);
+            return selected.sort(() => Math.random() - 0.5);
+        }
+
+        $(document).on("click", ".option", function() {
+            $(".option").removeClass("selected");
+            $(this).addClass("selected");
+            selectedOption = $(this).attr("data-value");
+        });
+
+        $("#submit").click(function() {
+            if (!selectedOption) return;
+            let correctAnswer = $("#word").text();
+            let correctMeaning = words.find(w => w.word === correctAnswer).meaning;
+            
+            if (selectedOption === correctMeaning) {
+                $(".selected").addClass("correct");
+                correctCount++;
+                $("#correctCount").text(correctCount);
+                setTimeout(loadFlashcard, 1000);
+            } else {
+                $(".selected").addClass("wrong");
+                incorrectCount++;
+                $("#incorrectCount").text(incorrectCount);
+                incorrectAnswers.push({ word: correctAnswer, correct: correctMeaning, selected: selectedOption });
+            }
+        });
+
+        $("#stopQuiz").click(function() {
+            let resultPage = `<html><head><title>Quiz Results</title></head><body>`;
+            resultPage += `<h2>Incorrect Answers</h2><table border='1'><tr><th>Word</th><th>Your Answer</th><th>Correct Answer</th></tr>`;
+            incorrectAnswers.forEach(({ word, selected, correct }) => {
+                resultPage += `<tr><td>${word}</td><td>${selected}</td><td>${correct}</td></tr>`;
+            });
+            resultPage += `</table></body></html>`;
+            let newWindow = window.open();
+            newWindow.document.write(resultPage);
+        });
+
+        $(document).ready(loadFlashcard);
+    </script>
+</body>
+</html>
