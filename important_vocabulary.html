@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #d1e7dd;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Important German Vocabulary Table</h2>
+        <input type="text" id="search" onkeyup="filterTable()" placeholder="Search for words...">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>German</th>
+                    <th>English</th>
+					<th>Verb/Noun/Adjective/Adverb</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr><td>1</td><td>auch </td><td>also</td><td>Adverb</td></tr>
+				<tr><td>2</td><td>hier </td><td>here</td><td>Adverb</td></tr>
+				<tr><td>3</td><td>immer </td><td>always</td><td>Adverb</td></tr>
+				<tr><td>4</td><td>jetzt </td><td>now</td><td>Adverb</td></tr>
+				<tr><td>5</td><td>schnell </td><td>quickly</td><td>Adverb</td></tr>
+				<tr><td>6</td><td>sehr </td><td>very</td><td>Adverb</td></tr>
+				<tr><td>7</td><td>ganz </td><td>quite</td><td>Adverb</td></tr>
+				<tr><td>8</td><td>jährlich </td><td>yearly</td><td>Adverb</td></tr>
+				<tr><td>9</td><td>oft </td><td>often</td><td>Adverb</td></tr>
+				<tr><td>10</td><td>unten </td><td>below</td><td>Adverb</td></tr>
+				<tr><td>11</td><td>wirklich </td><td>really</td><td>Adverb</td></tr>
+				<tr><td>12</td><td>zwar </td><td>indeed</td><td>Adverb</td></tr>
+				<tr><td>13</td><td>eigentlich </td><td>actually</td><td>Adverb</td></tr>
+				<tr><td>14</td><td>selten </td><td>rarely</td><td>Adverb</td></tr>
+				<tr><td>15</td><td>vorne </td><td>in front</td><td>Adverb</td></tr>
+				<tr><td>16</td><td>hinten </td><td>behind</td><td>Adverb</td></tr>
+				<tr><td>17</td><td>natürlich </td><td>naturally</td><td>Adverb</td></tr>
+				<tr><td>18</td><td>nie </td><td>never</td><td>Adverb</td></tr>
+				<tr><td>19</td><td>draußen </td><td>outside</td><td>Adverb</td></tr>
+				<tr><td>20</td><td>gerade </td><td>just now</td><td>Adverb</td></tr>
+				<tr><td>21</td><td>leider </td><td>unfortunately</td><td>Adverb</td></tr>
+				<tr><td>22</td><td>drinnen </td><td>inside</td><td>Adverb</td></tr>
+				<tr><td>23</td><td>glücklicherweise </td><td>fortunately</td><td>Adverb</td></tr>
+				<tr><td>24</td><td>schon </td><td>already</td><td>Adverb</td></tr>
+				<tr><td>25</td><td>hoffentlich </td><td>hopefully</td><td>Adverb</td></tr>
+				<tr><td>26</td><td>irgendwohin </td><td>somewhere (to)</td><td>Adverb</td></tr>
+				<tr><td>27</td><td>noch </td><td>still</td><td>Adverb</td></tr>
+				<tr><td>28</td><td>besonders </td><td>especially</td><td>Adverb</td></tr>
+				<tr><td>29</td><td>nirgendwohin </td><td>nowhere (to)</td><td>Adverb</td></tr>
+				<tr><td>30</td><td>noch nicht </td><td>not yet</td><td>Adverb</td></tr>
+				<tr><td>31</td><td>dann </td><td>then</td><td>Adverb</td></tr>
+				<tr><td>32</td><td>heim </td><td>home</td><td>Adverb</td></tr>
+				<tr><td>33</td><td>ziemlich </td><td>quite</td><td>Adverb</td></tr>
+				<tr><td>34</td><td>fast </td><td>almost</td><td>Adverb</td></tr>
+				<tr><td>35</td><td>weg </td><td>away</td><td>Adverb</td></tr>
+				<tr><td>36</td><td>zuerst </td><td>first</td><td>Adverb</td></tr>
+				<tr><td>37</td><td>genau </td><td>exactly</td><td>Adverb</td></tr>
+				<tr><td>38</td><td>zuletzt </td><td>last</td><td>Adverb</td></tr>
+				<tr><td>39</td><td>zurück </td><td>back</td><td>Adverb</td></tr>
+				<tr><td>40</td><td>da </td><td>there</td><td>Adverb</td></tr>
+				<tr><td>41</td><td>heute </td><td>today</td><td>Adverb</td></tr>
+				<tr><td>42</td><td>langsam </td><td>slowly</td><td>Adverb</td></tr>
+				<tr><td>43</td><td>meistens </td><td>mostly</td><td>Adverb</td></tr>
+				<tr><td>44</td><td>nur </td><td>only</td><td>Adverb</td></tr>
+				<tr><td>45</td><td>zu </td><td>too</td><td>Adverb</td></tr>
+				<tr><td>46</td><td>endlich </td><td>finally</td><td>Adverb</td></tr>
+				<tr><td>47</td><td>so </td><td>so</td><td>Adverb</td></tr>
+				<tr><td>48</td><td>vorwärts </td><td>forward</td><td>Adverb</td></tr>
+				<tr><td>49</td><td>dort </td><td>over there</td><td>Adverb</td></tr>
+				<tr><td>50</td><td>etwas </td><td>somewhat</td><td>Adverb</td></tr>
+				<tr><td>51</td><td>gestern </td><td>yesterday</td><td>Adverb</td></tr>
+				<tr><td>52</td><td>gut </td><td>well</td><td>Adverb</td></tr>
+				<tr><td>53</td><td>oft </td><td>often</td><td>Adverb</td></tr>
+				<tr><td>54</td><td>schon </td><td>already</td><td>Adverb</td></tr>
+				<tr><td>55</td><td>manchmal </td><td>sometimes</td><td>Adverb</td></tr>
+				<tr><td>56</td><td>morgen </td><td>tomorrow</td><td>Adverb</td></tr>
+				<tr><td>57</td><td>noch </td><td>still</td><td>Adverb</td></tr>
+				<tr><td>58</td><td>schlecht </td><td>badly</td><td>Adverb</td></tr>
+				<tr><td>59</td><td>überall </td><td>everywhere</td><td>Adverb</td></tr>
+				<tr><td>60</td><td>viel </td><td>much</td><td>Adverb</td></tr>
+				<tr><td>61</td><td>bald </td><td>soon</td><td>Adverb</td></tr>
+				<tr><td>62</td><td>gern </td><td>gladly</td><td>Adverb</td></tr>
+				<tr><td>63</td><td>nicht </td><td>not</td><td>Adverb</td></tr>
+				<tr><td>64</td><td>nirgendwo </td><td>nowhere</td><td>Adverb</td></tr>
+				<tr><td>65</td><td>selten </td><td>rarely</td><td>Adverb</td></tr>
+				<tr><td>66</td><td>wenig </td><td>little</td><td>Adverb</td></tr>
+				<tr><td>67</td><td>doch </td><td>however</td><td>Adverb</td></tr>
+				<tr><td>68</td><td>irgendwo </td><td>somewhere</td><td>Adverb</td></tr>
+				<tr><td>69</td><td>lieber </td><td>rather</td><td>Adverb</td></tr>
+				<tr><td>70</td><td>mehr </td><td>more</td><td>Adverb</td></tr>
+				<tr><td>71</td><td>nie </td><td>never</td><td>Adverb</td></tr>
+				<tr><td>72</td><td>später </td><td>later</td><td>Adverb</td></tr>
+				<tr><td>73</td><td>am liebsten </td><td>most preferably</td><td>Adverb</td></tr>
+				<tr><td>74</td><td>denn </td><td>then</td><td>Adverb</td></tr>
+				<tr><td>75</td><td>früher </td><td>earlier</td><td>Adverb</td></tr>
+				<tr><td>76</td><td>links </td><td>left</td><td>Adverb</td></tr>
+				<tr><td>77</td><td>täglich </td><td>daily</td><td>Adverb</td></tr>
+				<tr><td>78</td><td>weniger </td><td>less</td><td>Adverb</td></tr>
+				<tr><td>79</td><td>am meisten </td><td>most</td><td>Adverb</td></tr>
+				<tr><td>80</td><td>deshalb </td><td>therefore</td><td>Adverb</td></tr>
+				<tr><td>81</td><td>immer </td><td>always</td><td>Adverb</td></tr>
+				<tr><td>82</td><td>rechts </td><td>right</td><td>Adverb</td></tr>
+				<tr><td>83</td><td>vielleicht </td><td>maybe</td><td>Adverb</td></tr>
+				<tr><td>84</td><td>wöchentlich </td><td>weekly</td><td>Adverb</td></tr>
+				<tr><td>85</td><td>fast </td><td>almost</td><td>Adverb</td></tr>
+				<tr><td>86</td><td>manchmal </td><td>sometimes</td><td>Adverb</td></tr>
+				<tr><td>87</td><td>monatlich </td><td>monthly</td><td>Adverb</td></tr>
+				<tr><td>88</td><td>oben </td><td>above</td><td>Adverb</td></tr>
+				<tr><td>89</td><td>sicher </td><td>surely</td><td>Adverb</td></tr>
+				<tr><td>90</td><td>trotzdem </td><td>nevertheless</td><td>Adverb</td></tr>
+				<tr><td>1</td><td> gut </td><td> good</td><td>Adjective</td></tr>
+				<tr><td>2</td><td> teuer </td><td> expensive</td><td>Adjective</td></tr>
+				<tr><td>3</td><td> sympathisch </td><td> likeable</td><td>Adjective</td></tr>
+				<tr><td>4</td><td> billig </td><td> cheap</td><td>Adjective</td></tr>
+				<tr><td>5</td><td> schnell </td><td> fast</td><td>Adjective</td></tr>
+				<tr><td>6</td><td> langsam </td><td> slow</td><td>Adjective</td></tr>
+				<tr><td>7</td><td> leicht </td><td> easy, light</td><td>Adjective</td></tr>
+				<tr><td>8</td><td> schwer </td><td> difficult, heavy</td><td>Adjective</td></tr>
+				<tr><td>9</td><td> freundlich </td><td> friendly</td><td>Adjective</td></tr>
+				<tr><td>10</td><td> nett </td><td> nice</td><td>Adjective</td></tr>
+				<tr><td>11</td><td> unfreundlich </td><td> unfriendly</td><td>Adjective</td></tr>
+				<tr><td>12</td><td> lustig </td><td> funny</td><td>Adjective</td></tr>
+				<tr><td>13</td><td> schlecht </td><td> bad</td><td>Adjective</td></tr>
+				<tr><td>14</td><td> ernst </td><td> serious</td><td>Adjective</td></tr>
+				<tr><td>15</td><td> ruhig </td><td> quiet</td><td>Adjective</td></tr>
+				<tr><td>16</td><td> laut </td><td> loud</td><td>Adjective</td></tr>
+				<tr><td>17</td><td> fleißig </td><td> hardworking</td><td>Adjective</td></tr>
+				<tr><td>18</td><td> faul </td><td> lazy</td><td>Adjective</td></tr>
+				<tr><td>19</td><td> glücklich </td><td> happy</td><td>Adjective</td></tr>
+				<tr><td>20</td><td> traurig </td><td> sad</td><td>Adjective</td></tr>
+				<tr><td>21</td><td> müde </td><td> tired</td><td>Adjective</td></tr>
+				<tr><td>22</td><td> gesund </td><td> healthy</td><td>Adjective</td></tr>
+				<tr><td>23</td><td> krank </td><td> sick</td><td>Adjective</td></tr>
+				<tr><td>24</td><td> groß </td><td> big, tall</td><td>Adjective</td></tr>
+				<tr><td>25</td><td> sauber </td><td> clean</td><td>Adjective</td></tr>
+				<tr><td>26</td><td> schmutzig </td><td> dirty</td><td>Adjective</td></tr>
+				<tr><td>27</td><td> hell </td><td> bright</td><td>Adjective</td></tr>
+				<tr><td>28</td><td> dunkel </td><td> dark</td><td>Adjective</td></tr>
+				<tr><td>29</td><td> interessant </td><td> interesting</td><td>Adjective</td></tr>
+				<tr><td>30</td><td> langweilig </td><td> boring</td><td>Adjective</td></tr>
+				<tr><td>31</td><td> wichtig </td><td> important</td><td>Adjective</td></tr>
+				<tr><td>32</td><td> unwichtig </td><td> unimportant</td><td>Adjective</td></tr>
+				<tr><td>33</td><td> schön </td><td> beautiful</td><td>Adjective</td></tr>
+				<tr><td>34</td><td> hässlich </td><td> ugly</td><td>Adjective</td></tr>
+				<tr><td>35</td><td> klein </td><td> small, short</td><td>Adjective</td></tr>
+				<tr><td>36</td><td> stark </td><td> strong</td><td>Adjective</td></tr>
+				<tr><td>37</td><td> schwach </td><td> weak</td><td>Adjective</td></tr>
+				<tr><td>38</td><td> voll </td><td> full</td><td>Adjective</td></tr>
+				<tr><td>39</td><td> leer </td><td> empty</td><td>Adjective</td></tr>
+				<tr><td>40</td><td> richtig </td><td> correct</td><td>Adjective</td></tr>
+				<tr><td>41</td><td> falsch </td><td> wrong</td><td>Adjective</td></tr>
+				<tr><td>42</td><td> rot </td><td> red</td><td>Adjective</td></tr>
+				<tr><td>43</td><td> blau </td><td> blue</td><td>Adjective</td></tr>
+				<tr><td>44</td><td> grün </td><td> green</td><td>Adjective</td></tr>
+				<tr><td>45</td><td> gelb </td><td> yellow</td><td>Adjective</td></tr>
+				<tr><td>46</td><td> alt </td><td> old</td><td>Adjective</td></tr>
+				<tr><td>47</td><td> schwarz </td><td> black</td><td>Adjective</td></tr>
+				<tr><td>48</td><td> weiß </td><td> white</td><td>Adjective</td></tr>
+				<tr><td>49</td><td> braun </td><td> brown</td><td>Adjective</td></tr>
+				<tr><td>50</td><td> grau </td><td> gray</td><td>Adjective</td></tr>
+				<tr><td>51</td><td> orange </td><td> orange</td><td>Adjective</td></tr>
+				<tr><td>52</td><td> lila </td><td> purple</td><td>Adjective</td></tr>
+				<tr><td>53</td><td> warm </td><td> warm</td><td>Adjective</td></tr>
+				<tr><td>54</td><td> kalt </td><td> cold</td><td>Adjective</td></tr>
+				<tr><td>55</td><td> heiß </td><td> hot</td><td>Adjective</td></tr>
+				<tr><td>56</td><td> kühl </td><td> cool</td><td>Adjective</td></tr>
+				<tr><td>57</td><td> neu </td><td> new</td><td>Adjective</td></tr>
+				<tr><td>58</td><td> sonnig </td><td> sunny</td><td>Adjective</td></tr>
+				<tr><td>59</td><td> bewölkt </td><td> cloudy</td><td>Adjective</td></tr>
+				<tr><td>60</td><td> regnerisch </td><td> rainy</td><td>Adjective</td></tr>
+				<tr><td>61</td><td> windig </td><td> windy</td><td>Adjective</td></tr>
+				<tr><td>62</td><td> neblig </td><td> foggy</td><td>Adjective</td></tr>
+				<tr><td>63</td><td> trocken </td><td> dry</td><td>Adjective</td></tr>
+				<tr><td>64</td><td> nass </td><td> wet</td><td>Adjective</td></tr>
+				<tr><td>65</td><td> aufgeregt </td><td> excited</td><td>Adjective</td></tr>
+				<tr><td>66</td><td> ängstlich </td><td> anxious</td><td>Adjective</td></tr>
+				<tr><td>67</td><td> nervös </td><td> nervous</td><td>Adjective</td></tr>
+				<tr><td>68</td><td> jung </td><td> young</td><td>Adjective</td></tr>
+				<tr><td>69</td><td> zufrieden </td><td> satisfied</td><td>Adjective</td></tr>
+				<tr><td>70</td><td> unzufrieden </td><td> dissatisfied</td><td>Adjective</td></tr>
+				<tr><td>71</td><td> überrascht </td><td> surprised</td><td>Adjective</td></tr>
+				<tr><td>72</td><td> enttäuscht </td><td> disappointed</td><td>Adjective</td></tr>
+				<tr><td>73</td><td> eifersüchtig </td><td> jealous</td><td>Adjective</td></tr>
+				<tr><td>74</td><td> stolz </td><td> proud</td><td>Adjective</td></tr>
+				<tr><td>75</td><td> einfach </td><td> simple</td><td>Adjective</td></tr>
+				<tr><td>76</td><td> kompliziert </td><td> complicated</td><td>Adjective</td></tr>
+				<tr><td>77</td><td> praktisch </td><td> practical</td><td>Adjective</td></tr>
+				<tr><td>78</td><td> unpraktisch </td><td> impractical</td><td>Adjective</td></tr>
+				<tr><td>79</td><td> lang </td><td> long</td><td>Adjective</td></tr>
+				<tr><td>80</td><td> modern </td><td> modern</td><td>Adjective</td></tr>
+				<tr><td>81</td><td> altmodisch </td><td> old</td><td>Adjective</td></tr>
+				<tr><td>82</td><td> beliebt </td><td> popular</td><td>Adjective</td></tr>
+				<tr><td>83</td><td> unbeliebt </td><td> unpopular</td><td>Adjective</td></tr>
+				<tr><td>84</td><td> sicher </td><td> safe</td><td>Adjective</td></tr>
+				<tr><td>85</td><td> unsicher </td><td> unsafe</td><td>Adjective</td></tr>
+				<tr><td>86</td><td> klar </td><td> clear</td><td>Adjective</td></tr>
+				<tr><td>87</td><td> unklar </td><td> unclear</td><td>Adjective</td></tr>
+				<tr><td>88</td><td> möglich </td><td> possible</td><td>Adjective</td></tr>
+				<tr><td>89</td><td> unmöglich </td><td> impossible</td><td>Adjective</td></tr>
+				<tr><td>90</td><td> kurz </td><td> short</td><td>Adjective</td></tr>
+				<tr><td>91</td><td> normal </td><td> normal</td><td>Adjective</td></tr>
+				<tr><td>92</td><td> unnormal </td><td> abnormal</td><td>Adjective</td></tr>
+				<tr><td>93</td><td> aktiv </td><td> active</td><td>Adjective</td></tr>
+				<tr><td>94</td><td> passiv </td><td> passive</td><td>Adjective</td></tr>
+				<tr><td>95</td><td> offen </td><td> open</td><td>Adjective</td></tr>
+				<tr><td>96</td><td> geschlossen </td><td> closed</td><td>Adjective</td></tr>
+				<tr><td>97</td><td> froh </td><td> glad</td><td>Adjective</td></tr>
+				<tr><td>98</td><td> böse </td><td> angry</td><td>Adjective</td></tr>
+				<tr><td>99</td><td> geduldig </td><td> patient</td><td>Adjective</td></tr>
+				<tr><td>100</td><td> ungeduldig </td><td> impatient</td><td>Adjective</td></tr>
+				<tr><td>1</td><td> ankommen </td><td>to arrive</td><td>verb</td></tr>
+				<tr><td>2</td><td> arbeiten </td><td>to work</td><td>verb</td></tr>
+				<tr><td>3</td><td> können </td><td>can/to be able to</td><td>verb</td></tr>
+				<tr><td>4</td><td> sein </td><td>to be</td><td>verb</td></tr>
+				<tr><td>5</td><td> sich freuen </td><td>to be happy</td><td>verb</td></tr>
+				<tr><td>6</td><td> abholen </td><td>to pick up</td><td>verb</td></tr>
+				<tr><td>7</td><td> denken </td><td>to think</td><td>verb</td></tr>
+				<tr><td>8</td><td> fahren </td><td>to drive/travel</td><td>verb</td></tr>
+				<tr><td>9</td><td> sich waschen </td><td>to wash oneself</td><td>verb</td></tr>
+				<tr><td>10</td><td> spielen </td><td>to play</td><td>verb</td></tr>
+				<tr><td>11</td><td> aufräumen </td><td>to tidy up</td><td>verb</td></tr>
+				<tr><td>12</td><td> kennen </td><td>to know/be familiar with</td><td>verb</td></tr>
+				<tr><td>13</td><td> lesen </td><td>to read</td><td>verb</td></tr>
+				<tr><td>14</td><td> sich setzen </td><td>to sit down</td><td>verb</td></tr>
+				<tr><td>15</td><td> suchen </td><td>to search/look for</td><td>verb</td></tr>
+				<tr><td>16</td><td> einladen </td><td>to invite</td><td>verb</td></tr>
+				<tr><td>17</td><td> liegen </td><td>to lie</td><td>verb</td></tr>
+				<tr><td>18</td><td> schreiben </td><td>to write</td><td>verb</td></tr>
+				<tr><td>19</td><td> sich hinlegen </td><td>to lie down</td><td>verb</td></tr>
+				<tr><td>20</td><td> wohnen </td><td>to live/reside</td><td>verb</td></tr>
+				<tr><td>21</td><td> sich ausruhen </td><td>to rest</td><td>verb</td></tr>
+				<tr><td>22</td><td> sprechen </td><td>to speak</td><td>verb</td></tr>
+				<tr><td>23</td><td> stehen </td><td>to stand</td><td>verb</td></tr>
+				<tr><td>24</td><td> zeigen </td><td>to show</td><td>verb</td></tr>
+				<tr><td>25</td><td> zurückkommen </td><td>to come back</td><td>verb</td></tr>
+				<tr><td>26</td><td> hören </td><td>to hear/listen</td><td>verb</td></tr>
+				<tr><td>27</td><td> nehmen </td><td>to take</td><td>verb</td></tr>
+				<tr><td>28</td><td> sich verabschieden </td><td>to say goodbye</td><td>verb</td></tr>
+				<tr><td>29</td><td> sitzen </td><td>to sit</td><td>verb</td></tr>
+				<tr><td>30</td><td> weggehen </td><td>to go away</td><td>verb</td></tr>
+				<tr><td>31</td><td> fernsehen </td><td>to watch TV</td><td>verb</td></tr>
+				<tr><td>32</td><td> geben </td><td>to give</td><td>verb</td></tr>
+				<tr><td>33</td><td> lieben </td><td>to love</td><td>verb</td></tr>
+				<tr><td>34</td><td> sich vorstellen </td><td>to introduce oneself</td><td>verb</td></tr>
+				<tr><td>35</td><td> verstehen </td><td>to understand</td><td>verb</td></tr>
+				<tr><td>36</td><td> helfen </td><td>to help</td><td>verb</td></tr>
+				<tr><td>37</td><td> kosten </td><td>to cost</td><td>verb</td></tr>
+				<tr><td>38</td><td> tanzen </td><td>to dance</td><td>verb</td></tr>
+				<tr><td>39</td><td> wissen </td><td>to know</td><td>verb</td></tr>
+				<tr><td>40</td><td> finden </td><td>to find</td><td>verb</td></tr>
+				<tr><td>41</td><td> lachen </td><td>to laugh</td><td>verb</td></tr>
+				<tr><td>42</td><td> beginnen </td><td>to begin</td><td>verb</td></tr>
+				<tr><td>43</td><td> weinen </td><td>to cry</td><td>verb</td></tr>
+				<tr><td>44</td><td> aufstehen </td><td>to get up</td><td>verb</td></tr>
+				<tr><td>45</td><td> brauchen </td><td>to need</td><td>verb</td></tr>
+				<tr><td>46</td><td> haben </td><td>to have</td><td>verb</td></tr>
+				<tr><td>47</td><td> müssen </td><td>must/to have to</td><td>verb</td></tr>
+				<tr><td>48</td><td> sich interessieren </td><td>to be interested</td><td>verb</td></tr>
+				<tr><td>49</td><td> regnen </td><td>to rain</td><td>verb</td></tr>
+				<tr><td>50</td><td> vergessen </td><td>to forget</td><td>verb</td></tr>
+				<tr><td>51</td><td> ausgehen </td><td>to go out</td><td>verb</td></tr>
+				<tr><td>52</td><td> dürfen </td><td>to be allowed to</td><td>verb</td></tr>
+				<tr><td>53</td><td> fragen </td><td>to ask</td><td>verb</td></tr>
+				<tr><td>54</td><td> sich ärgern </td><td>to get annoyed</td><td>verb</td></tr>
+				<tr><td>55</td><td> werden </td><td>to become</td><td>verb</td></tr>
+				<tr><td>56</td><td> einkaufen </td><td>to shop</td><td>verb</td></tr>
+				<tr><td>57</td><td> gehen </td><td>to go</td><td>verb</td></tr>
+				<tr><td>58</td><td> glauben </td><td>to believe</td><td>verb</td></tr>
+				<tr><td>59</td><td> sich erinnern </td><td>to remember</td><td>verb</td></tr>
+				<tr><td>60</td><td> wollen </td><td>to want</td><td>verb</td></tr>
+				<tr><td>61</td><td> kaufen </td><td>to buy</td><td>verb</td></tr>
+				<tr><td>62</td><td> kommen </td><td>to come</td><td>verb</td></tr>
+				<tr><td>63</td><td> mitkommen </td><td>to come along</td><td>verb</td></tr>
+				<tr><td>64</td><td> mögen </td><td>to like</td><td>verb</td></tr>
+				<tr><td>65</td><td> sich treffen </td><td>to meet</td><td>verb</td></tr>
+				<tr><td>66</td><td> lernen </td><td>to learn</td><td>verb</td></tr>
+				<tr><td>67</td><td> sehen </td><td>to see</td><td>verb</td></tr>
+				<tr><td>68</td><td> sich beeilen </td><td>to hurry</td><td>verb</td></tr>
+				<tr><td>69</td><td> sollen </td><td>should/ought to</td><td>verb</td></tr>
+				<tr><td>70</td><td> vorbereiten </td><td>to prepare</td><td>verb</td></tr>
+				<tr><td>71</td><td> essen </td><td>to eat</td><td>verb</td></tr>
+				<tr><td>72</td><td> machen </td><td>to do/make</td><td>verb</td></tr>
+				<tr><td>73</td><td> möchten </td><td>would like to</td><td>verb</td></tr>
+				<tr><td>74</td><td> sich entscheiden </td><td>to decide</td><td>verb</td></tr>
+				<tr><td>75</td><td> zumachen </td><td>to close</td><td>verb</td></tr>
+				<tr><td>76</td><td> aufmachen </td><td>to open</td><td>verb</td></tr>
+				<tr><td>77</td><td> bleiben </td><td>to stay</td><td>verb</td></tr>
+				<tr><td>78</td><td> öffnen </td><td>to open</td><td>verb</td></tr>
+				<tr><td>79</td><td> sich freuen auf </td><td>to look forward to</td><td>verb</td></tr>
+				<tr><td>80</td><td> trinken </td><td>to drink</td><td>verb</td></tr>
+				<tr><td>81</td><td> anrufen </td><td>to call</td><td>verb</td></tr>
+				<tr><td>82</td><td> bringen </td><td>to bring</td><td>verb</td></tr>
+				<tr><td>83</td><td> sagen </td><td>to say</td><td>verb</td></tr>
+				<tr><td>84</td><td> schlafen </td><td>to sleep</td><td>verb</td></tr>
+				<tr><td>85</td><td> sich umziehen </td><td>to change clothes</td><td>verb</td></tr>
+				<tr><td>86</td><td> stattfinden </td><td>to take place</td><td>verb</td></tr>
+				<tr><td>87</td><td> verlieren </td><td>to lose</td><td>verb</td></tr>
+				<tr><td>88</td><td> versuchen </td><td>to try/attempt</td><td>verb</td></tr>
+				<tr><td>89</td><td> verlassen </td><td>to leave/abandon</td><td>verb</td></tr>
+				<tr><td>90</td><td> entdecken </td><td>to discover</td><td>verb</td></tr>
+				<tr><td>91</td><td> entscheiden </td><td>to decide</td><td>verb</td></tr>
+				<tr><td>92</td><td> empfehlen </td><td>to recommend</td><td>verb</td></tr>
+				<tr><td>93</td><td> gefallen </td><td>to like/appeal to</td><td>verb</td></tr>
+				<tr><td>94</td><td> missverstehen </td><td>to misunderstand</td><td>verb</td></tr>
+				<tr><td>95</td><td> wiederholen </td><td>to repeat</td><td>verb</td></tr>
+				<tr><td>96</td><td> zuhören </td><td>to listen</td><td>verb</td></tr>
+				<tr><td>97</td><td> verstehen </td><td>to understand</td><td>verb</td></tr>
+				<tr><td>98</td><td> zurückgeben </td><td>to return/give back</td><td>verb</td></tr>
+				<tr><td>99</td><td> besuchen </td><td>to visit/attend</td><td>verb</td></tr>
+				<tr><td>100</td><td> erzählen </td><td>to tell/narrate</td><td>verb</td></tr>
+				<tr><td>101</td><td> erklären </td><td>to explain</td><td>verb</td></tr>
+				<tr><td>102</td><td> erinnern </td><td>to remind</td><td>verb</td></tr>
+				<tr><td>103</td><td> gehören </td><td>to belong</td><td>verb</td></tr>
+				<tr><td>104</td><td> bekommen </td><td>to receive</td><td>verb</td></tr>
+				<tr><td>105</td><td> vergessen </td><td>to forget</td><td>verb</td></tr>
+				<tr><td>1</td><td>der Mann</td><td>man</td><td>Noun</td></tr>
+				<tr><td>2</td><td>die Frau</td><td>woman</td><td>Noun</td></tr>
+				<tr><td>3</td><td>das Kind</td><td>child</td><td>Noun</td></tr>
+				<tr><td>4</td><td>der Junge</td><td>boy</td><td>Noun</td></tr>
+				<tr><td>5</td><td>das Mädchen</td><td>girl</td><td>Noun</td></tr>
+				<tr><td>6</td><td>die Familie</td><td>family</td><td>Noun</td></tr>
+				<tr><td>7</td><td>die Mutter</td><td>mother</td><td>Noun</td></tr>
+				<tr><td>8</td><td>der Vater</td><td>father</td><td>Noun</td></tr>
+				<tr><td>9</td><td>die Eltern</td><td>parents</td><td>Noun</td></tr>
+				<tr><td>10</td><td>der Sohn</td><td>son</td><td>Noun</td></tr>
+				<tr><td>11</td><td>die Tochter</td><td>daughter</td><td>Noun</td></tr>
+				<tr><td>12</td><td>der Bruder</td><td>brother</td><td>Noun</td></tr>
+				<tr><td>13</td><td>die Schwester</td><td>sister</td><td>Noun</td></tr>
+				<tr><td>14</td><td>der Freund</td><td>friend, boyfriend</td><td>Noun</td></tr>
+				<tr><td>15</td><td>die Freundin</td><td>friend, girlfriend</td><td>Noun</td></tr>
+				<tr><td>16</td><td>der Nachbar</td><td>neighbor</td><td>Noun</td></tr>
+				<tr><td>17</td><td>die Nachbarin</td><td>neighbor, female</td><td>Noun</td></tr>
+				<tr><td>18</td><td>der Kollege</td><td>colleague</td><td>Noun</td></tr>
+				<tr><td>19</td><td>die Kollegin</td><td>colleague, female</td><td>Noun</td></tr>
+				<tr><td>20</td><td>der Chef</td><td>boss</td><td>Noun</td></tr>
+				<tr><td>21</td><td>die Chefin</td><td>boss, female</td><td>Noun</td></tr>
+				<tr><td>22</td><td>das Essen</td><td>food</td><td>Noun</td></tr>
+				<tr><td>23</td><td>das Frühstück</td><td>breakfast</td><td>Noun</td></tr>
+				<tr><td>24</td><td>das Mittagessen</td><td>lunch</td><td>Noun</td></tr>
+				<tr><td>25</td><td>das Abendessen</td><td>dinner</td><td>Noun</td></tr>
+				<tr><td>26</td><td>das Brot</td><td>bread</td><td>Noun</td></tr>
+				<tr><td>27</td><td>der Käse</td><td>cheese</td><td>Noun</td></tr>
+				<tr><td>28</td><td>die Milch</td><td>milk</td><td>Noun</td></tr>
+				<tr><td>29</td><td>der Kaffee</td><td>coffee</td><td>Noun</td></tr>
+				<tr><td>30</td><td>der Tee</td><td>tea</td><td>Noun</td></tr>
+				<tr><td>31</td><td>das Wasser</td><td>water</td><td>Noun</td></tr>
+				<tr><td>32</td><td>der Saft</td><td>juice</td><td>Noun</td></tr>
+				<tr><td>33</td><td>das Obst</td><td>fruit</td><td>Noun</td></tr>
+				<tr><td>34</td><td>der Apfel</td><td>apple</td><td>Noun</td></tr>
+				<tr><td>35</td><td>die Banane</td><td>banana</td><td>Noun</td></tr>
+				<tr><td>36</td><td>das Gemüse</td><td>vegetables</td><td>Noun</td></tr>
+				<tr><td>37</td><td>die Kartoffel</td><td>potato</td><td>Noun</td></tr>
+				<tr><td>38</td><td>die Tomate</td><td>tomato</td><td>Noun</td></tr>
+				<tr><td>39</td><td>der Salat</td><td>salad</td><td>Noun</td></tr>
+				<tr><td>40</td><td>das Fleisch</td><td>meat</td><td>Noun</td></tr>
+				<tr><td>41</td><td>das Huhn</td><td>chicken</td><td>Noun</td></tr>
+				<tr><td>42</td><td>der Fisch</td><td>fish</td><td>Noun</td></tr>
+				<tr><td>43</td><td>das Ei</td><td>egg</td><td>Noun</td></tr>
+				<tr><td>44</td><td>der Zucker</td><td>sugar</td><td>Noun</td></tr>
+				<tr><td>45</td><td>das Salz</td><td>salt</td><td>Noun</td></tr>
+				<tr><td>46</td><td>der Pfeffer</td><td>pepper</td><td>Noun</td></tr>
+				<tr><td>47</td><td>das Auto</td><td>car</td><td>Noun</td></tr>
+				<tr><td>48</td><td>der Bus</td><td>bus</td><td>Noun</td></tr>
+				<tr><td>49</td><td>der Zug</td><td>train</td><td>Noun</td></tr>
+				<tr><td>50</td><td>das Fahrrad</td><td>bicycle</td><td>Noun</td></tr>
+				<tr><td>51</td><td>das Flugzeug</td><td>airplane</td><td>Noun</td></tr>
+				<tr><td>52</td><td>der Bahnhof</td><td>train station</td><td>Noun</td></tr>
+				<tr><td>53</td><td>der Flughafen</td><td>airport</td><td>Noun</td></tr>
+				<tr><td>54</td><td>die Straße</td><td>street</td><td>Noun</td></tr>
+				<tr><td>55</td><td>die Stadt</td><td>city</td><td>Noun</td></tr>
+				<tr><td>56</td><td>das Land</td><td>country</td><td>Noun</td></tr>
+				<tr><td>57</td><td>die Reise</td><td>trip</td><td>Noun</td></tr>
+				<tr><td>58</td><td>der Urlaub</td><td>vacation</td><td>Noun</td></tr>
+				<tr><td>59</td><td>das Ticket</td><td>ticket</td><td>Noun</td></tr>
+				<tr><td>60</td><td>der Pass</td><td>passport</td><td>Noun</td></tr>
+				<tr><td>61</td><td>der Koffer</td><td>suitcase</td><td>Noun</td></tr>
+				<tr><td>62</td><td>die Karte</td><td>map, card</td><td>Noun</td></tr>
+				<tr><td>63</td><td>die Adresse</td><td>address</td><td>Noun</td></tr>
+				<tr><td>64</td><td>die Richtung</td><td>direction</td><td>Noun</td></tr>
+				<tr><td>65</td><td>das Geschäft</td><td>shop</td><td>Noun</td></tr>
+				<tr><td>66</td><td>der Supermarkt</td><td>supermarket</td><td>Noun</td></tr>
+				<tr><td>67</td><td>der Markt</td><td>market</td><td>Noun</td></tr>
+				<tr><td>68</td><td>das Geld</td><td>money</td><td>Noun</td></tr>
+				<tr><td>69</td><td>der Preis</td><td>price</td><td>Noun</td></tr>
+				<tr><td>70</td><td>der Euro</td><td>euro</td><td>Noun</td></tr>
+				<tr><td>71</td><td>die Rechnung</td><td>bill</td><td>Noun</td></tr>
+				<tr><td>72</td><td>die Kasse</td><td>cash register</td><td>Noun</td></tr>
+				<tr><td>73</td><td>der Einkauf</td><td>shopping</td><td>Noun</td></tr>
+				<tr><td>74</td><td>das Kleid</td><td>dress</td><td>Noun</td></tr>
+				<tr><td>75</td><td>das Hemd</td><td>shirt</td><td>Noun</td></tr>
+				<tr><td>76</td><td>die Hose</td><td>pants</td><td>Noun</td></tr>
+				<tr><td>77</td><td>der Schuh</td><td>shoe</td><td>Noun</td></tr>
+				<tr><td>78</td><td>die Größe</td><td>size</td><td>Noun</td></tr>
+				<tr><td>79</td><td>die Farbe</td><td>color</td><td>Noun</td></tr>
+				<tr><td>80</td><td>die Arbeit</td><td>work</td><td>Noun</td></tr>
+				<tr><td>81</td><td>der Beruf</td><td>profession</td><td>Noun</td></tr>
+				<tr><td>82</td><td>die Schule</td><td>school</td><td>Noun</td></tr>
+				<tr><td>83</td><td>der Lehrer</td><td>teacher</td><td>Noun</td></tr>
+				<tr><td>84</td><td>die Lehrerin</td><td>teacher, female</td><td>Noun</td></tr>
+				<tr><td>85</td><td>der Schüler</td><td>student</td><td>Noun</td></tr>
+				<tr><td>86</td><td>die Schülerin</td><td>student, female</td><td>Noun</td></tr>
+				<tr><td>87</td><td>das Buch</td><td>book</td><td>Noun</td></tr>
+				<tr><td>88</td><td>der Stift</td><td>pen</td><td>Noun</td></tr>
+				<tr><td>89</td><td>das Papier</td><td>paper</td><td>Noun</td></tr>
+				<tr><td>90</td><td>der Computer</td><td>computer</td><td>Noun</td></tr>
+				<tr><td>91</td><td>der Tisch</td><td>table</td><td>Noun</td></tr>
+				<tr><td>92</td><td>der Stuhl</td><td>chair</td><td>Noun</td></tr>
+				<tr><td>93</td><td>die Uhr</td><td>clock, watch</td><td>Noun</td></tr>
+				<tr><td>94</td><td>die Zeit</td><td>time</td><td>Noun</td></tr>
+				<tr><td>95</td><td>die Pause</td><td>break</td><td>Noun</td></tr>
+				<tr><td>96</td><td>der Körper</td><td>body</td><td>Noun</td></tr>
+				<tr><td>97</td><td>der Kopf</td><td>head</td><td>Noun</td></tr>
+				<tr><td>98</td><td>das Auge</td><td>eye</td><td>Noun</td></tr>
+				<tr><td>99</td><td>das Ohr</td><td>ear</td><td>Noun</td></tr>
+				<tr><td>100</td><td>die Nase</td><td>nose</td><td>Noun</td></tr>
+				<tr><td>101</td><td>der Mund</td><td>mouth</td><td>Noun</td></tr>
+				<tr><td>102</td><td>der Arm</td><td>arm</td><td>Noun</td></tr>
+				<tr><td>103</td><td>das Bein</td><td>leg</td><td>Noun</td></tr>
+				<tr><td>104</td><td>die Hand</td><td>hand</td><td>Noun</td></tr>
+				<tr><td>105</td><td>der Fuß</td><td>foot</td><td>Noun</td></tr>
+				<tr><td>106</td><td>der Arzt</td><td>doctor</td><td>Noun</td></tr>
+				<tr><td>107</td><td>die Ärztin</td><td>doctor, female</td><td>Noun</td></tr>
+				<tr><td>108</td><td>das Krankenhaus</td><td>hospital</td><td>Noun</td></tr>
+				<tr><td>109</td><td>die Apotheke</td><td>pharmacy</td><td>Noun</td></tr>
+				<tr><td>110</td><td>die Medizin</td><td>medicine</td><td>Noun</td></tr>
+				<tr><td>111</td><td>der Schmerz</td><td>pain</td><td>Noun</td></tr>
+				<tr><td>112</td><td>die Gesundheit</td><td>health</td><td>Noun</td></tr>
+				<tr><td>113</td><td>das Haus</td><td>house</td><td>Noun</td></tr>
+				<tr><td>114</td><td>die Wohnung</td><td>apartment</td><td>Noun</td></tr>
+				<tr><td>115</td><td>das Zimmer</td><td>room</td><td>Noun</td></tr>
+				<tr><td>116</td><td>die Küche</td><td>kitchen</td><td>Noun</td></tr>
+				<tr><td>117</td><td>das Badezimmer</td><td>bathroom</td><td>Noun</td></tr>
+				<tr><td>118</td><td>das Schlafzimmer</td><td>bedroom</td><td>Noun</td></tr>
+				<tr><td>119</td><td>das Sofa</td><td>sofa</td><td>Noun</td></tr>
+				<tr><td>120</td><td>das Bett</td><td>bed</td><td>Noun</td></tr>
+				<tr><td>121</td><td>der Schrank</td><td>wardrobe</td><td>Noun</td></tr>
+				<tr><td>122</td><td>der Spiegel</td><td>mirror</td><td>Noun</td></tr>
+				<tr><td>123</td><td>die Lampe</td><td>lamp</td><td>Noun</td></tr>
+				<tr><td>124</td><td>die Tür</td><td>door</td><td>Noun</td></tr>
+				<tr><td>125</td><td>das Fenster</td><td>window</td><td>Noun</td></tr>
+				<tr><td>126</td><td>der Tag</td><td>day</td><td>Noun</td></tr>
+				<tr><td>127</td><td>die Nacht</td><td>night</td><td>Noun</td></tr>
+				<tr><td>128</td><td>die Woche</td><td>week</td><td>Noun</td></tr>
+				<tr><td>129</td><td>das Wochenende</td><td>weekend</td><td>Noun</td></tr>
+				<tr><td>130</td><td>der Monat</td><td>month</td><td>Noun</td></tr>
+				<tr><td>131</td><td>das Jahr</td><td>year</td><td>Noun</td></tr>
+				<tr><td>132</td><td>die Stunde</td><td>hour</td><td>Noun</td></tr>
+				<tr><td>133</td><td>die Minute</td><td>minute</td><td>Noun</td></tr>
+				<tr><td>134</td><td>die Sekunde</td><td>second</td><td>Noun</td></tr>
+				<tr><td>135</td><td>der Morgen</td><td>morning</td><td>Noun</td></tr>
+				<tr><td>136</td><td>der Abend</td><td>evening</td><td>Noun</td></tr>
+				<tr><td>137</td><td>der Kalender</td><td>calendar</td><td>Noun</td></tr>
+				<tr><td>138</td><td>das Wetter</td><td>weather</td><td>Noun</td></tr>
+				<tr><td>139</td><td>die Sonne</td><td>sun</td><td>Noun</td></tr>
+				<tr><td>140</td><td>der Regen</td><td>rain</td><td>Noun</td></tr>
+				<tr><td>141</td><td>der Schnee</td><td>snow</td><td>Noun</td></tr>
+				<tr><td>142</td><td>der Wind</td><td>wind</td><td>Noun</td></tr>
+				<tr><td>143</td><td>der Himmel</td><td>sky</td><td>Noun</td></tr>
+				<tr><td>144</td><td>die Wolke</td><td>cloud</td><td>Noun</td></tr>
+				<tr><td>145</td><td>der Baum</td><td>tree</td><td>Noun</td></tr>
+				<tr><td>146</td><td>die Blume</td><td>flower</td><td>Noun</td></tr>
+				<tr><td>147</td><td>das Gras</td><td>grass</td><td>Noun</td></tr>
+				<tr><td>148</td><td>der Fluss</td><td>river</td><td>Noun</td></tr>
+				<tr><td>149</td><td>der See</td><td>lake</td><td>Noun</td></tr>
+				<tr><td>150</td><td>das Meer</td><td>sea</td><td>Noun</td></tr>
+				<tr><td>151</td><td>das Hobby</td><td>hobby</td><td>Noun</td></tr>
+				<tr><td>152</td><td>der Sport</td><td>sport</td><td>Noun</td></tr>
+				<tr><td>153</td><td>das Spiel</td><td>game</td><td>Noun</td></tr>
+				<tr><td>154</td><td>die Musik</td><td>music</td><td>Noun</td></tr>
+				<tr><td>155</td><td>das Instrument</td><td>instrument</td><td>Noun</td></tr>
+				<tr><td>156</td><td>der Film</td><td>movie</td><td>Noun</td></tr>
+				<tr><td>157</td><td>das Buch</td><td>book</td><td>Noun</td></tr>
+				<tr><td>158</td><td>die Party</td><td>party</td><td>Noun</td></tr>
+				<tr><td>159</td><td>das Fest</td><td>festival</td><td>Noun</td></tr>
+				<tr><td>160</td><td>der Tanz</td><td>dance</td><td>Noun</td></tr>
+				<tr><td>161</td><td>die Frage</td><td>question</td><td>Noun</td></tr>
+				<tr><td>162</td><td>die Antwort</td><td>answer</td><td>Noun</td></tr>
+				<tr><td>163</td><td>das Problem</td><td>problem</td><td>Noun</td></tr>
+				<tr><td>164</td><td>die Lösung</td><td>solution</td><td>Noun</td></tr>
+				<tr><td>165</td><td>die Idee</td><td>idea</td><td>Noun</td></tr>
+				<tr><td>166</td><td>die Nummer</td><td>number</td><td>Noun</td></tr>
+				<tr><td>167</td><td>das Telefon</td><td>telephone</td><td>Noun</td></tr>
+				<tr><td>168</td><td>das Handy</td><td>mobile phone</td><td>Noun</td></tr>
+				<tr><td>169</td><td>das Internet</td><td>internet</td><td>Noun</td></tr>
+				<tr><td>170</td><td>die E-Mail</td><td>email</td><td>Noun</td></tr>
+				<tr><td>171</td><td>der Brief</td><td>letter</td><td>Noun</td></tr>
+				<tr><td>172</td><td>das Geschenk</td><td>gift</td><td>Noun</td></tr>
+				<tr><td>173</td><td>die Überraschung</td><td>surprise</td><td>Noun</td></tr>
+				<tr><td>174</td><td>der Fehler</td><td>mistake</td><td>Noun</td></tr>
+				<tr><td>175</td><td>die Sprache</td><td>language</td><td>Noun</td></tr>
+				<tr><td>176</td><td>das Wort</td><td>word</td><td>Noun</td></tr>
+				<tr><td>177</td><td>der Satz</td><td>sentence</td><td>Noun</td></tr>
+				<tr><td>178</td><td>die Geschichte</td><td>story, history</td><td>Noun</td></tr>
+				<tr><td>179</td><td>die Kultur</td><td>culture</td><td>Noun</td></tr>
+				<tr><td>180</td><td>die Liebe</td><td>love</td><td>Noun</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        function filterTable() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementById("tableBody").getElementsByTagName("tr");
+            
+            for (let i = 0; i < rows.length; i++) {
+                let germanCell = rows[i].getElementsByTagName("td")[1];
+                let englishCell = rows[i].getElementsByTagName("td")[2];
+				let typeCell = rows[i].getElementsByTagName("td")[3];
+                
+                if (germanCell && englishCell && typeCell) {
+                    let germanText = germanCell.textContent || germanCell.innerText;
+                    let englishText = englishCell.textContent || englishCell.innerText;
+					let typeText = typeCell.textContent || typeCell.innerText;
+                    
+                    if (germanText.toLowerCase().indexOf(input) > -1 || englishText.toLowerCase().indexOf(input) > -1 || typeText.toLowerCase().indexOf(input) > -1 ) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

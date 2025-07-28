@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #d1e7dd;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>German Vocabulary Table for Adjectives</h2>
+        <input type="text" id="search" onkeyup="filterTable()" placeholder="Search for words...">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>German</th>
+                    <th>English</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr><td>1</td><td>ganz</td><td>whole, all the</td></tr>
+				<tr><td>2</td><td>groß</td><td>big, large, great</td></tr>
+				<tr><td>3</td><td>gut</td><td>good</td></tr>
+				<tr><td>4</td><td>neu</td><td>new</td></tr>
+				<tr><td>5</td><td>erste (r, s)</td><td>first</td></tr>
+				<tr><td>6</td><td>lang</td><td>long</td></tr>
+				<tr><td>7</td><td>deutsch</td><td>German</td></tr>
+				<tr><td>8</td><td>klein</td><td>small, little</td></tr>
+				<tr><td>9</td><td>alt</td><td>old</td></tr>
+				<tr><td>10</td><td>hoch</td><td>high, tall</td></tr>
+				<tr><td>11</td><td>einfach</td><td>simple, easy</td></tr>
+				<tr><td>12</td><td>letzte (r, s)</td><td>last</td></tr>
+				<tr><td>13</td><td>gleich</td><td>same, right away, just</td></tr>
+				<tr><td>14</td><td>möglich</td><td>possible</td></tr>
+				<tr><td>15</td><td>eigen</td><td>own</td></tr>
+				<tr><td>16</td><td>schön</td><td>beautiful, pleasant, good</td></tr>
+				<tr><td>17</td><td>spät</td><td>late</td></tr>
+				<tr><td>18</td><td>wichtig</td><td>important</td></tr>
+				<tr><td>19</td><td>weitere (r, s)</td><td>additional</td></tr>
+				<tr><td>20</td><td>genau</td><td>exactly</td></tr>
+				<tr><td>21</td><td>jung</td><td>young</td></tr>
+				<tr><td>22</td><td>kurz</td><td>short</td></tr>
+				<tr><td>23</td><td>stark</td><td>strong</td></tr>
+				<tr><td>24</td><td>richtig</td><td>correct</td></tr>
+				<tr><td>25</td><td>verschieden</td><td>different, diverse</td></tr>
+				<tr><td>26</td><td>bestimmt</td><td>special, certain</td></tr>
+				<tr><td>27</td><td>besser</td><td>better</td></tr>
+				<tr><td>28</td><td>schnell</td><td>fast</td></tr>
+				<tr><td>29</td><td>sicher</td><td>safe, secure, certain</td></tr>
+				<tr><td>30</td><td>nächste (r, s)</td><td>next</td></tr>
+				<tr><td>31</td><td>politisch</td><td>political</td></tr>
+				<tr><td>32</td><td>klar</td><td>clear</td></tr>
+				<tr><td>33</td><td>schwer</td><td>difficult, heavy</td></tr>
+				<tr><td>34</td><td>einzeln</td><td>individual</td></tr>
+				<tr><td>35</td><td>bekannt</td><td>well-known</td></tr>
+				<tr><td>36</td><td>leicht</td><td>light, easy</td></tr>
+				<tr><td>37</td><td>rund</td><td>round</td></tr>
+				<tr><td>38</td><td>frei</td><td>free</td></tr>
+				<tr><td>39</td><td>früh</td><td>early</td></tr>
+				<tr><td>40</td><td>unterschiedlich</td><td>different, variable</td></tr>
+				<tr><td>41</td><td>schlecht</td><td>bad</td></tr>
+				<tr><td>42</td><td>deutlich</td><td>clear</td></tr>
+				<tr><td>43</td><td>allgemein</td><td>general</td></tr>
+				<tr><td>44</td><td>einzig</td><td>only, single</td></tr>
+				<tr><td>45</td><td>gemeinsam</td><td>common, mutual</td></tr>
+				<tr><td>46</td><td>nahe, nah</td><td>near, close</td></tr>
+				<tr><td>47</td><td>voll</td><td>full</td></tr>
+				<tr><td>48</td><td>direkt</td><td>direct, straight</td></tr>
+				<tr><td>49</td><td>international</td><td>international</td></tr>
+				<tr><td>50</td><td>sozial</td><td>social</td></tr>
+				<tr><td>51</td><td>beste (r,s)</td><td>best</td></tr>
+				<tr><td>52</td><td>rot</td><td>red</td></tr>
+				<tr><td>53</td><td>offen</td><td>open</td></tr>
+				<tr><td>54</td><td>meiste</td><td>most</td></tr>
+				<tr><td>55</td><td>besondere (r,s)</td><td>special</td></tr>
+				<tr><td>56</td><td>gewiss</td><td>certain</td></tr>
+				<tr><td>57</td><td>öffentlich</td><td>public</td></tr>
+				<tr><td>58</td><td>halb</td><td>half</td></tr>
+				<tr><td>59</td><td>wahrscheinlich</td><td>probably</td></tr>
+				<tr><td>60</td><td>europäisch</td><td>European</td></tr>
+				<tr><td>61</td><td>wesentlich</td><td>essential, fundamental</td></tr>
+				<tr><td>62</td><td>ähnlich</td><td>similar</td></tr>
+				<tr><td>63</td><td>häufig</td><td>frequent</td></tr>
+				<tr><td>64</td><td>schwarz</td><td>black</td></tr>
+				<tr><td>65</td><td>völlig</td><td>complete</td></tr>
+				<tr><td>66</td><td>gering</td><td>low, small</td></tr>
+				<tr><td>67</td><td>schwierig</td><td>difficult</td></tr>
+				<tr><td>68</td><td>praktisch</td><td>practical</td></tr>
+				<tr><td>69</td><td>persönlich</td><td>personal</td></tr>
+				<tr><td>70</td><td>–jährig</td><td>years old</td></tr>
+				<tr><td>71</td><td>modern</td><td>modern</td></tr>
+				<tr><td>72</td><td>tief</td><td>deep</td></tr>
+				<tr><td>73</td><td>tatsächlich</td><td>real, actual</td></tr>
+				<tr><td>74</td><td>zusätzlich</td><td>additional</td></tr>
+				<tr><td>75</td><td>wirtschaftlich</td><td>economic, financial</td></tr>
+				<tr><td>76</td><td>interessant</td><td>interesting</td></tr>
+				<tr><td>77</td><td>relativ</td><td>relative</td></tr>
+				<tr><td>78</td><td>gleichzeitig</td><td>simultaneous</td></tr>
+				<tr><td>79</td><td>grün</td><td>green</td></tr>
+				<tr><td>80</td><td>weiß</td><td>white</td></tr>
+				<tr><td>81</td><td>gesamt</td><td>whole, entire</td></tr>
+				<tr><td>82</td><td>speziell</td><td>special, specific</td></tr>
+				<tr><td>83</td><td>entscheidend</td><td>decisive</td></tr>
+				<tr><td>84</td><td>eng</td><td>narrow, close</td></tr>
+				<tr><td>85</td><td>technisch</td><td>technical</td></tr>
+				<tr><td>86</td><td>langsam</td><td>slow</td></tr>
+				<tr><td>87</td><td>ständig</td><td>constant</td></tr>
+				<tr><td>88</td><td>notwendig</td><td>necessary</td></tr>
+				<tr><td>89</td><td>rein</td><td>pure, clear, clean</td></tr>
+				<tr><td>90</td><td>englisch</td><td>English</td></tr>
+				<tr><td>91</td><td>wissenschaftlich</td><td>scientific, scholarly</td></tr>
+				<tr><td>92</td><td>falsch</td><td>false, wrong</td></tr>
+				<tr><td>93</td><td>fremd</td><td>foreign, strange</td></tr>
+				<tr><td>94</td><td>selten</td><td>rare</td></tr>
+				<tr><td>95</td><td>normal</td><td>normal</td></tr>
+				<tr><td>96</td><td>wahr</td><td>TRUE</td></tr>
+				<tr><td>97</td><td>privat</td><td>private</td></tr>
+				<tr><td>98</td><td>tot</td><td>dead</td></tr>
+				<tr><td>99</td><td>fest</td><td>firm, solid</td></tr>
+				<tr><td>100</td><td>positiv</td><td>positive</td></tr>
+				<tr><td>101</td><td>zentral</td><td>central</td></tr>
+				<tr><td>102</td><td>fertig</td><td>finished, ready</td></tr>
+				<tr><td>103</td><td>grundsätzlich</td><td>fundamental</td></tr>
+				<tr><td>104</td><td>breit</td><td>wide, broad</td></tr>
+				<tr><td>105</td><td>hart</td><td>hard</td></tr>
+				<tr><td>106</td><td>vorhanden</td><td>available, existing</td></tr>
+				<tr><td>107</td><td>innere</td><td>internal</td></tr>
+				<tr><td>108</td><td>künftig</td><td>future</td></tr>
+				<tr><td>109</td><td>historisch</td><td>historical</td></tr>
+				<tr><td>110</td><td>knapp</td><td>scarce, slim</td></tr>
+				<tr><td>111</td><td>aktuell</td><td>current</td></tr>
+				<tr><td>112</td><td>übrig</td><td>remaining, left</td></tr>
+				<tr><td>113</td><td>schlimm</td><td>bad, serious</td></tr>
+				<tr><td>114</td><td>schlimmer</td><td>worse</td></tr>
+				<tr><td>115</td><td>lieb</td><td>dear, kind</td></tr>
+				<tr><td>116</td><td>dunkel</td><td>dark</td></tr>
+				<tr><td>117</td><td>offenbar</td><td>obvious</td></tr>
+				<tr><td>118</td><td>rechte</td><td>right</td></tr>
+				<tr><td>119</td><td>zahlreich</td><td>numerous</td></tr>
+				<tr><td>120</td><td>erfolgreich</td><td>successful</td></tr>
+				<tr><td>121</td><td>konkret</td><td>concrete</td></tr>
+				<tr><td>122</td><td>weltweit</td><td>world-wide</td></tr>
+				<tr><td>123</td><td>geboren</td><td>born</td></tr>
+				<tr><td>124</td><td>menschlich</td><td>human</td></tr>
+				<tr><td>125</td><td>regelmäßig</td><td>regular</td></tr>
+				<tr><td>126</td><td>aktiv</td><td>active</td></tr>
+				<tr><td>127</td><td>staatlich</td><td>state, government, national</td></tr>
+				<tr><td>128</td><td>ehemalig</td><td>former</td></tr>
+				<tr><td>129</td><td>kalt</td><td>cold</td></tr>
+				<tr><td>130</td><td>jeweilig</td><td>particular, respective</td></tr>
+				<tr><td>131</td><td>erforderlich</td><td>require, necessary</td></tr>
+				<tr><td>132</td><td>heutig</td><td>present-day, today's</td></tr>
+				<tr><td>133</td><td>kulturell</td><td>cultural</td></tr>
+				<tr><td>134</td><td>unabhängig</td><td>independent</td></tr>
+				<tr><td>135</td><td>ruhig</td><td>quiet, calm</td></tr>
+				<tr><td>136</td><td>unmittelbar</td><td>immediate, direct</td></tr>
+				<tr><td>137</td><td>bewusst</td><td>conscious</td></tr>
+				<tr><td>138</td><td>finanziell</td><td>financial</td></tr>
+				<tr><td>139</td><td>klassisch</td><td>classical</td></tr>
+				<tr><td>140</td><td>heiß</td><td>hot</td></tr>
+				<tr><td>141</td><td>echt</td><td>genuine, real</td></tr>
+				<tr><td>142</td><td>teuer</td><td>expensive</td></tr>
+				<tr><td>143</td><td>nötig</td><td>necessary</td></tr>
+				<tr><td>144</td><td>toll</td><td>great, terrific</td></tr>
+				<tr><td>145</td><td>erneut</td><td>again, renewed</td></tr>
+				<tr><td>146</td><td>täglich</td><td>daily</td></tr>
+				<tr><td>147</td><td>üblich</td><td>usual</td></tr>
+				<tr><td>148</td><td>absolut</td><td>absolute</td></tr>
+				<tr><td>149</td><td>gesellschaftlich</td><td>social</td></tr>
+				<tr><td>150</td><td>individuell</td><td>individual</td></tr>
+				<tr><td>151</td><td>leer</td><td>empty</td></tr>
+				<tr><td>152</td><td>national</td><td>national</td></tr>
+				<tr><td>153</td><td>ungefähr</td><td>approximately</td></tr>
+				<tr><td>154</td><td>blau</td><td>blue</td></tr>
+				<tr><td>155</td><td>rasch</td><td>quick</td></tr>
+				<tr><td>156</td><td>verantwortlich</td><td>responsible</td></tr>
+				<tr><td>157</td><td>zuständig</td><td>appropriate, responsible</td></tr>
+				<tr><td>158</td><td>erheblich</td><td>considerable</td></tr>
+				<tr><td>159</td><td>ernst</td><td>serious</td></tr>
+				<tr><td>160</td><td>okay</td><td>okay</td></tr>
+				<tr><td>161</td><td>typisch</td><td>typical</td></tr>
+				<tr><td>162</td><td>zufrieden</td><td>satisfied</td></tr>
+				<tr><td>163</td><td>krank</td><td>sick, ill</td></tr>
+				<tr><td>164</td><td>warm</td><td>warm</td></tr>
+				<tr><td>165</td><td>dick</td><td>thick, fat</td></tr>
+				<tr><td>166</td><td>schwach</td><td>weak</td></tr>
+				<tr><td>167</td><td>linke</td><td>left</td></tr>
+				<tr><td>168</td><td>niedrig</td><td>low, base</td></tr>
+				<tr><td>169</td><td>traditionell</td><td>traditional</td></tr>
+				<tr><td>170</td><td>bereit</td><td>ready</td></tr>
+				<tr><td>171</td><td>gesetzlich</td><td>legal</td></tr>
+				<tr><td>172</td><td>leise</td><td>quiet, soft</td></tr>
+				<tr><td>173</td><td>negativ</td><td>negative</td></tr>
+				<tr><td>174</td><td>glücklich</td><td>happy, fortunate</td></tr>
+				<tr><td>175</td><td>beruflich</td><td>professional</td></tr>
+				<tr><td>176</td><td>selbstverständlich</td><td>obvious</td></tr>
+				<tr><td>177</td><td>offiziell</td><td>official</td></tr>
+				<tr><td>178</td><td>streng</td><td>strict</td></tr>
+				<tr><td>179</td><td>fein</td><td>fine</td></tr>
+				<tr><td>180</td><td>komplex</td><td>complex</td></tr>
+				<tr><td>181</td><td>obere</td><td>upper</td></tr>
+				<tr><td>182</td><td>ausländisch</td><td>foreign</td></tr>
+				<tr><td>183</td><td>ausschließlich</td><td>exclusive</td></tr>
+				<tr><td>184</td><td>bisherig</td><td>so far</td></tr>
+				<tr><td>185</td><td>laut</td><td>loud</td></tr>
+				<tr><td>186</td><td>sinnvoll</td><td>sensible, meaningful</td></tr>
+				<tr><td>187</td><td>tätig</td><td>active</td></tr>
+				<tr><td>188</td><td>ursprünglich</td><td>original</td></tr>
+				<tr><td>189</td><td>geistig</td><td>intellectual, mental</td></tr>
+				<tr><td>190</td><td>jährlich</td><td>annual</td></tr>
+				<tr><td>191</td><td>böse</td><td>bad, mad</td></tr>
+				<tr><td>192</td><td>frisch</td><td>fresh</td></tr>
+				<tr><td>193</td><td>weitgehend</td><td>extensive</td></tr>
+				<tr><td>194</td><td>intensiv</td><td>intensive</td></tr>
+				<tr><td>195</td><td>außen</td><td>outside</td></tr>
+				<tr><td>196</td><td>automatisch</td><td>automatic</td></tr>
+				<tr><td>197</td><td>gefährlich</td><td>dangerous</td></tr>
+				<tr><td>198</td><td>heftig</td><td>heavy, violent</td></tr>
+				<tr><td>199</td><td>militärisch</td><td>military</td></tr>
+				<tr><td>200</td><td>vollständig</td><td>complete</td></tr>
+				<tr><td>201</td><td>eindeutig</td><td>clear</td></tr>
+				<tr><td>202</td><td>offensichtlich</td><td>obvious</td></tr>
+				<tr><td>203</td><td>schart</td><td>sharp</td></tr>
+				<tr><td>204</td><td>theoretisch</td><td>theoretical</td></tr>
+				<tr><td>205</td><td>berühmt</td><td>famous</td></tr>
+				<tr><td>206</td><td>hell</td><td>light, bright</td></tr>
+				<tr><td>207</td><td>still</td><td>still, quiet</td></tr>
+				<tr><td>208</td><td>froh</td><td>happy</td></tr>
+				<tr><td>209</td><td>kritisch</td><td>critical</td></tr>
+				<tr><td>210</td><td>reich</td><td>rich, abundant</td></tr>
+				<tr><td>211</td><td>riesig</td><td>enormous</td></tr>
+				<tr><td>212</td><td>dicht</td><td>thick, dense</td></tr>
+				<tr><td>213</td><td>günstig</td><td>favorable, good</td></tr>
+				<tr><td>214</td><td>hauptsächlich</td><td>main</td></tr>
+				<tr><td>215</td><td>gegenwärtig</td><td>present</td></tr>
+				<tr><td>216</td><td>mittlere</td><td>middle, average</td></tr>
+				<tr><td>217</td><td>nett</td><td>nice</td></tr>
+				<tr><td>218</td><td>zeitlich</td><td>in time</td></tr>
+				<tr><td>219</td><td>spezifisch</td><td>specific</td></tr>
+				<tr><td>220</td><td>elektrisch</td><td>electric</td></tr>
+				<tr><td>221</td><td>gesund</td><td>healthy</td></tr>
+				<tr><td>222</td><td>grau</td><td>grey</td></tr>
+				<tr><td>223</td><td>westlich</td><td>westerly</td></tr>
+				<tr><td>224</td><td>chemisch</td><td>chemical</td></tr>
+				<tr><td>225</td><td>extrem</td><td>extreme</td></tr>
+				<tr><td>226</td><td>freundlich</td><td>friendly</td></tr>
+				<tr><td>227</td><td>total</td><td>total, complete</td></tr>
+				<tr><td>228</td><td>stolz</td><td>proud</td></tr>
+				<tr><td>229</td><td>unbekannt</td><td>unknown</td></tr>
+				<tr><td>230</td><td>elektronisch</td><td>electronic</td></tr>
+				<tr><td>231</td><td>endgültig</td><td>final</td></tr>
+				<tr><td>232</td><td>künstlerisch</td><td>artistic</td></tr>
+				<tr><td>233</td><td>sichtbar</td><td>visible</td></tr>
+				<tr><td>234</td><td>abhängig</td><td>dependent</td></tr>
+				<tr><td>235</td><td>biologisch</td><td>biological</td></tr>
+				<tr><td>236</td><td>doppelt</td><td>double</td></tr>
+				<tr><td>237</td><td>schuld</td><td>guilty</td></tr>
+				<tr><td>238</td><td>selbstständig</td><td>independent</td></tr>
+				<tr><td>239</td><td>umgekehrt</td><td>reversed, contrary</td></tr>
+				<tr><td>240</td><td>arbeitslos</td><td>unemployed</td></tr>
+				<tr><td>241</td><td>mächtig</td><td>powerful</td></tr>
+				<tr><td>242</td><td>ökonomisch</td><td>economic</td></tr>
+				<tr><td>243</td><td>rechtlich</td><td>legal</td></tr>
+				<tr><td>244</td><td>religiös</td><td>religious</td></tr>
+				<tr><td>245</td><td>schriftlich</td><td>written</td></tr>
+				<tr><td>246</td><td>angeblich</td><td>alleged</td></tr>
+				<tr><td>247</td><td>billig</td><td>cheap</td></tr>
+				<tr><td>248</td><td>damalig</td><td>at that time</td></tr>
+				<tr><td>249</td><td>geographisch</td><td>geographic</td></tr>
+				<tr><td>250</td><td>kräftig</td><td>strong</td></tr>
+				<tr><td>251</td><td>wild</td><td>wild</td></tr>
+				<tr><td>252</td><td>bunt</td><td>colorful</td></tr>
+				<tr><td>253</td><td>dringend</td><td>urgent</td></tr>
+				<tr><td>254</td><td>freiwillig</td><td>voluntary</td></tr>
+				<tr><td>255</td><td>heilig</td><td>holy</td></tr>
+				<tr><td>256</td><td>ideal</td><td>ideal</td></tr>
+				<tr><td>257</td><td>regional</td><td>regional</td></tr>
+				<tr><td>258</td><td>überwiegend</td><td>predominant</td></tr>
+				<tr><td>259</td><td>unmöglich</td><td>impossible</td></tr>
+				<tr><td>260</td><td>angenehm</td><td>pleasant</td></tr>
+				<tr><td>261</td><td>bedeutend</td><td>important, significant</td></tr>
+				<tr><td>262</td><td>eventuell</td><td>possible</td></tr>
+				<tr><td>263</td><td>körperlich</td><td>physical</td></tr>
+				<tr><td>264</td><td>medizinisch</td><td>medical</td></tr>
+				<tr><td>265</td><td>räumlich</td><td>three-dimensional, spatial</td></tr>
+				<tr><td>266</td><td>angemessen</td><td>appropriate</td></tr>
+				<tr><td>267</td><td>aufmerksam</td><td>attentive</td></tr>
+				<tr><td>268</td><td>dünn</td><td>thin</td></tr>
+				<tr><td>269</td><td>global</td><td>global</td></tr>
+				<tr><td>270</td><td>sonstig</td><td>other</td></tr>
+				<tr><td>271</td><td>sprachlich</td><td>linguistic</td></tr>
+				<tr><td>272</td><td>vorsichtig</td><td>cautious</td></tr>
+				<tr><td>273</td><td>derartig</td><td>such, like that</td></tr>
+				<tr><td>274</td><td>ehrlich</td><td>honest</td></tr>
+				<tr><td>275</td><td>entfernt</td><td>distant</td></tr>
+				<tr><td>276</td><td>gelb</td><td>yellow</td></tr>
+				<tr><td>277</td><td>schmal</td><td>narrow, slender</td></tr>
+				<tr><td>278</td><td>welch</td><td>soft</td></tr>
+				<tr><td>279</td><td>empirisch</td><td>empirical</td></tr>
+				<tr><td>280</td><td>ewig</td><td>eternal</td></tr>
+				<tr><td>281</td><td>traurig</td><td>sad</td></tr>
+				<tr><td>282</td><td>trocken</td><td>dry</td></tr>
+				<tr><td>283</td><td>unheimlich</td><td>eerie, scary, incredible</td></tr>
+				<tr><td>284</td><td>vielfältig</td><td>diverse, varied</td></tr>
+				<tr><td>285</td><td>wunderbar</td><td>wonderful</td></tr>
+				<tr><td>286</td><td>arm</td><td>poor</td></tr>
+				<tr><td>287</td><td>gegenseitig</td><td>mutual, each other</td></tr>
+				<tr><td>288</td><td>gewaltig</td><td>enormous, tremendous, powerful</td></tr>
+				<tr><td>289</td><td>grundlegend</td><td>basic, fundamental</td></tr>
+				<tr><td>290</td><td>sportlich</td><td>athletic</td></tr>
+				<tr><td>291</td><td>verheiratet</td><td>married</td></tr>
+				<tr><td>292</td><td>langfristig</td><td>long-term</td></tr>
+				<tr><td>293</td><td>ordentlich</td><td>neat, proper, orderly</td></tr>
+				<tr><td>294</td><td>äußere</td><td>outer, external</td></tr>
+				<tr><td>295</td><td>demokratisch</td><td>democratic</td></tr>
+				<tr><td>296</td><td>exakt</td><td>exact</td></tr>
+				<tr><td>297</td><td>inhaltlich</td><td>in terms of content</td></tr>
+				<tr><td>298</td><td>künstlich</td><td>artificial</td></tr>
+				<tr><td>299</td><td>perfekt</td><td>perfect</td></tr>
+				<tr><td>300</td><td>sauber</td><td>clean</td></tr>
+				<tr><td>301</td><td>gelegentlich</td><td>occasionally</td></tr>
+				<tr><td>302</td><td>gewohnt</td><td>usual</td></tr>
+				<tr><td>303</td><td>grob</td><td>coarse, rude, gross</td></tr>
+				<tr><td>304</td><td>literarisch</td><td>literary</td></tr>
+				<tr><td>305</td><td>maximal</td><td>maximum</td></tr>
+				<tr><td>306</td><td>parallel</td><td>parallel</td></tr>
+				<tr><td>307</td><td>untere</td><td>lower</td></tr>
+				<tr><td>308</td><td>vergleichbar</td><td>comparable</td></tr>
+				<tr><td>309</td><td>enorm</td><td>enormous</td></tr>
+				<tr><td>310</td><td>flach</td><td>flat, low, shallow</td></tr>
+				<tr><td>311</td><td>kompliziert</td><td>complicated</td></tr>
+				<tr><td>312</td><td>kurzfristig</td><td>at short notice</td></tr>
+				<tr><td>313</td><td>massiv</td><td>solid, massive, severe</td></tr>
+				<tr><td>314</td><td>optimal</td><td>best possible, optimum</td></tr>
+				<tr><td>315</td><td>allmählich</td><td>gradual</td></tr>
+				<tr><td>316</td><td>gerecht</td><td>just</td></tr>
+				<tr><td>317</td><td>müde</td><td>tired</td></tr>
+				<tr><td>318</td><td>strategisch</td><td>strategic</td></tr>
+				<tr><td>319</td><td>umfangreich</td><td>extensive</td></tr>
+				<tr><td>320</td><td>digital</td><td>digital</td></tr>
+				<tr><td>321</td><td>generell</td><td>general</td></tr>
+				<tr><td>322</td><td>konservativ</td><td>conservative</td></tr>
+				<tr><td>323</td><td>kühl</td><td>cool</td></tr>
+				<tr><td>324</td><td>lokal</td><td>local</td></tr>
+				<tr><td>325</td><td>nackt</td><td>naked, bare</td></tr>
+				<tr><td>326</td><td>physikalisch</td><td>physical</td></tr>
+				<tr><td>327</td><td>schrecklich</td><td>terrible</td></tr>
+				<tr><td>328</td><td>spannend</td><td>exciting, thrilling</td></tr>
+				<tr><td>329</td><td>touristisch</td><td>touristic</td></tr>
+				<tr><td>330</td><td>vielfach</td><td>multiple</td></tr>
+				<tr><td>331</td><td>gewöhnlich</td><td>usual</td></tr>
+				<tr><td>332</td><td>komplett</td><td>complete</td></tr>
+				<tr><td>333</td><td>zukünftig</td><td>future</td></tr>
+				<tr><td>334</td><td>braun</td><td>brown</td></tr>
+				<tr><td>335</td><td>einheitlich</td><td>uniform, standardized</td></tr>
+				<tr><td>336</td><td>gezielt</td><td>purposeful, pointed, well-aimed</td></tr>
+				<tr><td>337</td><td>real</td><td>real</td></tr>
+				<tr><td>338</td><td>schade</td><td>pity</td></tr>
+				<tr><td>339</td><td>statistisch</td><td>statistical</td></tr>
+				<tr><td>340</td><td>zufällig</td><td>accidental, by chance</td></tr>
+				<tr><td>341</td><td>dramatisch</td><td>dramatic</td></tr>
+				<tr><td>342</td><td>erkennbar</td><td>recognizable</td></tr>
+				<tr><td>343</td><td>fern</td><td>far, distant</td></tr>
+				<tr><td>344</td><td>juristisch</td><td>legal, juridical</td></tr>
+				<tr><td>345</td><td>komisch</td><td>funny, strange</td></tr>
+				<tr><td>346</td><td>lustig</td><td>funny, enjoyable</td></tr>
+				<tr><td>347</td><td>musikalisch</td><td>musical</td></tr>
+				<tr><td>348</td><td>objektiv</td><td>objective</td></tr>
+				<tr><td>349</td><td>seltsam</td><td>strange, peculiar</td></tr>
+				<tr><td>350</td><td>sorgfältig</td><td>careful</td></tr>
+				<tr><td>351</td><td>unglaublich</td><td>incredible</td></tr>
+				<tr><td>352</td><td>vernünftig</td><td>sensible</td></tr>
+				<tr><td>353</td><td>durchschnittlich</td><td>average</td></tr>
+				<tr><td>354</td><td>gefangen</td><td>captive, be a prisoner</td></tr>
+				<tr><td>355</td><td>mathematisch</td><td>mathematical</td></tr>
+				<tr><td>356</td><td>radikal</td><td>radical</td></tr>
+				<tr><td>357</td><td>stabil</td><td>stable, sturdy</td></tr>
+				<tr><td>358</td><td>systematisch</td><td>systematic</td></tr>
+				<tr><td>359</td><td>verrückt</td><td>crazy</td></tr>
+				<tr><td>360</td><td>vertraut</td><td>familiar, close</td></tr>
+				<tr><td>361</td><td>winzig</td><td>tiny</td></tr>
+				<tr><td>362</td><td>ernsthaft</td><td>serious</td></tr>
+				<tr><td>363</td><td>erstaunlich</td><td>astonishing</td></tr>
+				<tr><td>364</td><td>glatt</td><td>smooth, slippery</td></tr>
+				<tr><td>365</td><td>golden</td><td>gold, golden</td></tr>
+				<tr><td>366</td><td>hübsch</td><td>pretty</td></tr>
+				<tr><td>367</td><td>sanft</td><td>soft, gentle</td></tr>
+				<tr><td>368</td><td>scheinbar</td><td>apparent</td></tr>
+				<tr><td>369</td><td>städtisch</td><td>municipal</td></tr>
+				<tr><td>370</td><td>wirksam</td><td>effective</td></tr>
+				<tr><td>371</td><td>akademisch</td><td>academic</td></tr>
+				<tr><td>372</td><td>beliebt</td><td>popular</td></tr>
+				<tr><td>373</td><td>experimentell</td><td>experimental</td></tr>
+				<tr><td>374</td><td>herzlich</td><td>cordial, warm</td></tr>
+				<tr><td>375</td><td>primär</td><td>primary</td></tr>
+				<tr><td>376</td><td>rechtzeitig</td><td>punctual</td></tr>
+				<tr><td>377</td><td>übel</td><td>foul, bad</td></tr>
+				<tr><td>378</td><td>ungewöhnlich</td><td>unusual</td></tr>
+				<tr><td>379</td><td>verständlich</td><td>comprehensible</td></tr>
+				<tr><td>380</td><td>vorübergehend</td><td>temporary</td></tr>
+				<tr><td>381</td><td>bequem</td><td>comfortable</td></tr>
+				<tr><td>382</td><td>ökologisch</td><td>ecological, organic</td></tr>
+				<tr><td>383</td><td>schlicht</td><td>simple, plain</td></tr>
+				<tr><td>384</td><td>unendlich</td><td>endless</td></tr>
+				<tr><td>385</td><td>vollkommen</td><td>complete, perfect</td></tr>
+				<tr><td>386</td><td>weiblich</td><td>feminine</td></tr>
+				<tr><td>387</td><td>abstrakt</td><td>abstract</td></tr>
+				<tr><td>388</td><td>attraktiv</td><td>attractive</td></tr>
+				<tr><td>389</td><td>ausdrücklich</td><td>explicit</td></tr>
+				<tr><td>390</td><td>dumm</td><td>stupid</td></tr>
+				<tr><td>391</td><td>geheim</td><td>secret</td></tr>
+				<tr><td>392</td><td>indirekt</td><td>indirect</td></tr>
+				<tr><td>393</td><td>intern</td><td>internal</td></tr>
+				<tr><td>394</td><td>lebendig</td><td>living, lively</td></tr>
+				<tr><td>395</td><td>relevant</td><td>relevant</td></tr>
+				<tr><td>396</td><td>subjektiv</td><td>subjective</td></tr>
+				<tr><td>397</td><td>analog</td><td>analogous</td></tr>
+				<tr><td>398</td><td>dynamisch</td><td>dynamic</td></tr>
+				<tr><td>399</td><td>heimlich</td><td>secret</td></tr>
+				<tr><td>400</td><td>kommunikativ</td><td>communicative</td></tr>
+				<tr><td>401</td><td>locker</td><td>loose, relaxed</td></tr>
+				<tr><td>402</td><td>mehrfach</td><td>multiple</td></tr>
+				<tr><td>403</td><td>moralisch</td><td>moral</td></tr>
+				<tr><td>404</td><td>potenziell</td><td>potential</td></tr>
+				<tr><td>405</td><td>prinzipiell</td><td>principle</td></tr>
+				<tr><td>406</td><td>problematisch</td><td>problematic</td></tr>
+				<tr><td>407</td><td>steil</td><td>steep</td></tr>
+				<tr><td>408</td><td>südlich</td><td>southern</td></tr>
+				<tr><td>409</td><td>akut</td><td>acute, urgent</td></tr>
+				<tr><td>410</td><td>ausgeprägt</td><td>distinctive</td></tr>
+				<tr><td>411</td><td>blöd</td><td>stupid, dumb</td></tr>
+				<tr><td>412</td><td>einig</td><td>agreed</td></tr>
+				<tr><td>413</td><td>jetzig</td><td>current</td></tr>
+				<tr><td>414</td><td>virtuell</td><td>virtual</td></tr>
+				<tr><td>415</td><td>wahnsinnig</td><td>insane</td></tr>
+				<tr><td>416</td><td>zugänglich</td><td>accessible</td></tr>
+				<tr><td>417</td><td>ausführlich</td><td>detailed</td></tr>
+				<tr><td>418</td><td>ausgezeichnet</td><td>excellent, perfect</td></tr>
+				<tr><td>419</td><td>außerordentlich</td><td>extraordinary</td></tr>
+				<tr><td>420</td><td>blind</td><td>blind</td></tr>
+				<tr><td>421</td><td>denkbar</td><td>conceivable</td></tr>
+				<tr><td>422</td><td>eigenständig</td><td>independent</td></tr>
+				<tr><td>423</td><td>feucht</td><td>damp</td></tr>
+				<tr><td>424</td><td>geistlich</td><td>religious, spiritual</td></tr>
+				<tr><td>425</td><td>hervorragend</td><td>outstanding</td></tr>
+				<tr><td>426</td><td>intellektuell</td><td>intellectual</td></tr>
+				<tr><td>427</td><td>konsequent</td><td>consistent</td></tr>
+				<tr><td>428</td><td>kontinuierlich</td><td>constant, continuous</td></tr>
+				<tr><td>429</td><td>korrekt</td><td>correct</td></tr>
+				<tr><td>430</td><td>materiell</td><td>financial, material</td></tr>
+				<tr><td>431</td><td>merkwürdig</td><td>strange</td></tr>
+				<tr><td>432</td><td>mündlich</td><td>oral</td></tr>
+				<tr><td>433</td><td>pädagogisch</td><td>pedagogical</td></tr>
+				<tr><td>434</td><td>psychisch</td><td>psychological</td></tr>
+				<tr><td>435</td><td>stellvertretend</td><td>on behalf</td></tr>
+				<tr><td>436</td><td>unsicher</td><td>uncertain</td></tr>
+				<tr><td>437</td><td>auswärtig</td><td>from out of town</td></tr>
+				<tr><td>438</td><td>beliebig</td><td>any, as you like</td></tr>
+				<tr><td>439</td><td>derzeitig</td><td>current</td></tr>
+				<tr><td>440</td><td>evangelisch</td><td>protestant</td></tr>
+				<tr><td>441</td><td>friedlich</td><td>peaceful</td></tr>
+				<tr><td>442</td><td>furchtbar</td><td>terrible</td></tr>
+				<tr><td>443</td><td>genetisch</td><td>genetic</td></tr>
+				<tr><td>444</td><td>methodisch</td><td>methodical</td></tr>
+				<tr><td>445</td><td>nachhaltig</td><td>lasting, sustainable</td></tr>
+				<tr><td>446</td><td>neugierig</td><td>curious</td></tr>
+				<tr><td>447</td><td>restlich</td><td>remaining</td></tr>
+				<tr><td>448</td><td>umstritten</td><td>disputed</td></tr>
+				<tr><td>449</td><td>verdächtig</td><td>suspicious</td></tr>
+				<tr><td>450</td><td>wunderschön</td><td>wonderful, lovely</td></tr>
+				<tr><td>451</td><td>effektiv</td><td>effective</td></tr>
+				<tr><td>452</td><td>einsam</td><td>lonely, isolated</td></tr>
+				<tr><td>453</td><td>gründlich</td><td>thorough</td></tr>
+				<tr><td>454</td><td>jahrelang</td><td>lasting for years</td></tr>
+				<tr><td>455</td><td>konstant</td><td>constant</td></tr>
+				<tr><td>456</td><td>langweilig</td><td>boring</td></tr>
+				<tr><td>457</td><td>liberal</td><td>liberal</td></tr>
+				<tr><td>458</td><td>logisch</td><td>logical</td></tr>
+				<tr><td>459</td><td>nervös</td><td>nervous</td></tr>
+				<tr><td>460</td><td>optisch</td><td>optical</td></tr>
+				<tr><td>461</td><td>organisch</td><td>organic</td></tr>
+				<tr><td>462</td><td>peinlich</td><td>embarrassing</td></tr>
+				<tr><td>463</td><td>schief</td><td>crooked, not straight</td></tr>
+				<tr><td>464</td><td>spontan</td><td>spontaneous</td></tr>
+				<tr><td>465</td><td>top</td><td>top</td></tr>
+				<tr><td>466</td><td>unzählig</td><td>countless</td></tr>
+				<tr><td>467</td><td>wertvoll</td><td>valuable</td></tr>
+				<tr><td>468</td><td>wütend</td><td>furious</td></tr>
+				<tr><td>469</td><td>bescheiden</td><td>modest</td></tr>
+				<tr><td>470</td><td>dauerhaft</td><td>lasting</td></tr>
+				<tr><td>471</td><td>deutschsprachig</td><td>german-speaking</td></tr>
+				<tr><td>472</td><td>flexibel</td><td>flexible</td></tr>
+				<tr><td>473</td><td>herrlich</td><td>marvelous</td></tr>
+				<tr><td>474</td><td>kirchlich</td><td>ecclesiastical</td></tr>
+				<tr><td>475</td><td>klug</td><td>clever</td></tr>
+				<tr><td>476</td><td>nachfolgend</td><td>following</td></tr>
+				<tr><td>477</td><td>süß</td><td>sweet</td></tr>
+				<tr><td>478</td><td>unangenehm</td><td>unpleasant</td></tr>
+				<tr><td>479</td><td>verfügbar</td><td>available</td></tr>
+				<tr><td>480</td><td>vorläufig</td><td>temporary</td></tr>
+				<tr><td>481</td><td>angewiesen</td><td>dependent</td></tr>
+				<tr><td>482</td><td>anstrengend</td><td>exhausting</td></tr>
+				<tr><td>483</td><td>behindert</td><td>handicapped</td></tr>
+				<tr><td>484</td><td>divers</td><td>diverse, various</td></tr>
+				<tr><td>485</td><td>einmalig</td><td>unique, fantastic</td></tr>
+				<tr><td>486</td><td>elegant</td><td>elegant</td></tr>
+				<tr><td>487</td><td>formal</td><td>formal</td></tr>
+				<tr><td>488</td><td>gültig</td><td>valid</td></tr>
+				<tr><td>489</td><td>klinisch</td><td>clinical</td></tr>
+				<tr><td>490</td><td>kreativ</td><td>creative</td></tr>
+				<tr><td>491</td><td>nützlich</td><td>useful</td></tr>
+				<tr><td>492</td><td>organisatorisch</td><td>organizational</td></tr>
+				<tr><td>493</td><td>schuldig</td><td>guilty</td></tr>
+				<tr><td>494</td><td>sexuell</td><td>sexual</td></tr>
+				<tr><td>495</td><td>stetig</td><td>constant</td></tr>
+				<tr><td>496</td><td>super</td><td>super</td></tr>
+				<tr><td>497</td><td>unklar</td><td>unclear</td></tr>
+				<tr><td>498</td><td>vergeblich</td><td>futile</td></tr>
+				<tr><td>499</td><td>anwesend</td><td>present</td></tr>
+				<tr><td>500</td><td>betrieblich</td><td>operational</td></tr>
+				<tr><td>501</td><td>bürgerlich</td><td>civil, civic</td></tr>
+				<tr><td>502</td><td>einheimisch</td><td>native</td></tr>
+				<tr><td>503</td><td>empfindlich</td><td>sensitive</td></tr>
+				<tr><td>504</td><td>extern</td><td>external</td></tr>
+				<tr><td>505</td><td>fröhlich</td><td>cheerful</td></tr>
+				<tr><td>506</td><td>großzügig</td><td>generous</td></tr>
+				<tr><td>507</td><td>heimisch</td><td>indigenous, native, at home</td></tr>
+				<tr><td>508</td><td>konventionell</td><td>conventional</td></tr>
+				<tr><td>509</td><td>linear</td><td>linear</td></tr>
+				<tr><td>510</td><td>mühsam</td><td>strenuous, laborious</td></tr>
+				<tr><td>511</td><td>nördlich</td><td>northern</td></tr>
+				<tr><td>512</td><td>professionell</td><td>professional</td></tr>
+				<tr><td>513</td><td>psychologisch</td><td>psychological</td></tr>
+				<tr><td>514</td><td>qualitativ</td><td>qualitative</td></tr>
+				<tr><td>515</td><td>reichlich</td><td>plenty, generous</td></tr>
+				<tr><td>516</td><td>schwanger</td><td>pregnant</td></tr>
+				<tr><td>517</td><td>strukturell</td><td>structural</td></tr>
+				<tr><td>518</td><td>stumm</td><td>dumb, silent</td></tr>
+				<tr><td>519</td><td>vermehrt</td><td>increased</td></tr>
+				<tr><td>520</td><td>zulässig</td><td>permissible</td></tr>
+				<tr><td>521</td><td>alltäglich</td><td>daily, usual, ordinary</td></tr>
+				<tr><td>522</td><td>beträchtlich</td><td>considerable</td></tr>
+				<tr><td>523</td><td>charakteristisch</td><td>characteristic</td></tr>
+				<tr><td>524</td><td>dankbar</td><td>grateful</td></tr>
+				<tr><td>525</td><td>dauernd</td><td>constant, lasting</td></tr>
+				<tr><td>526</td><td>detailliert</td><td>detailed</td></tr>
+				<tr><td>527</td><td>diskret</td><td>discreet, confidential</td></tr>
+				<tr><td>528</td><td>einseitig</td><td>one-sided</td></tr>
+				<tr><td>529</td><td>einverstanden</td><td>to be in agreement</td></tr>
+				<tr><td>530</td><td>fließend</td><td>fluent</td></tr>
+				<tr><td>531</td><td>kostenlos</td><td>free of charge</td></tr>
+				<tr><td>532</td><td>männlich</td><td>male</td></tr>
+				<tr><td>533</td><td>mechanisch</td><td>mechanical</td></tr>
+				<tr><td>534</td><td>medial</td><td>by the media</td></tr>
+				<tr><td>535</td><td>monatlich</td><td>monthly</td></tr>
+				<tr><td>536</td><td>örtlich</td><td>local</td></tr>
+				<tr><td>537</td><td>physisch</td><td>physical</td></tr>
+				<tr><td>538</td><td>präzise</td><td>precise</td></tr>
+				<tr><td>539</td><td>symbolisch</td><td>symbolic</td></tr>
+				<tr><td>540</td><td>treu</td><td>faithful</td></tr>
+				<tr><td>541</td><td>vermeintlich</td><td>supposed</td></tr>
+				<tr><td>542</td><td>vorig</td><td>previous</td></tr>
+				<tr><td>543</td><td>wach</td><td>awake</td></tr>
+				<tr><td>544</td><td>alternativ</td><td>alternative</td></tr>
+				<tr><td>545</td><td>ärztlich</td><td>medical</td></tr>
+				<tr><td>546</td><td>aufwendig</td><td>extravagant, costly</td></tr>
+				<tr><td>547</td><td>bemerkenswert</td><td>remarkable</td></tr>
+				<tr><td>548</td><td>besorgt</td><td>concerned</td></tr>
+				<tr><td>549</td><td>chronisch</td><td>chronic</td></tr>
+				<tr><td>550</td><td>düster</td><td>gloomy</td></tr>
+				<tr><td>551</td><td>effizient</td><td>efficient</td></tr>
+				<tr><td>552</td><td>emotional</td><td>emotional</td></tr>
+				<tr><td>553</td><td>erreichbar</td><td>within reach, reachable</td></tr>
+				<tr><td>554</td><td>gemütlich</td><td>comfortable, cosy</td></tr>
+				<tr><td>555</td><td>gespannt</td><td>eager, anxious, tense</td></tr>
+				<tr><td>556</td><td>intelligent</td><td>intelligent</td></tr>
+				<tr><td>557</td><td>landwirtschaftlich</td><td>agricultural</td></tr>
+				<tr><td>558</td><td>maßgeblich</td><td>significant, decisive</td></tr>
+				<tr><td>559</td><td>mobil</td><td>mobile</td></tr>
+				<tr><td>560</td><td>motorisch</td><td>motor</td></tr>
+				<tr><td>561</td><td>nass</td><td>wet</td></tr>
+				<tr><td>562</td><td>operativ</td><td>operative</td></tr>
+				<tr><td>563</td><td>philosophisch</td><td>philosophical</td></tr>
+				<tr><td>564</td><td>realistisch</td><td>realistic</td></tr>
+				<tr><td>565</td><td>sachlich</td><td>objective, matter-of-fact</td></tr>
+				<tr><td>566</td><td>überflüssig</td><td>superfluous</td></tr>
+				<tr><td>567</td><td>unsichtbar</td><td>invisible</td></tr>
+				<tr><td>568</td><td>verbindlich</td><td>binding, friendly</td></tr>
+				<tr><td>569</td><td>verlegen</td><td>embarrassed</td></tr>
+				<tr><td>570</td><td>voraussichtlich</td><td>expected</td></tr>
+				<tr><td>571</td><td>zwangsläufig</td><td>inevitable</td></tr>
+				<tr><td>572</td><td>anscheinend</td><td>apparent</td></tr>
+				<tr><td>573</td><td>auffällig</td><td>conspicuous</td></tr>
+				<tr><td>574</td><td>aufrecht</td><td>upright, erect</td></tr>
+				<tr><td>575</td><td>berufstätig</td><td>employed, working</td></tr>
+				<tr><td>576</td><td>blond</td><td>blond</td></tr>
+				<tr><td>577</td><td>drastisch</td><td>drastic</td></tr>
+				<tr><td>578</td><td>endlos</td><td>endless, infinite</td></tr>
+				<tr><td>579</td><td>erhältlich</td><td>available</td></tr>
+				<tr><td>580</td><td>explizit</td><td>explicit</td></tr>
+				<tr><td>581</td><td>fachlich</td><td>specialist, informed</td></tr>
+				<tr><td>582</td><td>fotografisch</td><td>photographic</td></tr>
+				<tr><td>583</td><td>gleichmäßig</td><td>regular, even</td></tr>
+				<tr><td>584</td><td>gleichsam</td><td>as it were, so to speak</td></tr>
+				<tr><td>585</td><td>identisch</td><td>identical</td></tr>
+				<tr><td>586</td><td>illegal</td><td>illegal</td></tr>
+				<tr><td>587</td><td>industriell</td><td>industrial</td></tr>
+				<tr><td>588</td><td>mild</td><td>mild, gentle</td></tr>
+				<tr><td>589</td><td>olympisch</td><td>Olympic</td></tr>
+				<tr><td>590</td><td>permanent</td><td>permanent</td></tr>
+				<tr><td>591</td><td>regelrecht</td><td>proper, real</td></tr>
+				<tr><td>592</td><td>spürbar</td><td>perceptible</td></tr>
+				<tr><td>593</td><td>starr</td><td>stiff, rigid, paralyzed</td></tr>
+				<tr><td>594</td><td>steuerlich</td><td>tax</td></tr>
+				<tr><td>595</td><td>tödlich</td><td>fatal</td></tr>
+				<tr><td>596</td><td>unverändert</td><td>unchanged</td></tr>
+				<tr><td>597</td><td>unverzüglich</td><td>immediate, prompt</td></tr>
+				<tr><td>598</td><td>unwahrscheinlich</td><td>improbable, unlikely</td></tr>
+				<tr><td>599</td><td>vertraglich</td><td>contractual</td></tr>
+				<tr><td>600</td><td>amtlich</td><td>official</td></tr>
+				<tr><td>601</td><td>außergewöhnlich</td><td>unusual</td></tr>
+				<tr><td>602</td><td>bedeutsam</td><td>important, significant</td></tr>
+				<tr><td>603</td><td>blass</td><td>pale</td></tr>
+				<tr><td>604</td><td>elementar</td><td>elementary, basic</td></tr>
+				<tr><td>605</td><td>flüchtig</td><td>fugitive, cursory, fleeting</td></tr>
+				<tr><td>606</td><td>gänzlich</td><td>entirely</td></tr>
+				<tr><td>607</td><td>kognitiv</td><td>cognitive</td></tr>
+				<tr><td>608</td><td>langjährig</td><td>long-standing</td></tr>
+				<tr><td>609</td><td>minimal</td><td>minimal</td></tr>
+				<tr><td>610</td><td>mutmaßlich</td><td>presumed, suspected</td></tr>
+				<tr><td>611</td><td>nachträglich</td><td>later, belated</td></tr>
+				<tr><td>612</td><td>naturwissenschaftlich</td><td>scientific</td></tr>
+				<tr><td>613</td><td>quantitativ</td><td>quantitative</td></tr>
+				<tr><td>614</td><td>schlank</td><td>slim</td></tr>
+				<tr><td>615</td><td>schulisch</td><td>school</td></tr>
+				<tr><td>616</td><td>strikt</td><td>strict</td></tr>
+				<tr><td>617</td><td>therapeutisch</td><td>therapeutic</td></tr>
+				<tr><td>618</td><td>unglücklich</td><td>unhappy, unfortunate</td></tr>
+				<tr><td>619</td><td>vorzeitig</td><td>early, premature</td></tr>
+				<tr><td>620</td><td>willkommen</td><td>welcome</td></tr>
+				<tr><td>621</td><td>zuverlässig</td><td>reliable</td></tr>
+				<tr><td>622</td><td>ästhetisch</td><td>aesthetic</td></tr>
+				<tr><td>623</td><td>bitter</td><td>bitter</td></tr>
+				<tr><td>624</td><td>einstig</td><td>former</td></tr>
+				<tr><td>625</td><td>fällig</td><td>due</td></tr>
+				<tr><td>626</td><td>flüssig</td><td>liquid</td></tr>
+				<tr><td>627</td><td>glänzend</td><td>shining, brilliant</td></tr>
+				<tr><td>628</td><td>harmlos</td><td>harmless</td></tr>
+				<tr><td>629</td><td>hässlich</td><td>ugly</td></tr>
+				<tr><td>630</td><td>hochwertig</td><td>high-quality</td></tr>
+				<tr><td>631</td><td>interkulturell</td><td>intercultural</td></tr>
+				<tr><td>632</td><td>ländlich</td><td>rural</td></tr>
+				<tr><td>633</td><td>nachdenklich</td><td>thoughtful</td></tr>
+				<tr><td>634</td><td>optimistisch</td><td>optimistic</td></tr>
+				<tr><td>635</td><td>schmutzig</td><td>dirty</td></tr>
+				<tr><td>636</td><td>schräg</td><td>diagonal, at an angle</td></tr>
+				<tr><td>637</td><td>unerwartet</td><td>unexpected</td></tr>
+				<tr><td>638</td><td>absurd</td><td>absurd</td></tr>
+				<tr><td>639</td><td>großartig</td><td>splendid, superb</td></tr>
+				<tr><td>640</td><td>hilflos</td><td>helpless</td></tr>
+				<tr><td>641</td><td>ostdeutsch</td><td>East German</td></tr>
+				<tr><td>642</td><td>östlich</td><td>eastern</td></tr>
+				<tr><td>643</td><td>radioaktiv</td><td>radioactive</td></tr>
+				<tr><td>644</td><td>solide</td><td>solid, sound</td></tr>
+				<tr><td>645</td><td>technologisch</td><td>technological</td></tr>
+				<tr><td>646</td><td>unerträglich</td><td>intolerable</td></tr>
+				<tr><td>647</td><td>westdeutsch</td><td>West German</td></tr>
+				<tr><td>648</td><td>zweifellos</td><td>undoubtedly</td></tr>
+
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        function filterTable() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementById("tableBody").getElementsByTagName("tr");
+            
+            for (let i = 0; i < rows.length; i++) {
+                let germanCell = rows[i].getElementsByTagName("td")[1];
+                let englishCell = rows[i].getElementsByTagName("td")[2];
+                
+                if (germanCell && englishCell) {
+                    let germanText = germanCell.textContent || germanCell.innerText;
+                    let englishText = englishCell.textContent || englishCell.innerText;
+                    
+                    if (germanText.toLowerCase().indexOf(input) > -1 || englishText.toLowerCase().indexOf(input) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

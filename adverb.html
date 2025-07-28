@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #d1e7dd;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>German Vocabulary Table for Adverb</h2>
+        <input type="text" id="search" onkeyup="filterTable()" placeholder="Search for words...">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>German</th>
+                    <th>English</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr><td>1</td><td>auch</td><td>also, too</td></tr>
+				<tr><td>2</td><td>so</td><td>so, thus, this way, such</td></tr>
+				<tr><td>3</td><td>dann</td><td>then</td></tr>
+				<tr><td>4</td><td>da</td><td>there</td></tr>
+				<tr><td>5</td><td>noch</td><td>still, yet</td></tr>
+				<tr><td>6</td><td>also</td><td>so</td></tr>
+				<tr><td>7</td><td>nur</td><td>only</td></tr>
+				<tr><td>8</td><td>schon</td><td>already</td></tr>
+				<tr><td>9</td><td>mehr</td><td>more</td></tr>
+				<tr><td>10</td><td>jetzt</td><td>now</td></tr>
+				<tr><td>11</td><td>immer</td><td>always</td></tr>
+				<tr><td>12</td><td>sehr</td><td>very</td></tr>
+				<tr><td>13</td><td>hier</td><td>here</td></tr>
+				<tr><td>14</td><td>doch</td><td>but, still</td></tr>
+				<tr><td>15</td><td>wieder</td><td>again</td></tr>
+				<tr><td>16</td><td>eigentlich</td><td>actually</td></tr>
+				<tr><td>17</td><td>oben</td><td>above, up there</td></tr>
+				<tr><td>18</td><td>nun, nu</td><td>now</td></tr>
+				<tr><td>19</td><td>heute</td><td>today</td></tr>
+				<tr><td>20</td><td>weit</td><td>widely, far</td></tr>
+				<tr><td>21</td><td>eben</td><td>just now</td></tr>
+				<tr><td>22</td><td>erst</td><td>first, only, not until</td></tr>
+				<tr><td>23</td><td>natürlich</td><td>naturally, of course</td></tr>
+				<tr><td>24</td><td>vielleicht</td><td>perhaps</td></tr>
+				<tr><td>25</td><td>dort</td><td>there</td></tr>
+				<tr><td>26</td><td>einmal</td><td>once</td></tr>
+				<tr><td>27</td><td>gar</td><td>at all</td></tr>
+				<tr><td>28</td><td>bereits</td><td>already</td></tr>
+				<tr><td>29</td><td>etwa</td><td>about, approximately</td></tr>
+				<tr><td>30</td><td>gerade</td><td>just</td></tr>
+				<tr><td>31</td><td>zwar</td><td>admittedly, to be precise</td></tr>
+				<tr><td>32</td><td>wirklich</td><td>really, actually</td></tr>
+				<tr><td>33</td><td>jedoch</td><td>however</td></tr>
+				<tr><td>34</td><td>nie</td><td>never</td></tr>
+				<tr><td>35</td><td>oft</td><td>often</td></tr>
+				<tr><td>36</td><td>allerdings</td><td>though, certainly</td></tr>
+				<tr><td>37</td><td>fast</td><td>almost</td></tr>
+				<tr><td>38</td><td>wohl</td><td>well</td></tr>
+				<tr><td>39</td><td>überhaupt</td><td>at all, generally</td></tr>
+				<tr><td>40</td><td>gern, gerne (with a verb)</td><td>enjoy</td></tr>
+				<tr><td>41</td><td>besonders</td><td>especially</td></tr>
+				<tr><td>42</td><td>warum</td><td>why</td></tr>
+				<tr><td>43</td><td>allein, alleine</td><td>alone</td></tr>
+				<tr><td>44</td><td>kaum</td><td>hardly</td></tr>
+				<tr><td>45</td><td>deshalb</td><td>for that reason</td></tr>
+				<tr><td>46</td><td>sogar</td><td>even, in fact</td></tr>
+				<tr><td>47</td><td>sonst</td><td>otherwise</td></tr>
+				<tr><td>48</td><td>weiter</td><td>further</td></tr>
+				<tr><td>49</td><td>anders</td><td>different</td></tr>
+				<tr><td>50</td><td>schließlich</td><td>in the end, finally</td></tr>
+				<tr><td>51</td><td>eher</td><td>earlier, more likely</td></tr>
+				<tr><td>52</td><td>je</td><td>ever, each</td></tr>
+				<tr><td>53</td><td>früher</td><td>in former times</td></tr>
+				<tr><td>54</td><td>zunächst</td><td>first, at first, for now</td></tr>
+				<tr><td>55</td><td>irgendwie</td><td>somehow</td></tr>
+				<tr><td>56</td><td>bisher</td><td>until now</td></tr>
+				<tr><td>57</td><td>manchmal</td><td>sometimes</td></tr>
+				<tr><td>58</td><td>her</td><td>from sth, as far as . . . is concerned</td></tr>
+				<tr><td>59</td><td>ebenso</td><td>just as, as much as, as well</td></tr>
+				<tr><td>60</td><td>ziemlich</td><td>quite, fairly</td></tr>
+				<tr><td>61</td><td>außerdem</td><td>besides, in addition</td></tr>
+				<tr><td>62</td><td>inzwischen</td><td>in the meantime</td></tr>
+				<tr><td>63</td><td>sofort</td><td>immediately</td></tr>
+				<tr><td>64</td><td>plötzlich</td><td>suddenly</td></tr>
+				<tr><td>65</td><td>bald</td><td>soon</td></tr>
+				<tr><td>66</td><td>genug</td><td>enough</td></tr>
+				<tr><td>67</td><td>endlich</td><td>finally, at last</td></tr>
+				<tr><td>68</td><td>insbesondere</td><td>especially</td></tr>
+				<tr><td>69</td><td>hin</td><td>there</td></tr>
+				<tr><td>70</td><td>ebenfalls</td><td>likewise</td></tr>
+				<tr><td>71</td><td>gestern</td><td>yesterday</td></tr>
+				<tr><td>72</td><td>bitte</td><td>please</td></tr>
+				<tr><td>73</td><td>zusammen</td><td>together</td></tr>
+				<tr><td>74</td><td>jedenfalls</td><td>in any case</td></tr>
+				<tr><td>75</td><td>wobei</td><td>where, which</td></tr>
+				<tr><td>76</td><td>bloß</td><td>only, simply, just</td></tr>
+				<tr><td>77</td><td>jeweils</td><td>each, each time</td></tr>
+				<tr><td>78</td><td>unten</td><td>down</td></tr>
+				<tr><td>79</td><td>insgesamt</td><td>in all, altogether</td></tr>
+				<tr><td>80</td><td>vorher</td><td>earlier, beforehand</td></tr>
+				<tr><td>81</td><td>beispielsweise</td><td>for example</td></tr>
+				<tr><td>82</td><td>meist</td><td>mostly</td></tr>
+				<tr><td>83</td><td>trotzdem</td><td>nevertheless</td></tr>
+				<tr><td>84</td><td>zudem</td><td>moreover, besides</td></tr>
+				<tr><td>85</td><td>leider</td><td>unfortunately</td></tr>
+				<tr><td>86</td><td>mindestens</td><td>at least</td></tr>
+				<tr><td>87</td><td>zumindest</td><td>at least</td></tr>
+				<tr><td>88</td><td>irgendwo</td><td>somewhere</td></tr>
+				<tr><td>89</td><td>zuerst</td><td>first</td></tr>
+				<tr><td>90</td><td>unbedingt</td><td>absolutely</td></tr>
+				<tr><td>91</td><td>hinaus</td><td>out, beyond</td></tr>
+				<tr><td>92</td><td>zuletzt</td><td>last, in the end</td></tr>
+				<tr><td>93</td><td>dennoch</td><td>nevertheless</td></tr>
+				<tr><td>94</td><td>lieber</td><td>rather</td></tr>
+				<tr><td>95</td><td>zugleich</td><td>both, at the same time</td></tr>
+				<tr><td>96</td><td>nochmal</td><td>again</td></tr>
+				<tr><td>97</td><td>danke</td><td>thanks</td></tr>
+				<tr><td>98</td><td>derzeit</td><td>at the moment</td></tr>
+				<tr><td>99</td><td>zuvor</td><td>before</td></tr>
+				<tr><td>100</td><td>teilweise</td><td>partly</td></tr>
+				<tr><td>101</td><td>miteinander</td><td>with each other</td></tr>
+				<tr><td>102</td><td>durchaus</td><td>absolutely</td></tr>
+				<tr><td>103</td><td>meistens</td><td>mostly</td></tr>
+				<tr><td>104</td><td>deswegen</td><td>therefore, that's why</td></tr>
+				<tr><td>105</td><td>überall</td><td>everywhere</td></tr>
+				<tr><td>106</td><td>andererseits</td><td>on the other hand</td></tr>
+				<tr><td>107</td><td>längst</td><td>long since, a long time ago</td></tr>
+				<tr><td>108</td><td>stets</td><td>always</td></tr>
+				<tr><td>109</td><td>lediglich</td><td>merely</td></tr>
+				<tr><td>110</td><td>somit</td><td>consequently</td></tr>
+				<tr><td>111</td><td>weiterhin</td><td>still, furthermore</td></tr>
+				<tr><td>112</td><td>immerhin</td><td>after all</td></tr>
+				<tr><td>113</td><td>genauso</td><td>just as</td></tr>
+				<tr><td>114</td><td>vorne, vorn</td><td>at the front</td></tr>
+				<tr><td>115</td><td>weg</td><td>gone, vanished</td></tr>
+				<tr><td>116</td><td>zurzeit</td><td>at the moment</td></tr>
+				<tr><td>117</td><td>wenigstens</td><td>at least</td></tr>
+				<tr><td>118</td><td>mittlerweile</td><td>in the meantime, since then</td></tr>
+				<tr><td>119</td><td>zirka</td><td>approximately</td></tr>
+				<tr><td>120</td><td>wiederum</td><td>again</td></tr>
+				<tr><td>121</td><td>sicherlich</td><td>certainly</td></tr>
+				<tr><td>122</td><td>soweit</td><td>as far as</td></tr>
+				<tr><td>123</td><td>draußen</td><td>outside</td></tr>
+				<tr><td>124</td><td>vielmehr</td><td>rather</td></tr>
+				<tr><td>125</td><td>bislang</td><td>up to now</td></tr>
+				<tr><td>126</td><td>irgendwann</td><td>sometime</td></tr>
+				<tr><td>127</td><td>übrigens</td><td>by the way</td></tr>
+				<tr><td>128</td><td>sowieso</td><td>anyway</td></tr>
+				<tr><td>129</td><td>anschließend</td><td>subsequent, afterwards</td></tr>
+				<tr><td>130</td><td>einerseits</td><td>on the other hand</td></tr>
+				<tr><td>131</td><td>sozusagen</td><td>so to speak</td></tr>
+				<tr><td>132</td><td>dahin</td><td>there</td></tr>
+				<tr><td>133</td><td>erstmals</td><td>for the first time</td></tr>
+				<tr><td>134</td><td>insofern</td><td>as far as that goes</td></tr>
+				<tr><td>135</td><td>hingegen</td><td>on the other hand</td></tr>
+				<tr><td>136</td><td>unterwegs</td><td>on the way</td></tr>
+				<tr><td>137</td><td>diesmal</td><td>this time</td></tr>
+				<tr><td>138</td><td>los</td><td>rid of, going on</td></tr>
+				<tr><td>139</td><td>nachher</td><td>afterwards</td></tr>
+				<tr><td>140</td><td>vorbei</td><td>past, over</td></tr>
+				<tr><td>141</td><td>auseinander</td><td>apart</td></tr>
+				<tr><td>142</td><td>hinten</td><td>at the back</td></tr>
+				<tr><td>143</td><td>links</td><td>on, to the left</td></tr>
+				<tr><td>144</td><td>rechts</td><td>on, to the right</td></tr>
+				<tr><td>145</td><td>möglicherweise</td><td>possibly</td></tr>
+				<tr><td>146</td><td>ansonsten</td><td>otherwise</td></tr>
+				<tr><td>147</td><td>niemals</td><td>never</td></tr>
+				<tr><td>148</td><td>online</td><td>online</td></tr>
+				<tr><td>149</td><td>etc.</td><td>etc.</td></tr>
+				<tr><td>150</td><td>freilich</td><td>of course</td></tr>
+				<tr><td>151</td><td>egal</td><td>it's all the same</td></tr>
+				<tr><td>152</td><td>letztlich</td><td>in the end</td></tr>
+				<tr><td>153</td><td>ohnehin</td><td>anyway</td></tr>
+				<tr><td>154</td><td>äußerst</td><td>extremely</td></tr>
+				<tr><td>155</td><td>einst</td><td>once, at one time, one day</td></tr>
+				<tr><td>156</td><td>allzu</td><td>all too</td></tr>
+				<tr><td>157</td><td>vermutlich</td><td>probably</td></tr>
+				<tr><td>158</td><td>zweimal</td><td>twice</td></tr>
+				<tr><td>159</td><td>zurück</td><td>back</td></tr>
+				<tr><td>160</td><td>leid</td><td>be tired of</td></tr>
+				<tr><td>161</td><td>mitten</td><td>in the middle</td></tr>
+				<tr><td>162</td><td>drüben</td><td>over there</td></tr>
+				<tr><td>163</td><td>keineswegs</td><td>by no means, not at all</td></tr>
+				<tr><td>164</td><td>hinauf</td><td>up, upwards</td></tr>
+				<tr><td>165</td><td>höchstens</td><td>at most</td></tr>
+				<tr><td>166</td><td>Nachteil</td><td>disadvantage</td></tr>
+				<tr><td>167</td><td>seitdem</td><td>since then</td></tr>
+				<tr><td>168</td><td>normalerweise</td><td>normally</td></tr>
+				<tr><td>169</td><td>beinahe</td><td>almost, nearly</td></tr>
+				<tr><td>170</td><td>einander</td><td>each other</td></tr>
+				<tr><td>171</td><td>herum</td><td>around</td></tr>
+				<tr><td>172</td><td>spätestens</td><td>at the latest</td></tr>
+				<tr><td>173</td><td>gegebenenfalls</td><td>if necessary</td></tr>
+				<tr><td>174</td><td>nahezu</td><td>nearly</td></tr>
+				<tr><td>175</td><td>hierher</td><td>here</td></tr>
+				<tr><td>176</td><td>ausgerechnet</td><td>of all people, of all times</td></tr>
+				<tr><td>177</td><td>momentan</td><td>at the moment, momentarily</td></tr>
+				<tr><td>178</td><td>plus</td><td>above</td></tr>
+				<tr><td>179</td><td>geradezu</td><td>absolutely, really</td></tr>
+				<tr><td>180</td><td>hinein</td><td>in, into</td></tr>
+				<tr><td>181</td><td>hoffentlich</td><td>hopefully</td></tr>
+				<tr><td>182</td><td>zugrunde</td><td>form the basis, go to ruins</td></tr>
+				<tr><td>183</td><td>demnach</td><td>therefore</td></tr>
+				<tr><td>184</td><td>hierbei</td><td>while doing this, on this occasion</td></tr>
+				<tr><td>185</td><td>hierzu</td><td>with it, concerning this</td></tr>
+				<tr><td>186</td><td>indes</td><td>meanwhile</td></tr>
+				<tr><td>187</td><td>innen</td><td>inside</td></tr>
+				<tr><td>188</td><td>stattdessen</td><td>instead</td></tr>
+				<tr><td>189</td><td>vorwiegend</td><td>mainly</td></tr>
+				<tr><td>190</td><td>derart</td><td>so</td></tr>
+				<tr><td>191</td><td>aufeinander</td><td>into, onto one another</td></tr>
+				<tr><td>192</td><td>dorthin</td><td>there</td></tr>
+				<tr><td>193</td><td>zustande</td><td>in existence, to come or bring about</td></tr>
+				<tr><td>194</td><td>nochmals</td><td>again</td></tr>
+				<tr><td>195</td><td>voneinander</td><td>from each other</td></tr>
+				<tr><td>196</td><td>vorhin</td><td>a short while ago</td></tr>
+				<tr><td>197</td><td>mehrmals</td><td>repeatedly</td></tr>
+				<tr><td>198</td><td>quer</td><td>diagonally, sideways</td></tr>
+				<tr><td>199</td><td>teils</td><td>partly</td></tr>
+				<tr><td>200</td><td>dementsprechend</td><td>accordingly</td></tr>
+				<tr><td>201</td><td>einigermaßen</td><td>somewhat</td></tr>
+				<tr><td>202</td><td>hinweg</td><td>be over, for many years</td></tr>
+				<tr><td>203</td><td>kürzlich</td><td>recently</td></tr>
+				<tr><td>204</td><td>quasi</td><td>almost</td></tr>
+				<tr><td>205</td><td>daraufhin</td><td>as a result</td></tr>
+				<tr><td>206</td><td>dreimal</td><td>three times</td></tr>
+				<tr><td>207</td><td>ferner</td><td>furthermore</td></tr>
+				<tr><td>208</td><td>seither</td><td>since then</td></tr>
+				<tr><td>209</td><td>vorerst</td><td>for the present</td></tr>
+				<tr><td>210</td><td>hinterher</td><td>after, afterwards</td></tr>
+				<tr><td>211</td><td>nebeneinander</td><td>side by side</td></tr>
+				<tr><td>212</td><td>anfangs</td><td>initially</td></tr>
+				<tr><td>213</td><td>jederzeit</td><td>any time</td></tr>
+				<tr><td>214</td><td>herein</td><td>in, into, come in!</td></tr>
+				<tr><td>215</td><td>heuer</td><td>this year</td></tr>
+				<tr><td>216</td><td>jemals</td><td>ever</td></tr>
+				<tr><td>217</td><td>mitunter</td><td>from time to time</td></tr>
+				<tr><td>218</td><td>nebenbei</td><td>on the side, in addition</td></tr>
+				<tr><td>219</td><td>zumeist</td><td>for the most part</td></tr>
+				<tr><td>220</td><td>extra</td><td>separately, extra</td></tr>
+				<tr><td>221</td><td>fort</td><td>away, gone</td></tr>
+				<tr><td>222</td><td>demnächst</td><td>shortly</td></tr>
+				<tr><td>223</td><td>heutzutage</td><td>nowadays</td></tr>
+				<tr><td>224</td><td>meinetwegen</td><td>for me, as far as I'm concerned</td></tr>
+				<tr><td>225</td><td>nunmehr</td><td>now</td></tr>
+				<tr><td>226</td><td>untereinander</td><td>among ourselves, each other</td></tr>
+				<tr><td>227</td><td>letztendlich</td><td>ultimately</td></tr>
+				<tr><td>228</td><td>womöglich</td><td>possibly</td></tr>
+				<tr><td>229</td><td>gleichwohl</td><td>nevertheless</td></tr>
+				<tr><td>230</td><td>lauter</td><td>nothing but, just</td></tr>
+				<tr><td>231</td><td>herkömmlich</td><td>conventional</td></tr>
+				<tr><td>232</td><td>hinzu</td><td>in addition</td></tr>
+				<tr><td>233</td><td>oftmals</td><td>frequently</td></tr>
+				<tr><td>234</td><td>sogleich</td><td>immediately</td></tr>
+				<tr><td>235</td><td>voraus</td><td>ahead, forward</td></tr>
+				<tr><td>236</td><td>allenfalls</td><td>at most</td></tr>
+				<tr><td>237</td><td>durcheinander</td><td>confused, in a mess</td></tr>
+				<tr><td>238</td><td>gewissermaßen</td><td>so to speak, as it were</td></tr>
+				<tr><td>239</td><td>hinüber</td><td>over, across</td></tr>
+				<tr><td>240</td><td>unterdessen</td><td>meanwhile</td></tr>
+				<tr><td>241</td><td>zueinander</td><td>to one another</td></tr>
+				<tr><td>242</td><td>zwischendurch</td><td>in between</td></tr>
+				<tr><td>243</td><td>abschließend</td><td>concluding, final</td></tr>
+				<tr><td>244</td><td>inwieweit</td><td>to what extend</td></tr>
+				<tr><td>245</td><td>weitaus</td><td>far, much</td></tr>
+				<tr><td>246</td><td>namens</td><td>by the name of, called</td></tr>
+				<tr><td>247</td><td>umsonst</td><td>for free, in vain</td></tr>
+				<tr><td>248</td><td>aneinander</td><td>to one another</td></tr>
+				<tr><td>249</td><td>beiseite</td><td>to one side</td></tr>
+				<tr><td>250</td><td>daheim</td><td>at home</td></tr>
+				<tr><td>251</td><td>folglich</td><td>consequently</td></tr>
+				<tr><td>252</td><td>vergleichsweise</td><td>comparatively</td></tr>
+				<tr><td>253</td><td>nirgendwo</td><td>nowhere</td></tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        function filterTable() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementById("tableBody").getElementsByTagName("tr");
+            
+            for (let i = 0; i < rows.length; i++) {
+                let germanCell = rows[i].getElementsByTagName("td")[1];
+                let englishCell = rows[i].getElementsByTagName("td")[2];
+                
+                if (germanCell && englishCell) {
+                    let germanText = germanCell.textContent || germanCell.innerText;
+                    let englishText = englishCell.textContent || englishCell.innerText;
+                    
+                    if (germanText.toLowerCase().indexOf(input) > -1 || englishText.toLowerCase().indexOf(input) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

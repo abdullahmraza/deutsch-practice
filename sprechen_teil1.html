@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Words and Video Recorder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 600px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .word-box {
+            padding: 10px 20px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        video {
+            border: 1px solid black;
+            width: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+    <div class="container">
+        <div class="word-box">Wohnort</div>
+        <div class="word-box">Wohnung</div>
+        <div class="word-box">Familie</div>
+        <div class="word-box">Beruf</div>
+        <div class="word-box">Hobby</div>
+        <div class="word-box">Freizeit</div>
+        <div class="word-box">Geburtstag</div>
+        <div class="word-box">Sprachen</div>
+        <div class="word-box">Deutsch</div>
+        <div class="word-box">Heimatland</div>
+        <div class="word-box">Arbeit</div>
+        <div class="word-box">Essen</div>
+        <div class="word-box">Kinder</div>
+        <div class="word-box">Urlaub</div>
+    </div>
+
+    <h1>Video Recorder</h1>
+    <video id="videoElement" autoplay></video>
+    <br>
+    <button onclick="startRecording()">Start/Stop Recording</button>
+    <button onclick="playRecording()">Play Last Recording</button>
+    <button onclick="saveRecording()">Save Last Recording</button>
+    <br>
+    <script>
+        let mediaRecorder;
+        let recordedBlobs = [];
+        let stream;
+
+        async function startRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                stream.getTracks().forEach(track => track.stop());
+                return;
+            }
+
+            recordedBlobs = [];
+            stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            document.getElementById('videoElement').srcObject = stream;
+
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedBlobs.push(event.data);
+                }
+            };
+            mediaRecorder.start();
+        }
+
+        function playRecording() {
+            const superBuffer = new Blob(recordedBlobs, { type: 'video/webm' });
+            const videoElement = document.getElementById('videoElement');
+            videoElement.srcObject = null;
+            videoElement.src = URL.createObjectURL(superBuffer);
+            videoElement.controls = true;
+            videoElement.play();
+        }
+
+        function saveRecording() {
+            const blob = new Blob(recordedBlobs, { type: 'video/webm' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'recording.webm';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
